@@ -3,33 +3,58 @@ library(lubridate)
 
 data<-read_csv("data/Merged_1.csv")
 
+data_clean<-read_csv("data/data_dates_realigned_mp.csv")
 
-dates<-data%>%select(ID, Date)%>%
-  mutate(date= as.Date(dmy(Date)))%>%
-  group_by(ID)%>%
+data_clean1<-data_clean%>%
+  mutate(date= dmy(date))%>%
+  group_by(id)%>%
   mutate(
     start_date=min(date,na.rm=TRUE),
     end_date=max(date,na.rm=TRUE),
-    duration=end_date-start_date,
-    id=ID
-  )%>%select(id, start_date, date, end_date, duration)%>%
-  select(-ID, )
+    duration=end_date-start_date
+  )%>%
+  ungroup()%>%
+  group_by(id, date)%>%
+  mutate(
+    number_sleeps=n()
+  )%>%
   ungroup()
 
-dates_transform<-tibble(
-  id=dates$ID, start_date=dates$start_date,
-  day_names=list(paste0("day_", rep(1:30, each=1))),
-  day=list(rep(1:30, each=1)))
-)
+data_clean1%>%write_csv("data/data_dates_realigned_mp2.csv")
+
+  dates_transform<-tibble(
+  id=data_clean1$id, start_date=data_clean1$start_date,
+  day_names=list(paste0("day_", rep(1:5, each=1))),
+  day=list(rep(0:4, each=1)))
+
+data_clean1<-data_clean1%>%select(-start_date)
+
 
 dates_transform<-dates_transform%>%unnest(c(day_names, day))%>%
   mutate(
     date_4_days=start_date+day
   )%>%
-  select(id, start_date, day_names, date_4_days)
+  select(id, start_date, day_names, date_4_days)%>%distinct()
   
 
-test<-full_join(dates_transform, dates)%>%distinct(id, day_names)
+test<-right_join(dates_transform, data_clean1, by=c("id"="id", "date_4_days"="date"))
+
+data_5days<-test%>%filter(!is.na(day_names))
+
+data_5days<-data_5days%>%rename(date=date_4_days)
+  
+data_5days%>% write_csv("data/data_dates_realigned_5daywindow.csv")
+
+data_5days_transf<-data_5days%>%pivot_wider(names_from=day_names, values_from=date_4_days, values_fn = c())
+
+  
+as.Date(data_5days_transf$day_1, format = "%Y%m%d")
+  
+arrange(id, date_4_days)%>%
+  rename(date=date_4_days)
+  
+  
+))%>%distinct(id, day_names)
 
 
   group_by(id, start_date)%>%
