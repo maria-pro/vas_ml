@@ -654,3 +654,837 @@ results_NB <- data_test %>% select(LoS_cat_180) %>%
 kable(results_NB)
 ```
 
+```{r}
+describe(results_NB)
+```
+
+```{r}
+results_NB%>% 
+  conf_mat(truth = LoS_cat_180, estimate = .pred_class)
+```
+```{r}
+#Visualise Results
+update_geom_defaults(geom = "rect", new = list(fill = "midnightblue", alpha = 0.7))
+results_NB%>% 
+  conf_mat(LoS_cat_180,.pred_class) %>% 
+  autoplot()
+```
+
+```{r}
+
+ev_met1_NB<-ev_met1(results_NB,truth = LoS_cat_180, estimate = .pred_class)
+Rec_NB<-yardstick::recall(results_NB, LoS_cat_180, .pred_class)
+ACC_NB<-yardstick::accuracy(results_NB, LoS_cat_180, .pred_class)
+#Plot Roc_Curve
+curve_NB <- results_NB %>% 
+  roc_curve(LoS_cat_180, .pred_0) %>% 
+  autoplot
+curve_NB
+```
+
+```{r}
+auc_NB <- results_NB %>% 
+  roc_auc(LoS_cat_180, .pred_0)
+NBMET<-list(auc_NB,ev_met1_NB, Rec_NB, ACC_NB)
+kable(NBMET)
+```
+
+
+```{r}
+
+NBMETCurVe<-list(NBMET, curve_NB)
+NBMETCurVe
+```
+
+```{r}
+results_Kern<-data_test %>% select(LoS_cat_180) %>% 
+  bind_cols (Kernel_fit%>% 
+              predict(new_data = data_test)) %>% 
+  bind_cols(Kernel_fit%>% 
+              predict(new_data = data_test, type = "prob"))
+kable(results_Kern)
+```
+
+
+```{r}
+results_Kern%>% 
+  conf_mat(truth = LoS_cat_180, estimate = .pred_class)
+```
+```{r}
+#Visualise Results
+update_geom_defaults(geom = "rect", new = list(fill = "midnightblue", alpha = 0.7))
+results_Kern%>% 
+  conf_mat(LoS_cat_180,.pred_class) %>% 
+  autoplot()
+```
+```{r}
+
+ev_met1_Kern<-ev_met1(results_Kern,truth = LoS_cat_180, estimate = .pred_class)
+Rec_Kern<-yardstick::recall(results_Kern, LoS_cat_180, .pred_class)
+ACC_Kern<-yardstick::accuracy(results_Kern, LoS_cat_180, .pred_class)
+#Plot Roc_Curve
+curve_Kern <- results_Kern %>% 
+  roc_curve(LoS_cat_180, .pred_0) %>% 
+  autoplot
+curve_Kern
+```
+
+
+```{r}
+auc_Kern <- results_Kern %>% 
+  roc_auc(LoS_cat_180, .pred_0)
+KernMET<-list(auc_Kern,ev_met1_Kern, Rec_Kern, ACC_Kern)
+kable(KernMET)
+```
+
+
+```{r}
+
+KernMETCurVe<-list(KernMET, curve_LR)
+KernMETCurVe
+```
+
+
+#### tuning
+
+```{r}
+set.seed(123)
+#xgb_tree
+
+#first creating a tuning model
+tune_xgb_t <- boost_tree(
+  trees = 1000,
+  tree_depth = tune(), min_n = tune(),
+  loss_reduction = tune(),                     ## first three: model complexity
+  sample_size = tune(), mtry = tune(),         ## randomness
+  learn_rate = tune()                          ## step size
+) %>%
+  set_engine("xgboost") %>%
+  set_mode("classification")
+
+
+#second creating a tuning workflow
+xgb_workflow_T<-workflow()%>% 
+  add_recipe(data_stay180_rec) %>% 
+  add_model(tune_xgb_t)
+#third calling the workflow
+xgb_workflow_T
+```
+```{r}
+xgb_grid <- grid_latin_hypercube(
+  tree_depth(),
+  min_n(),
+  loss_reduction(),
+  sample_size = sample_prop(),
+  finalize(mtry(), data_train),
+  learn_rate(),
+  size = 30
+)
+
+xgb_res<- tune_grid(
+  xgb_workflow_T,
+  resamples = data_boot,
+  grid = xgb_grid)
+xgb_res
+```
+
+
+```{r}
+xgb_res%>% 
+  collect_metrics() %>% 
+  slice_head(n = 10)
+```
+
+```{r}
+best_xgb <- xgb_res%>% 
+  select_best("accuracy")
+best_xgb
+```
+
+```{r}
+final_wflow_xgb <- xgb_workflow_T %>% 
+  finalize_workflow(best_xgb)
+#12th Check the fit of the final Wflow on the training data
+Tuned_xgb_fit<-final_wflow_xgb%>%fit(data_train)
+Tuned_xgb_fit
+```
+
+```{r}
+
+results_tuned_xgb<-data_test %>% select(LoS_cat_180) %>% 
+  bind_cols (Tuned_xgb_fit%>% 
+              predict(new_data = data_test)) %>% 
+  bind_cols(Tuned_xgb_fit%>% 
+              predict(new_data = data_test, type = "prob"))
+kable(results_tuned_xgb)
+```
+
+```{r}
+
+#Tuned xgb_Results
+results_tuned_xgb %>% 
+  conf_mat(truth = LoS_cat_180, estimate = .pred_class)
+```
+
+```{r}
+#visualise CF
+update_geom_defaults(geom = "rect", new = list(fill = "midnightblue", alpha = 0.7))
+results_tuned_xgb %>% 
+  conf_mat(LoS_cat_180, .pred_class) %>% 
+  autoplot()
+```
+
+```{r}
+
+#Plot Roc_Curve
+curve_xgb_tuned <- results_tuned_xgb%>% 
+  roc_curve(LoS_cat_180, .pred_0) %>% 
+  autoplot
+curve_xgb_tuned
+```
+
+```{r}
+
+# Evaluate ROC_AUC
+auc_xgb_tuned <- results_tuned_xgb %>% 
+  roc_auc(LoS_cat_180, .pred_0)
+auc_xgb_tuned
+```
+
+```{r}
+
+ev_met1_Tunxgb<-ev_met1(results_tuned_xgb,truth = LoS_cat_180, estimate = .pred_class)
+Rec_Txgb<-yardstick::recall(results_tuned_xgb, LoS_cat_180, .pred_class)
+ACC_Txgb<-yardstick::accuracy(results_tuned_xgb, LoS_cat_180, .pred_class)
+TunxgbMET<-list(auc_xgb_tuned,ev_met1_Tunxgb, Rec_Txgb, ACC_Txgb)
+kable(TunxgbMET)
+```
+
+```{r}
+#first creating a tuning model
+tune_LR <- logistic_reg(penalty = tune(), mixture = tune())%>% 
+  set_mode("classification")%>%
+  set_engine("glmnet")
+
+
+#second creating a tuning workflow
+LR_workflow_T<-workflow()%>% 
+  add_recipe(data_stay180_rec) %>% 
+  add_model(tune_LR)
+#third calling the workflow
+LR_workflow_T
+
+```
+```{r}
+LR_grid <- grid_regular(parameters(tune_LR), levels = 20)
+```
+
+```{r}
+LR_res<- tune_grid(
+  LR_workflow_T,
+  resamples = data_boot,
+  grid = LR_grid)
+```
+
+```{r}
+
+LR_res
+```
+```{r}
+
+LR_res%>% 
+  collect_metrics() %>% 
+  slice_head(n = 10)
+```
+
+```{r}
+
+best_LR <- LR_res %>% 
+  select_best("accuracy")
+best_LR
+```
+
+```{r}
+#11th Finalize the workoflow with the best model
+final_wflow_LR <- LR_workflow_T %>% 
+  finalize_workflow(best_LR)
+#12th Check the fit of the final Wflow on the training data
+Tuned_LR_fit<-final_wflow_LR%>%fit(data_train)
+Tuned_LR_fit
+```
+
+```{r}
+
+#Test the tuned AI on the test data
+results_tuned_LR<-data_test %>% select(LoS_cat_180) %>% 
+  bind_cols (Tuned_LR_fit%>% 
+              predict(new_data = data_test)) %>% 
+  bind_cols(Tuned_LR_fit%>% 
+              predict(new_data = data_test, type = "prob"))
+kable(results_tuned_LR)
+```
+
+```{r}
+#Tuned Results
+results_tuned_LR %>% 
+  conf_mat(truth = LoS_cat_180, estimate = .pred_class)
+```
+
+```{r}
+
+update_geom_defaults(geom = "rect", new = list(fill = "midnightblue", alpha = 0.7))
+results_tuned_LR %>% 
+  conf_mat(LoS_cat_180, .pred_class) %>% 
+  autoplot()
+```
+
+```{r}
+
+#Plot Roc_Curve
+curve_LR_tuned <- results_tuned_LR%>% 
+  roc_curve(LoS_cat_180, .pred_0) %>% 
+  autoplot
+curve_LR_tuned
+```
+```{r}
+
+# Evaluate ROC_AUC
+auc_LR_tuned <- results_tuned_LR %>% 
+  roc_auc(LoS_cat_180, .pred_0)
+auc_LR_tuned
+```
+
+```{r}
+ev_met1_TunLR<-ev_met1(results_tuned_LR,truth = LoS_cat_180, estimate = .pred_class)
+Rec_TLR<-yardstick::recall(results_tuned_LR, LoS_cat_180, .pred_class)
+ACC_TLR<-yardstick::accuracy(results_tuned_LR, LoS_cat_180, .pred_class)
+TunLRMET<-list(auc_LR_tuned,ev_met1_TunLR, Rec_TLR, ACC_TLR)
+kable(TunLRMET)
+```
+
+
+```{r}
+
+#first creating a tuning model
+tune_NB <- naive_Bayes(smoothness = tune(), Laplace = tune ())%>% 
+  set_mode("classification")%>%
+  set_engine("naivebayes")
+
+
+#second creating a tuning workflow
+NB_workflow_T<-workflow()%>% 
+  add_recipe(data_stay180_rec) %>% 
+  add_model(tune_NB)
+#third calling the workflow
+NB_workflow_T
+```
+```{r}
+
+NB_grid <- grid_regular(parameters(tune_NB), levels = 20)
+
+NB_res<- tune_grid(
+  NB_workflow_T,
+  resamples = data_boot,
+  grid = NB_grid)
+```
+
+```{r}
+
+NB_res%>% 
+  collect_metrics() %>% 
+  slice_head(n = 10)
+```
+
+```{r}
+
+best_NB <- NB_res %>% 
+  select_best("accuracy")
+best_NB
+```
+
+```{r}
+
+#11th Finalize the workoflow with the best model
+final_wflow_NB <- NB_workflow_T %>% 
+  finalize_workflow(best_NB)
+#12th Check the fit of the final Wflow on the training data
+Tuned_NB_fit<-final_wflow_NB%>%fit(data_train)
+Tuned_NB_fit
+```
+
+```{r}
+
+#Test the tuned NB on the test data
+results_tuned_NB<-data_test %>% select(LoS_cat_180) %>% 
+  bind_cols (Tuned_NB_fit%>% 
+              predict(new_data = data_test)) %>% 
+  bind_cols(Tuned_NB_fit%>% 
+              predict(new_data = data_test, type = "prob"))
+kable(results_tuned_NB)
+```
+
+```{r}
+
+#Tuned Results
+results_tuned_NB %>% 
+  conf_mat(truth = LoS_cat_180, estimate = .pred_class)
+```
+
+
+```{r}
+
+#visualise CF
+update_geom_defaults(geom = "rect", new = list(fill = "midnightblue", alpha = 0.7))
+results_tuned_NB %>% 
+  conf_mat(LoS_cat_180, .pred_class) %>% 
+  autoplot()
+```
+
+```{r}
+
+#Plot Roc_Curve
+curve_NB_tuned <- results_tuned_NB %>% 
+  roc_curve(LoS_cat_180, .pred_0) %>% 
+  autoplot
+curve_NB_tuned
+```
+
+```{r}
+
+# Evaluate ROC_AUC
+auc_NB_tuned <- results_tuned_NB %>% 
+  roc_auc(LoS_cat_180, .pred_0)
+auc_NB_tuned
+```
+
+
+```{r}
+
+ev_met1_TunNB<-ev_met1(results_tuned_NB,truth = LoS_cat_180, estimate = .pred_class)
+Rec_TNB<-yardstick::recall(results_tuned_NB, LoS_cat_180, .pred_class)
+ACC_TNB<-yardstick::accuracy(results_tuned_NB, LoS_cat_180, .pred_class)
+TunNBMET<-list(auc_NB_tuned,ev_met1_TunNB, Rec_TNB, ACC_TNB)
+kable(TunNBMET)
+```
+
+Tune Random Forests
+
+
+```{r}
+#first creating a tuning model
+ranger_spec_T <- rand_forest(
+  mtry = tune(),
+  trees = 1000,
+  min_n = tune()
+)%>%
+  set_mode("classification")%>%
+  set_engine("ranger")
+#second creating a tuning workflow
+RF_workflow_T<-workflow() %>% 
+  add_recipe(data_stay180_rec) %>% 
+  add_model(ranger_spec_T)
+#third calling the workflow
+RF_workflow_T
+```
+
+```{r}
+# fourth tuning/testing the workflow to the resamples
+
+RF_res <- tune_grid(
+  RF_workflow_T,
+  resamples = data_boot,
+  grid = 20
+)
+```
+
+```{r}
+
+#Fifth collect and visualize tuning metrics
+RF_res %>%
+  collect_metrics() %>%
+  filter(.metric == "accuracy") %>%
+  select(mean, min_n, mtry) %>%
+  pivot_longer(min_n:mtry,
+    values_to = "value",
+    names_to = "parameter"
+  )%>%
+  ggplot(aes(value, mean, color = parameter)) +
+  geom_point(show.legend = FALSE) +
+  facet_wrap(~parameter, scales = "free_x") +
+  labs(x = NULL, y = "Accuracy")
+```
+
+```{r}
+
+#Fifth for collecting tuning metrics
+RF_res %>% 
+  collect_metrics() %>% 
+  slice_head(n = 10)
+```
+
+```{r}
+#Nineth show the best model
+RF_res %>% 
+  show_best("accuracy")
+```
+
+```{r}
+
+# Tenth Select best model hyperparameters
+best_RF <- RF_res %>% 
+  select_best("accuracy")
+best_RF
+```
+
+```{r}
+
+#11th Finalize the workoflow with the best SVM
+final_wflow_RF <- RF_workflow_T %>% 
+  finalize_workflow(best_RF)
+#12th Check the fit of the final Wflow on the training data
+Tuned_RF_fit<-final_wflow_RF%>%fit(data_train)
+Tuned_RF_fit
+```
+
+```{r}
+
+#Test the tuned AI on the test data
+results_tuned_RF<-data_test %>% select(LoS_cat_180) %>% 
+  bind_cols (Tuned_RF_fit%>% 
+              predict(new_data = data_test)) %>% 
+  bind_cols(Tuned_RF_fit%>% 
+              predict(new_data = data_test, type = "prob"))
+kable(results_tuned_RF)
+```
+
+```{r}
+
+#Tuned__Results
+results_tuned_RF %>% 
+  conf_mat(truth = LoS_cat_180, estimate = .pred_class)
+```
+
+
+```{r}
+#visualise CF
+update_geom_defaults(geom = "rect", new = list(fill = "midnightblue", alpha = 0.7))
+results_tuned_RF %>% 
+  conf_mat(LoS_cat_180, .pred_class) %>% 
+  autoplot()
+
+
+```
+
+
+```{r}
+
+#Plot Roc_Curve
+curve_RF_tuned <- results_tuned_RF %>% 
+  roc_curve(LoS_cat_180, .pred_0) %>% 
+  autoplot
+curve_RF_tuned
+```
+
+```{r}
+
+# Evaluate ROC_AOC
+auc_RF_tuned <- results_tuned_RF %>% 
+  roc_auc(LoS_cat_180, .pred_0)
+ev_met1_TunRF<-ev_met1(results_tuned_RF,truth = LoS_cat_180, estimate = .pred_class)
+Rec_TRF<-yardstick::recall(results_tuned_RF, LoS_cat_180, .pred_class)
+ACC_TRF<-yardstick::accuracy(results_tuned_RF, LoS_cat_180, .pred_class)
+TunRFMET<-list(auc_RF_tuned,ev_met1_TunRF, Rec_TRF, ACC_TRF)
+kable(TunRFMET)
+```
+
+```{r}
+
+#first creating a tuning model
+tune_Lasso <- multinom_reg(penalty =tune(), mixture = 1)%>%
+  set_mode("classification")%>%
+  set_engine("glmnet")
+
+#second creating a tuning workflow
+Lasso_workflow_T<-workflow()%>% 
+  add_recipe(data_stay180_rec) %>% 
+  add_model(tune_Lasso)
+#third calling the workflow
+Lasso_workflow_T
+```
+
+```{r}
+
+lamda_grid <- grid_regular(penalty(), levels = 50)
+lamda_grid
+```
+
+```{r}
+
+lasso_grid <- tune_grid(
+  Lasso_workflow_T,
+  resamples = data_boot,
+  grid = lamda_grid)
+
+lasso_grid %>%
+  collect_metrics()
+```
+```{r}
+
+lasso_grid %>%
+  collect_metrics() %>%
+  ggplot(aes(penalty, mean, color = .metric)) +
+  geom_errorbar(aes(
+    ymin = mean - std_err,
+    ymax = mean + std_err
+  ),
+  alpha = 0.5
+  ) +
+  geom_line(size = 1.5) +
+  facet_wrap(~.metric, scales = "free", nrow = 2) +
+  scale_x_log10() +
+  theme(legend.position = "none")
+
+```
+```{r}
+Best_Lasso <- lasso_grid%>%
+  select_best("accuracy")
+Best_Lasso
+```
+
+```{r}
+#Finalize the workoflow with the best model
+final_wflow_Lasso <-Lasso_workflow_T%>%
+  finalize_workflow(Best_Lasso)
+#Check the fit of the final Wflow on the training data
+Tuned_Lasso_fit<-final_wflow_Lasso%>%fit(data_train)
+Tuned_Lasso_fit
+```
+```{r}
+
+#Test the tuned AI on the test data
+results_tuned_Lasso<-data_test%>% select(LoS_cat_180) %>% 
+  bind_cols(Tuned_Lasso_fit%>% 
+              predict(new_data = data_test)) %>% 
+  bind_cols(Tuned_Lasso_fit%>% 
+              predict(new_data = data_test, type = "prob"))
+kable(results_tuned_Lasso)
+```
+
+```{r}
+
+#Tuned__Results
+results_tuned_Lasso %>% 
+  conf_mat(truth = LoS_cat_180, estimate = .pred_class)
+```
+```{r}
+#visualise CF
+update_geom_defaults(geom = "rect", new = list(fill = "midnightblue", alpha = 0.7))
+results_tuned_Lasso %>% 
+  conf_mat(LoS_cat_180, .pred_class) %>% 
+  autoplot()
+```
+
+```{r}
+
+#Plot Roc_Curve
+curve_Lasso_tuned <- results_tuned_Lasso %>% 
+  roc_curve(LoS_cat_180, .pred_0) %>% 
+  autoplot
+curve_Lasso_tuned
+```
+
+```{r}
+
+# Evaluate ROC_AOC
+auc_Lasso_tuned <- results_tuned_Lasso %>% 
+  roc_auc(LoS_cat_180, .pred_0)
+auc_Lasso_tuned
+```
+
+```{r}
+
+ev_met1_TunLasso<-ev_met1(results_tuned_Lasso,truth = LoS_cat_180, estimate = .pred_class)
+Rec_TLasso<-yardstick::recall(results_tuned_Lasso, LoS_cat_180, .pred_class)
+ACC_TLasso<-yardstick::accuracy(results_tuned_Lasso, LoS_cat_180, .pred_class)
+TunLassoMET<-list(auc_Lasso_tuned,ev_met1_TunLasso, Rec_TLasso, ACC_TLasso)
+kable(TunLassoMET)
+```
+
+
+KNN - does not tune due to N of neighbors
+
+```{r eval=FALSE}
+
+knn_model <- nearest_neighbor(neighbors = tune()) %>% 
+             set_engine('kknn') %>% 
+             set_mode('classification')
+
+knn_wf <- workflow() %>% 
+          add_model(knn_model) %>% 
+          add_recipe(data_stay180_rec)
+
+k_grid <- tibble(neighbors = c(10, 15, 25, 45, 60, 80, 100, 120, 140, 180))
+
+knn_tuning <- knn_wf %>% 
+              tune_grid(resamples = data_boot,
+                        grid = k_grid)
+
+best_k <- knn_tuning %>% 
+          select_best(metric = 'accuracy')
+
+final_knn_wf <- knn_wf %>% 
+                finalize_workflow(best_k)
+
+Tuned_knn_fit<-final_knn_wf%>%fit(data_train)
+Tuned_knn_fit
+
+
+results_tuned_knn<-data_test%>% select(LoS_cat_180) %>% 
+  bind_cols(Tuned_knn_fit%>% 
+              predict(new_data = data_test)) %>% 
+  bind_cols(Tuned_knn_fit%>% 
+              predict(new_data = data_test, type = "prob"))
+kable(results_tuned_knn)
+
+
+#Tuned Results
+results_tuned_knn %>% 
+  conf_mat(truth = LoS_cat_180, estimate = .pred_class)
+
+#visualise CF
+update_geom_defaults(geom = "rect", new = list(fill = "midnightblue", alpha = 0.7))
+results_tuned_knn %>% 
+  conf_mat(LoS_cat_180, .pred_class) %>% 
+  autoplot()
+
+#Plot Roc_Curve
+curve_knn_tuned <- results_tuned_knn %>% 
+  roc_curve(LoS_cat_180, .pred_0) %>% 
+  autoplot
+curve_knn_tuned
+
+# Evaluate ROC_AOC
+auc_knn_tuned <- results_tuned_knn %>% 
+  roc_auc(LoS_cat_180, .pred_0)
+auc_knn_tuned
+
+ev_met1_Tunknn<-ev_met1(results_tuned_knn,truth = LoS_cat_180, estimate = .pred_class)
+Rec_Tknn<-yardstick::recall(results_tuned_knn, LoS_cat_180, .pred_class)
+ACC_Tknn<-yardstick::accuracy(results_tuned_knn, LoS_cat_180, .pred_class)
+TunknnMET<-list(auc_knn_tuned,ev_met1_Tunknn, Rec_Tknn, ACC_Tknn)
+kable(TunknnMET)
+```
+
+SVM
+
+```{r}
+
+#first creating a tuning model
+svm_mod_T <-
+  svm_rbf(cost = tune(), rbf_sigma = tune()) %>%
+  set_mode("classification") %>%
+  set_engine("kernlab")
+
+
+#second creating a tuning workflow
+SVM_workflow_T<-workflow()%>% 
+  add_recipe(data_stay180_rec) %>% 
+  add_model(svm_mod_T)
+#third calling the workflow
+SVM_workflow_T
+```
+
+```{r}
+
+SVM_grid <- grid_regular(cost(),rbf_sigma(), levels = 10)
+
+SVM_res<- tune_grid(
+  SVM_workflow_T,
+  resamples = data_boot,
+  grid = SVM_grid)
+
+
+SVM_res
+```
+
+```{r}
+
+SVM_res%>% 
+  collect_metrics() %>% 
+  slice_head(n = 10)
+```
+
+```{r}
+
+best_SVM <- SVM_res %>% 
+  select_best("accuracy")
+best_SVM
+```
+
+
+```{r}
+
+#11th Finalize the workoflow with the best model
+final_wflow_SVM <- SVM_workflow_T %>% 
+  finalize_workflow(best_SVM)
+#12th Check the fit of the final Wflow on the training data
+Tuned_SVM_fit<-final_wflow_SVM%>%fit(data_train)
+Tuned_SVM_fit
+```
+
+```{r}
+
+#Test the tuned AI on the test data
+results_tuned_SVM<-data_test %>% select(LoS_cat_180) %>% 
+  bind_cols (Tuned_SVM_fit%>% 
+              predict(new_data = data_test)) %>% 
+  bind_cols(Tuned_SVM_fit%>% 
+              predict(new_data = data_test, type = "prob"))
+kable(results_tuned_SVM)
+```
+
+```{r}
+
+#Tuned Results
+results_tuned_SVM %>% 
+  conf_mat(truth = LoS_cat_180, estimate = .pred_class)
+```
+
+```{r}
+
+#visualise CF
+update_geom_defaults(geom = "rect", new = list(fill = "midnightblue", alpha = 0.7))
+results_tuned_SVM %>% 
+  conf_mat(LoS_cat_180, .pred_class) %>% 
+  autoplot()
+```
+
+
+```{r}
+
+#Plot Roc_Curve
+curve_SVM_tuned <- results_tuned_SVM%>% 
+  roc_curve(LoS_cat_180, .pred_0) %>% 
+  autoplot
+curve_SVM_tuned
+```
+
+
+```{r}
+
+# Evaluate ROC_AUC
+auc_SVM_tuned <- results_tuned_SVM %>% 
+  roc_auc(LoS_cat_180, .pred_0)
+auc_SVM_tuned
+```
+
+
+```{r}
+
+ev_met1_TunSVM<-ev_met1(results_tuned_SVM,truth = LoS_cat_180, estimate = .pred_class)
+Rec_TSVM<-yardstick::recall(results_tuned_SVM, LoS_cat_180, .pred_class)
+ACC_TSVM<-yardstick::accuracy(results_tuned_SVM, LoS_cat_180, .pred_class)
+TunSVMMET<-list(auc_SVM_tuned,ev_met1_TunSVM, Rec_TSVM, ACC_TSVM)
+kable(TunSVMMET)
+```
+
