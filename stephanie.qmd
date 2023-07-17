@@ -1,0 +1,501 @@
+---
+title: "ml - classification"
+author: "Maria"
+format: html
+editor: visual
+---
+
+Protocol:
+
+Validation dataset source/creation: Differences between independent validation set and training set
+• Representative class split for Validation and Training sets (supervised)
+
+Training Protocol
+• Evaluation Metric
+• Training evaluation method and hyperparameters
+• Reasoning for evaluation metric andmethod
+
+Model Configuration
+The analysis was conducted using 6 ML models, including
+#K-nearest neighbor algorithm (KNN)
+
+#Multinomial Logistic Regression (MLR)
+
+#NaïveBayes (NB)
+
+#Ensemble Learning (Random Forest (RF))
+
+#Support Vector Machine (SVM).
+
+
+Machine learning or statistical method and reasoning
+• Hyperparameters and estimate reasoning
+
+
+Optimization
+(overfitting)
+
+Generalization
+• Technique, hyperparameters
+• Added/Removed Features
+
+#-----------------------
+
+**Outcome**
+
+The Variable Phase1_3 might be best to capture this. There are 3 phases of treatment at Restart, and therefore what would be considered successful varies. 
+
+*Phase 1* =traditional residential outpatient, 
+
+*Phase 2* is a semi structured outpatient on campus treatment, and 
+
+*phase 3* is traditional outpatient treatment with less structure and more autonomy.
+
+*Option 1*
+
+Therefore, for the outcome, I would suggest using Phase 1_3 which is a combination of all three phases. However, in the more traditional sense of 'positive outcomes' those who have completed treatment at Phase 1 (intensive inpatient) and Phase 2 (intensive outpatient) follow the more traditional models of medical treatment approaches and therefore would be best. 
+
+*Option 2*
+
+As the program of ReStart does not utilize a manualized approach, the variable LoS (length of stay) may also be helpful to explain how duration of treatment can be beneficial (or not beneficial) towards desired treatment outcomes. 
+
+**Inputs**
+2) I suggest looking at: 
+  
+  
+BIGS_sum
+dass_anxiety_sum
+dass_dep_sum
+dass_stress
+sum
+sog_sum
+
+Also, might be interesting to see if the primary and secondary diagnosis impacted the outcomes. Just a thought.
+
+DSM_Primary
+DSM_Secondary
+
+**Questions:**
+
+1. what is the RQ? 
+
+using Phase1_3: what are chances to participate in the program types?
+using LoS: how can the lenght of participation be predicted?
+
+none of those questions actually address effectiveness of the program...
+
+2. for inputs: 
+
+what about demographics:
+
+Sex (interesting you have mostly Male 121/128)
+age
+MaritalStatus (Single: 120/128 - due to age and focus of the program?)
+Grade (=college status)
+Race (White=113/128)
+
+3. to check
+
+AgeAtAdmit, Age and LoS = does not add up. The difference between AgeAtAdmin and Age may be several years, but LoS is under several months. How does it work? (see ID 5883, 5917)
+#-----------------
+
+```{r}
+
+library(tidyverse)
+library(tidymodels)
+library(haven)
+library(gt)
+library(reactable)
+library(psych)
+library(finetune)
+library(discrim)
+
+doParallel::registerDoParallel()
+
+theme_set(theme_minimal())
+
+
+#https://www.restartlife.com/program/outpatient-services/
+data_stephanie<-read_sav("/Users/e5028514/Library/CloudStorage/OneDrive-VictoriaUniversity/vas_ml/stephanie/ReSTART.Dataset_final_May2022.sav")%>%
+  janitor::clean_names()
+
+factor_cols<-c(
+  "team_member",
+  "client_id",
+  "sex",
+  "marital_status",
+  "grade",
+  "race",
+  "ethnicity",
+  "religion",
+  "phase1_intensive",
+  "phase2_open_world",
+  "phase3_sustainability",
+  "phase1_3",
+  "dsm_primary",
+  "dsm_secondary",
+  "dsm_overall",
+  "re_start_house",
+  "primary_behavior",
+  "secondary_behavior",
+  "bigs_sum",
+  "dass_anxiety_sum",
+  "dass_dep_sum",
+  "dass_stress_sum",
+  "sog_sum"
+)
+data_stephanie<-data_stephanie%>%
+  mutate(
+    across(all_of(factor_cols), 
+    factor)
+    )%>%filter(
+      !is.na(phase1_3)
+    )%>%
+  filter(phase1_3!=0)%>%
+  droplevels()
+
+levels(data_stephanie$phase1_3)
+
+psych::describe(data_stephanie)
+
+
+data_model_phase<-data_stephanie%>%
+  select(
+    "client_id",
+     "sex",
+  "marital_status",
+  "grade",
+  "race",
+  "ethnicity",
+  "religion",
+#  "phase1_intensive",
+#  "phase2_open_world",
+#  "phase3_sustainability",
+#"lo_s", 
+ "phase1_3",
+  "dsm_primary",
+  "dsm_secondary",
+  "dsm_overall",
+  "re_start_house",
+  "primary_behavior",
+  "secondary_behavior",
+  "bigs_sum",
+  "dass_anxiety_sum",
+  "dass_dep_sum",
+  "dass_stress_sum",
+  "sog_sum"
+  )
+
+
+#skimr::skim(data_stephanie)
+describe(data_model_phase)%>%gt()
+
+skimr::skim(data_model_phase)
+DataExplorer::plot_bar(data_model_phase)
+
+
+```
+
+#----------------
+### Setup
+
+
+```{r}
+
+set.seed(123)
+
+data_split<-initial_split(data_model_phase, strata=phase1_3) #prop = 3/4
+data_train<-training(data_split)
+data_test<-testing(data_split)
+
+data_folds <- vfold_cv(data_train, v = 5, strata = phase1_3, repeats = 5)
+data_boot<-volcano_boot <- bootstraps(data_model_phase)
+
+data_model_phase%>%count(phase1_3)
+levels(data_train$phase1_3)
+
+data_phase_rec <- recipe(phase1_3 ~ ., data = data_train) %>%
+  update_role(client_id, new_role = "Id") %>%
+  step_zv(all_numeric_predictors()) %>%
+  step_normalize(all_numeric_predictors()) %>%
+  step_impute_mode(all_nominal_predictors())%>%
+  step_unknown(all_nominal_predictors(), new_level = "NA")%>%
+  step_dummy(all_nominal_predictors()) 
+  
+#  step_impute_knn(all_predictors(), neighbors = 3)
+#%>%
+#step_other(phase1_3)
+ # themis::step_smote(phase1_3)
+
+
+
+```
+
+###  Validation metrics
+
+```{r}
+data_metrics <- metric_set(mn_log_loss, roc_auc, accuracy, sensitivity, specificity)
+
+```
+
+## Phase1_3, multiclass classification 
+
+```{r}
+#knn
+
+knn_model<-nearest_neighbor(
+  mode="classification",
+  engine="kknn",
+  neighbors=tune(),
+  weight_func=tune(),
+  dist_power=tune()
+)
+
+
+#random forest
+rf_model <- 
+  rand_forest(
+    mtry = tune(),
+    min_n = tune(),
+    trees = 500
+  ) %>%
+  set_mode("classification") %>%
+  set_engine("ranger")
+
+#ensemble - rpart
+
+tree_model <- decision_tree(
+  tree_depth=tune(),
+  min_n=tune(),
+  cost_complexity=tune()
+) %>%
+  set_engine("rpart") %>%
+  set_mode("classification")
+
+#xgboost
+
+xgb_model <-
+  boost_tree(
+    trees = tune(),
+    min_n = tune(),
+    mtry = tune(),
+    learn_rate = 0.01
+  ) %>%
+  set_engine("xgboost") %>%
+  set_mode("classification")
+
+
+#naive bayes
+
+nb_model <-
+  naive_Bayes(
+    smoothness=tune(),
+    Laplace=tune()
+  ) %>%
+  set_mode("classification") %>%
+  set_engine("naivebayes")
+
+#svm
+
+svm_model <-svm_rbf(
+  mode = "classification", 
+  cost=1,
+  rbf_sigma = tune(),
+  )%>%
+  set_mode("classification") %>%
+  set_engine("kernlab")
+
+```
+
+
+#### XGBoost
+
+```{r}
+xgb_wf <- workflow(data_phase_rec, xgb_model)
+
+xgb_rs <- tune_race_anova(
+  xgb_wf,
+  resamples = data_folds,
+  grid = 15,
+  metrics = data_metrics,#metric_set(mn_log_loss),
+  control = control_race(verbose_elim = TRUE)
+)
+
+plot_race(xgb_rs)
+#show_best(xgb_rs, data_metrics)
+show_best(xgb_rs)
+
+xgb_last <- xgb_wf %>%
+  finalize_workflow(select_best(xgb_rs, "mn_log_loss")) %>%
+  last_fit(data_split)
+
+xgb_last
+
+collect_predictions(xgb_last) %>%
+  mn_log_loss(phase1_3, .pred_1:.pred_3)
+```
+
+#### RandomForest
+
+```{r}
+rf_wf <- workflow(data_phase_rec, rf_model)
+
+rf_rs <- tune_race_anova(
+  rf_wf,
+  resamples = data_folds,
+  grid = 15,
+  metrics = data_metrics,#metric_set(mn_log_loss),
+  control = control_race(verbose_elim = TRUE)
+)
+
+plot_race(rf_rs)
+
+show_best(rf_rs)
+
+rf_last <- rf_wf %>%
+  finalize_workflow(select_best(rf_rs, "mn_log_loss")) %>%
+  last_fit(data_split)
+
+rf_last
+
+collect_predictions(rf_last) %>%
+  mn_log_loss(phase1_3, .pred_1:.pred_3)
+```
+
+#### KNN
+
+```{r}
+knn_wf <- workflow(data_phase_rec, knn_model)
+
+knn_rs <- tune_race_anova(
+  knn_wf,
+  resamples = data_folds,
+  grid = 15,
+  metrics = data_metrics,#metric_set(mn_log_loss),
+  control = control_race(verbose_elim = TRUE)
+)
+
+plot_race(knn_rs)
+
+show_best(knn_rs)
+
+knn_last <- knn_wf %>%
+  finalize_workflow(select_best(knn_rs, "mn_log_loss")) %>%
+  last_fit(data_split)
+
+knn_last
+
+collect_predictions(knn_last) %>%
+  mn_log_loss(phase1_3, .pred_1:.pred_3)
+```
+#### TREE
+
+```{r}
+tree_wf <- workflow(data_phase_rec, tree_model)
+
+tree_rs <- tune_race_anova(
+  tree_wf,
+  resamples = data_folds,
+  grid = 15,
+  metrics = data_metrics,#metric_set(mn_log_loss),
+  control = control_race(verbose_elim = TRUE)
+)
+
+plot_race(tree_rs)
+
+show_best(tree_rs)
+
+tree_last <- tree_wf %>%
+  finalize_workflow(select_best(tree_rs, "mn_log_loss")) %>%
+  last_fit(data_split)
+
+tree_last
+
+collect_predictions(tree_last) %>%
+  mn_log_loss(phase1_3, .pred_1:.pred_3)
+```
+#### Naive bayes
+
+```{r}
+nb_wf <- workflow(data_phase_rec, nb_model)
+
+nb_rs <- tune_race_anova(
+  nb_wf,
+  resamples = data_folds,
+  grid = 15,
+  metrics = data_metrics, #metric_set(mn_log_loss),
+  control = control_race(verbose_elim = TRUE)
+)
+
+plot_race(nb_rs)
+
+show_best(nb_rs)
+
+nb_last <- nb_wf %>%
+  finalize_workflow(select_best(nb_rs, "mn_log_loss")) %>%
+  last_fit(data_split)
+
+nb_last
+
+collect_predictions(nb_last) %>%
+  mn_log_loss(phase1_3, .pred_1:.pred_3)
+```
+#### SVM 
+
+```{r}
+svm_wf <- workflow(data_phase_rec, svm_model)
+
+svm_rs <- tune_race_anova(
+  svm_wf,
+  resamples = data_folds,
+  grid = 15,
+  metrics = data_metrics,#metric_set(mn_log_loss),
+  control = control_race(verbose_elim = TRUE)
+)
+
+plot_race(svm_rs)
+
+show_best(svm_rs)
+
+svm_last <- svm_wf %>%
+  finalize_workflow(select_best(svm_rs, "mn_log_loss")) %>%
+  last_fit(data_split)
+
+svm_last
+
+collect_predictions(svm_last) %>%
+  mn_log_loss(phase1_3, .pred_1:.pred_3)
+
+```
+
+
+#----------
+
+
+### Model stack
+```{r}
+model_list <- list(
+  rand_forest = rf_model, 
+  knn = knn_model, 
+  tree=tree_model, 
+  xgboost=xgb_model,
+  nb=nb_model,
+  svm=svm_model
+  )
+
+recipe_list<-list(
+  phase13=data_phase_rec
+)
+
+# Create workflows
+workflows_combo <- workflow_set(preproc = recipe_list, models = model_list, cross = TRUE)
+
+# Resample on each workflow object
+
+resampling_result <- workflows_combo %>%
+  workflow_map("tune_race_anova", seed = 1101, verbose = TRUE, resamples = data_folds)
+
+resampling_result
+
+```
+

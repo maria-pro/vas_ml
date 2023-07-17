@@ -1,0 +1,1779 @@
+---
+title: "Concurrent GD Phenotype"
+author: "Vasileios Stavropoulos"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+message=FALSE
+echo=FALSE
+warnings=FALSE
+error=FALSE
+suppressWarnings({
+  
+  suppressMessages({
+  
+library(tidyverse)
+library(tidymodels)
+library(purrr)
+library(haven)
+library(scales)
+library(ggpubr)
+library(patchwork)
+library(psych)
+library(rstatix)
+library(rcompanion)
+library(broom)
+library(knitr)
+library(readr)
+library(here)
+library(psych)
+library(officer)
+library(ggplot2)
+library(dplyr)
+library(broom.mixed) 
+library(dotwhisker)  
+library(rstanarm)
+library(agua)
+library(parsnip)
+library(plyr)
+library(themis)
+library(DMwR)
+library(naivebayes)
+library(yardstick)
+library(vip)
+library(palmerpenguins)
+library(nnet)
+library(Metrics)
+library(kernlab)
+library(e1071)
+library(usethis)
+library(devtools)
+library(discrim)
+library(ranger) 
+library(git4r)
+library(ggfortify)
+library(caret)
+library(doParallel) 
+library(dials) 
+library(kknn)  
+library(mice) 
+library(VIM)
+library(naniar)
+library(flextable)    
+    
+  })   
+})
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+message=FALSE
+echo=FALSE
+warnings=FALSE
+error=FALSE
+suppressWarnings({
+  suppressMessages({
+  
+  options(scipen = 9999, digits=3, max.print=999999, show.signif.stars=TRUE)
+  
+  data<-read_sav("C:/Users/vasil/Desktop/User-Avatar-Bond Gaming Disorder Paper AI/ARCUN1SF.sav")
+  
+  
+  data1<-data[c("Age_W1", "Yearsofplay_W1","Averagetime_weekday_W1","Averagetime_weekend_W1", "Avatar_no_W1","PresenceQ1_W1", "PresenceQ2_W1", "PresenceQ3_W1", "PresenceQ4_W1", "PresenceQ5_W1", "PresenceQ6_W1", "PresenceQ7_W1", "PresenceQ8_W1", "PresenceQ9_W1", "PresenceQ10_W1","PresenceQ11_W1", "PresenceQ12_W1", "PresenceQ13_W1", "PresenceQ14_W1","FlowQ1_W1", "FlowQ2_W1", "FlowQ3_W1", "FlowQ4_W1", "FlowQ5_W1", "UABQ1_W1", "UABQ2_W1", "UABQ3_W1", "UABQ4_W1", "UABQ5_W1", "UABQ6_W1", "UABQ7_W1", "UABQ8_W1", "UABQ9_W1", "UABQ10_W1","UABQ11_W1", "UABQ12_W1", "PEQ_Q1_W1", "PEQ_Q2_W1", "PEQ_Q3_W1", "PEQ_Q4_W1", "PEQ_Q5_W1", "PEQ_Q6_W1","GD_Q1_W1", "GD_Q2_W1", "GD_Q3_W1", "GD_Q4_W1", "IGD9_Q1_W1", "IGD9_Q2_W1", "IGD9_Q3_W1","IGD9_Q4_W1","IGD9_Q5_W1", "IGD9_Q6_W1","IGD9_Q7_W1", "IGD9_Q8_W1", "IGD9_Q9_W1", "DASS_Q1_W1", "DASS_Q2_W1","DASS_Q3_W1",
+"DASS_Q4_W1", "DASS_Q5_W1", "DASS_Q6_W1" ,"DASS_Q7_W1", "DASS_Q8_W1","DASS_Q9_W1","DASS_Q10_W1","DASS_Q11_W1","DASS_Q12_W1","DASS_Q13_W1","DASS_Q14_W1","DASS_Q15_W1","DASS_Q16_W1","DASS_Q17_W1","DASS_Q18_W1","DASS_Q19_W1","DASS_Q20_W1","DASS_Q21_W1")]
+  
+DataN<-data1%>%mutate(GD_Q1_W1=case_when(GD_Q1_W1>2~1,
+                                      GD_Q1_W1<3~0,
+                                      TRUE~NA_real_),
+                       GD_Q2_W1=case_when(GD_Q2_W1>2~1,
+                                      GD_Q2_W1<3~0,
+                                      TRUE~NA_real_),
+                       GD_Q3_W1=case_when(GD_Q3_W1>2~1,
+                                      GD_Q3_W1<3~0,
+                                      TRUE~NA_real_),
+                       GD_Q4_W1=case_when(GD_Q4_W1>2~1,
+                                      GD_Q4_W1<3~0,
+                                      TRUE~NA_real_),
+                       IGD9_Q1_W1=case_when(IGD9_Q1_W1>2~1,
+                                      IGD9_Q1_W1<3~0,
+                                      TRUE~NA_real_),
+                       IGD9_Q2_W1=case_when(IGD9_Q2_W1>2~1,
+                                      IGD9_Q2_W1<3~0,
+                                      TRUE~NA_real_),
+                       IGD9_Q3_W1=case_when(IGD9_Q3_W1>2~1,
+                                      IGD9_Q3_W1<3~0,
+                                      TRUE~NA_real_),
+                       IGD9_Q4_W1=case_when(IGD9_Q4_W1>2~1,
+                                      IGD9_Q4_W1<3~0,
+                                      TRUE~NA_real_),
+                       IGD9_Q5_W1=case_when(IGD9_Q5_W1>2~1,
+                                      IGD9_Q5_W1<3~0,
+                                      TRUE~NA_real_),
+                       IGD9_Q6_W1=case_when(IGD9_Q6_W1>2~1,
+                                      IGD9_Q6_W1<3~0,
+                                      TRUE~NA_real_),
+                       IGD9_Q7_W1=case_when(IGD9_Q7_W1>2~1,
+                                      IGD9_Q7_W1<3~0,
+                                      TRUE~NA_real_),
+                       IGD9_Q8_W1=case_when(IGD9_Q8_W1>2~1,
+                                      IGD9_Q8_W1<3~0,
+                                      TRUE~NA_real_),
+                       IGD9_Q9_W1=case_when(IGD9_Q9_W1>2~1,
+                                      IGD9_Q9_W1<3~0,
+                                      TRUE~NA_real_),
+                      PEQ_Q1_W1=case_when(PEQ_Q1_W1>3~1,
+                                      PEQ_Q1_W1<4~0,
+                                      TRUE~NA_real_),
+                       PEQ_Q2_W1=case_when(PEQ_Q2_W1>3~1,
+                                      PEQ_Q2_W1<4~0,
+                                      TRUE~NA_real_),
+                       PEQ_Q3_W1=case_when(PEQ_Q3_W1>3~1,
+                                      PEQ_Q3_W1<4~0,
+                                      TRUE~NA_real_),
+                       PEQ_Q4_W1=case_when(PEQ_Q4_W1>3~1,
+                                      PEQ_Q4_W1<4~0,
+                                      TRUE~NA_real_),
+                      PEQ_Q5_W1=case_when(PEQ_Q5_W1>3~1,
+                                      PEQ_Q5_W1<4~0,
+                                      TRUE~NA_real_),
+                       PEQ_Q6_W1=case_when(PEQ_Q6_W1>3~1,
+                                      PEQ_Q6_W1<4~0,
+                                      TRUE~NA_real_))
+DataM<-DataN%>%mutate(GDTTotal=GD_Q1_W1+GD_Q2_W1+GD_Q3_W1+GD_Q4_W1)%>%mutate(IGDTTotal=IGD9_Q1_W1+IGD9_Q9_W1+IGD9_Q3_W1+IGD9_Q4_W1+IGD9_Q5_W1+IGD9_Q6_W1+IGD9_Q7_W1+IGD9_Q8_W1+IGD9_Q9_W1)%>%mutate(PQTotal=PresenceQ1_W1+PresenceQ2_W1+PresenceQ3_W1+PresenceQ4_W1+PresenceQ5_W1+PresenceQ6_W1+PresenceQ7_W1+PresenceQ8_W1+PresenceQ9_W1+PresenceQ10_W1+PresenceQ11_W1+PresenceQ12_W1+PresenceQ13_W1+PresenceQ14_W1)%>%mutate(FTotal=FlowQ1_W1+FlowQ2_W1+FlowQ3_W1+FlowQ4_W1+FlowQ5_W1)%>%mutate(IDTotal=UABQ1_W1+UABQ2_W1+UABQ3_W1+UABQ4_W1)%>%mutate(IMTotal=UABQ5_W1+UABQ6_W1+UABQ7_W1+UABQ8_W1+UABQ9_W1)%>%mutate(COMPTotal=UABQ10_W1+UABQ11_W1+UABQ12_W1)%>%mutate(PETotal1=PEQ_Q1_W1+PEQ_Q2_W1+PEQ_Q3_W1+PEQ_Q4_W1+PEQ_Q5_W1+PEQ_Q6_W1)%>%mutate(DEPTot=DASS_Q3_W1+DASS_Q5_W1+DASS_Q10_W1+DASS_Q13_W1+DASS_Q16_W1+DASS_Q17_W1+DASS_Q21_W1)%>%mutate(AnxTot=DASS_Q2_W1+DASS_Q4_W1+DASS_Q7_W1+DASS_Q9_W1+DASS_Q15_W1+DASS_Q19_W1+DASS_Q20_W1)%>%mutate(StressTot=DASS_Q1_W1+DASS_Q6_W1+DASS_Q8_W1+DASS_Q11_W1+DASS_Q12_W1+DASS_Q14_W1+DASS_Q18_W1)})
+  
+})   
+
+```
+
+```{r}
+
+suppressWarnings({
+  suppressMessages({
+  
+  options(scipen = 9999, digits=3, max.print=999999, show.signif.stars=TRUE)
+    
+DataMD<-DataM%>%mutate(DEPTot = case_when(DEPTot>20~1,
+                              DEPTot<21~0,
+                                      TRUE~NA_real_))%>%mutate(AnxTot = case_when(AnxTot>20~1,
+                              AnxTot<21~0,
+                                      TRUE~NA_real_))%>%mutate(StressTot = case_when(StressTot>20~1,
+                              StressTot<21~0,
+                                      TRUE~NA_real_))%>% 
+  mutate(GDTTotal = case_when(GDTTotal>2~1,
+                              GDTTotal<3~0, TRUE~NA_real_))%>%mutate(IGDTTotal=case_when(IGDTTotal>3~1,
+                                      IGDTTotal<4~0,
+                                      TRUE~NA_real_))%>% 
+  mutate(PETotal1 = case_when(PETotal1>3~1,
+                              PETotal1<4~0,
+                                      TRUE~NA_real_))
+
+DATAAIGDF<-DataMD[c("Age_W1", "Yearsofplay_W1","IDTotal", "IMTotal", "COMPTotal", "GDTTotal")]
+DATAAIGD1 <- scale(DATAAIGDF[,1:5],center=TRUE,scale=TRUE)
+DATAAIGDD<-DataMD[c("GDTTotal")]
+DATAAIGD<- cbind(DATAAIGD1,DATAAIGDD)
+ 
+
+DATAAIIGD<-DataMD[c("Age_W1", "Yearsofplay_W1", "IDTotal", "IMTotal", "COMPTotal","IGDTTotal")]
+DATAAIIGD <- scale(DATAAIIGD[,1:5],center=TRUE,scale=TRUE)
+DATAAIIGDD1<-DataMD[c("IGDTTotal")]
+DATAAIIGDD<- cbind(DATAAIIGD,DATAAIIGDD1)
+
+GDTD<-na.omit(DATAAIGD)
+IGDD<-na.omit(DATAAIIGDD)
+
+
+GDTD<-GDTD%>% 
+  mutate(GDTTotal = factor(GDTTotal, levels = c("1","0")))
+GDTD<-GDTD %>% 
+  mutate(GDTTotal = case_when(GDTTotal == 1 ~ "Yes",
+                             GDTTotal == 0 ~ "No"))
+
+IGDD<-IGDD %>% 
+  mutate(IGDTTotal = factor(IGDTTotal, levels = c("1","0")))
+
+IGDD<-IGDD %>% 
+  mutate(IGDTTotal = case_when(IGDTTotal == 1 ~ "Yes",
+                             IGDTTotal == 0 ~ "No"))
+
+  GDTDiagg<-GDTD%>%setNames(c("AGE","Gameyears","IDTotal", "IMTotal", "COMPTotal","GDDiag")) 
+
+  IGDDiagg<-IGDD%>%setNames(c("AGE", "Gameyears", "IDTotal", "IMTotal","COMPTotal","IGDDiag"))
+  
+  WHOT<-table(GDTDiagg$GDDiag)
+  APAT<-table(IGDDiagg$IGDDiag)
+   }) 
+  
+  
+})   
+WHOT
+APAT
+
+
+```
+
+```{r}
+message=FALSE
+echo=TRUE
+warnings=FALSE
+error=FALSE
+
+#Identifying the pattern of missing values
+md.pattern(DATAAIGD, rotate.names = TRUE)
+
+```
+
+```{r}
+#Plotting Missing Values
+message=FALSE
+echo=TRUE
+warnings=FALSE
+error=FALSE
+
+mice_plot <- aggr(DATAAIGD, col=c('navyblue','yellow'),
+                    numbers=TRUE, sortVars=TRUE,
+                    labels=names(DataM), cex.axis=.7,
+                    gap=3, ylab=c("Missing data","Pattern"))
+```
+
+
+```{r}
+set.seed(123)
+mcar_test(DATAAIGD)
+```
+
+Compare WHO and APA Classifications 
+```{r}
+ComparisonWHOandAPA<-rbind(WHOT, APAT)
+  kable(ComparisonWHOandAPA)
+  
+  ChiSqu<-chisq.test(ComparisonWHOandAPA)
+  Cram<-cramer_v(ComparisonWHOandAPA)
+  
+  ChiSqu
+  Cram
+```
+
+```{r}
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+
+GDTDiagg$GDDiag=as_factor(GDTDiagg$GDDiag)
+
+GDTDiag <- SMOTE(GDDiag~ ., GDTDiagg, perc.over = 400, perc.under = 125)
+
+table(GDTDiag$GDDiag)
+
+
+
+
+```
+
+
+```{r}
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+GDTDiag$GDDiag=as_factor(GDTDiag$GDDiag)
+suppressWarnings({
+  
+  suppressMessages({
+prior_dist <- rstanarm::student_t(df = 7, location = 0, scale = 2.5)
+set.seed(123)
+data_split <- initial_split(GDTDiag, prop = 4/5, strata = GDDiag, breaks = 4, pool = 0.1)
+# Create data frames for the two sets:
+train_data_GD <- training(data_split)
+test_data_GD  <- testing(data_split)
+#Crossvalidation split
+set.seed(123)
+folds <- vfold_cv(train_data_GD, v = 10)
+TRGDTab<-table(train_data_GD$GDDiag)
+TESTGDTab<-table(test_data_GD$GDDiag)
+})
+})
+summary(train_data_GD)
+
+```
+```{r}
+summary(test_data_GD)
+```
+
+
+```{r}
+ComparisonTrainingandTesting<-rbind(TRGDTab, TESTGDTab)
+  kable(ComparisonTrainingandTesting)
+  
+  ComparisonTrainingandTesting
+  
+  TTChiSqu<-chisq.test(ComparisonTrainingandTesting)
+  TTCram<-cramer_v(ComparisonTrainingandTesting)
+  
+  TTChiSqu
+  TTCram
+  
+  
+```
+
+```{r}
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 9999, digits=3, max.print=9999999, show.signif.stars=TRUE)
+set.seed(123)
+
+GD_rec <- recipe(GDDiag~ ., data = train_data_GD)%>% step_smote(GDDiag, over_ratio = 0.50)%>%step_zv(all_predictors())%>%step_nzv(all_predictors())%>%step_corr(all_predictors())%>%prep
+
+
+train_data_GD_b<-bake(GD_rec, new_data = train_data_GD)
+test_data_GD_b<-bake(GD_rec, new_data = test_data_GD)
+Whole_data_GD_b<-bake(GD_rec, new_data=GDTDiag)
+ describe(train_data_GD_b)
+ describe(test_data_GD_b)
+ describe(Whole_data_GD_b)
+ 
+ 
+```
+
+```{r}
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 9999, digits=3, max.print=9999999, show.signif.stars=TRUE)
+set.seed(123)
+train_boot <- bootstraps(train_data_GD, strata = GDDiag)
+```
+
+
+```{r}
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 9999, digits=3, max.print=9999999, show.signif.stars=TRUE)
+set.seed(123)
+## token model
+twt_null <- null_model()%>%
+  set_engine("parsnip")%>%
+  set_mode("classification")
+## model specification LASSO
+lasso_spec <- multinom_reg(penalty = 0.1, mixture = 1)%>%
+  set_mode("classification")%>%
+  set_engine("glmnet")
+# model specification Naive Bayes
+nb_spec <- naive_Bayes()%>%
+  set_mode("classification")%>%
+  set_engine("naivebayes")
+# model spec random forest
+ranger_spec<-rand_forest()%>% 
+  set_engine("ranger", importance = "impurity")%>% 
+  set_mode("classification")
+##model spec log_regression
+logreg_spec <- logistic_reg()%>% 
+  set_engine("glm")%>% 
+  set_mode("classification")
+##model spec Kernel
+svm_spec <- svm_rbf(mode = "classification", 
+                    engine = "kernlab",
+            cost = 1, rbf_sigma = 0.01)
+```
+
+```{r}
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+set.seed(123)
+#Null
+Null_workflow <- workflow() %>% 
+  add_recipe(GD_rec) %>% 
+  add_model(twt_null)
+#Lasso 
+lasso_workflow <- workflow()%>% 
+  add_recipe(GD_rec)%>% 
+  add_model(lasso_spec)
+#Naive Bayes 
+NB_workflow <- workflow()%>% 
+  add_recipe(GD_rec) %>% 
+  add_model(nb_spec)
+#Random Forests 
+RF_workflow <- workflow()%>% 
+  add_recipe(GD_rec) %>% 
+  add_model(ranger_spec)
+#Log_GLM_Workflow
+LOGGLM_workflow <- workflow()%>% 
+  add_recipe(GD_rec) %>% 
+  add_model(logreg_spec)
+#Kernel
+Kernel_workflow<-workflow()%>% 
+  add_recipe(GD_rec)%>% 
+  add_model(svm_spec)
+```
+
+```{r}
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 9999, digits=3, max.print=9999999, show.signif.stars=TRUE)
+Null_fit<-Null_workflow%>%fit(train_data_GD_b)
+Null_fit  
+Lasso_fit<-lasso_workflow%>%fit(train_data_GD_b)
+Lasso_fit
+RF_fit<-RF_workflow%>%fit(train_data_GD_b)
+RF_fit
+LogReg_fit<-LOGGLM_workflow%>%fit(train_data_GD_b)
+LogReg_fit
+Kernel_fit<-Kernel_workflow%>%fit(train_data_GD_b)
+Kernel_fit
+NB_fit<-NB_workflow%>%fit(train_data_GD_b)
+NB_fit
+```
+
+```{r}
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+#Null_Model
+results_NF <- test_data_GD_b%>%select(GDDiag)%>% 
+  bind_cols(Null_fit%>% 
+              predict(new_data = test_data_GD_b))%>% 
+  bind_cols(Null_fit%>% 
+              predict(new_data = test_data_GD_b, type = "prob"))
+kable(results_NF)
+describe(results_NF)
+```
+
+
+```{r}
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+#Collect precision metrics concurrently
+ev_met1<-metric_set(ppv, f_meas)
+
+results_NF %>% 
+  conf_mat(truth = GDDiag, estimate = .pred_class)
+#Visualise Results_NF
+update_geom_defaults(geom = "rect", new = list(fill = "midnightblue", alpha = 0.7))
+results_NF%>% 
+  conf_mat(GDDiag,.pred_class) %>% 
+  autoplot()
+
+```
+
+```{r}
+ev_met1_NF<-ev_met1(results_NF,truth = GDDiag, estimate = .pred_class)
+Acc_NF<-yardstick::accuracy(results_NF, GDDiag,.pred_class)
+Rec_NF<-yardstick::recall(results_NF, GDDiag, .pred_class)
+#Plot Roc_Curve
+curve_NF <- results_NF %>% 
+  roc_curve(GDDiag, .pred_No) %>% 
+  autoplot
+curve_NF
+```
+
+```{r}
+auc_NF <- results_NF %>% 
+  roc_auc(GDDiag, .pred_Yes)
+NFMET<-list(auc_NF,ev_met1_NF, Rec_NF, Acc_NF)
+kable(NFMET)
+```
+
+```{r}
+results_RF <- test_data_GD_b %>% select(GDDiag)%>% 
+  bind_cols(RF_fit %>% 
+              predict(new_data = test_data_GD_b))%>% 
+  bind_cols(RF_fit%>% 
+             predict(new_data = test_data_GD_b, type = "prob"))
+kable(results_RF)
+describe(results_RF)
+
+```
+
+```{r}
+results_RF%>% 
+  conf_mat(truth = GDDiag, estimate = .pred_class)
+#Visualise Results_RF
+update_geom_defaults(geom = "rect", new = list(fill = "midnightblue", alpha = 0.7))
+results_RF%>% 
+  conf_mat(GDDiag,.pred_class) %>% 
+  autoplot()
+```
+
+
+
+```{r}
+ev_met1_RF<-ev_met1(results_RF,truth = GDDiag, estimate = .pred_class)
+Rec_RF<-yardstick::recall(results_RF, GDDiag, .pred_class)
+ACC_RF<-yardstick::accuracy(results_RF, GDDiag, .pred_class)
+#Plot Roc_Curve
+curve_RF <- results_RF %>% 
+  roc_curve(GDDiag, .pred_No) %>% 
+  autoplot
+curve_RF
+```
+
+```{r}
+auc_RF <- results_RF %>% 
+  roc_auc(GDDiag, .pred_No)
+RFMET<-list(auc_RF,ev_met1_RF, Rec_RF, ACC_RF)
+kable(RFMET)
+RFMETCurVe<-list(RFMET, curve_RF)
+RFMETCurVe
+```
+
+```{r}
+RF_fit_Test<-RF_workflow%>%fit(test_data_GD_b)
+RF_fit_Test
+```
+```{r}
+RF_fit_Test %>% 
+  extract_fit_parsnip() %>% 
+ #Make VIP plot
+ vip()
+```
+```{r}
+results_RFW <- Whole_data_GD_b %>% select(GDDiag)%>% 
+  bind_cols(RF_fit %>% 
+              predict(new_data = Whole_data_GD_b))%>% 
+  bind_cols(RF_fit%>% 
+             predict(new_data = Whole_data_GD_b, type = "prob"))
+kable(results_RFW)
+describe(results_RFW)
+```
+
+```{r}
+results_RFW%>% 
+  conf_mat(truth = GDDiag, estimate = .pred_class)
+#Visualise Results_RF
+update_geom_defaults(geom = "rect", new = list(fill = "midnightblue", alpha = 0.7))
+results_RF%>% 
+  conf_mat(GDDiag,.pred_class) %>% 
+  autoplot()
+```
+
+
+
+```{r}
+ev_met1_RFW<-ev_met1(results_RFW,truth = GDDiag, estimate = .pred_class)
+Rec_RFW<-yardstick::recall(results_RFW, GDDiag, .pred_class)
+ACC_RFW<-yardstick::accuracy(results_RFW, GDDiag, .pred_class)
+
+curve_RFW <- results_RFW %>% 
+  roc_curve(GDDiag, .pred_No) %>% 
+  autoplot
+curve_RFW
+```
+
+```{r}
+auc_RFW <- results_RFW %>% 
+  roc_auc(GDDiag, .pred_No)
+RFMETW<-list(auc_RFW,ev_met1_RFW, Rec_RFW, ACC_RFW)
+kable(RFMETW)
+RFMETCurVeW<-list(RFMETW, curve_RFW)
+RFMETCurVeW
+```
+
+
+
+```{r}
+results_LR <- test_data_GD_b %>% select(GDDiag) %>% 
+  bind_cols (LogReg_fit%>% 
+              predict(new_data = test_data_GD_b)) %>% 
+  bind_cols( LogReg_fit%>% 
+              predict(new_data = test_data_GD_b, type = "prob"))
+kable(results_LR)
+describe(results_LR)
+```
+
+
+```{r}
+results_LR%>% 
+  conf_mat(truth = GDDiag, estimate = .pred_class)
+#Visualise Results
+update_geom_defaults(geom = "rect", new = list(fill = "midnightblue", alpha = 0.7))
+results_LR%>% 
+  conf_mat(GDDiag,.pred_class) %>% 
+  autoplot()
+
+```
+
+```{r}
+ev_met1_LR<-ev_met1(results_LR,truth = GDDiag, estimate = .pred_class)
+Rec_LR<-yardstick::recall(results_LR, GDDiag, .pred_class)
+ACC_LR<-yardstick::accuracy(results_LR, GDDiag, .pred_class)
+#Plot Roc_Curve
+curve_LR <- results_LR %>% 
+  roc_curve(GDDiag, .pred_No) %>% 
+  autoplot
+curve_LR
+```
+
+```{r}
+auc_LR <- results_LR %>% 
+  roc_auc(GDDiag, .pred_No)
+LRMET<-list(auc_LR,ev_met1_LR, Rec_LR, ACC_LR)
+kable(LRMET)
+```
+
+```{r}
+LRMETCurVe<-list(LRMET, curve_LR)
+LRMETCurVe
+```
+
+```{r}
+LogReg_fit_Test<-LOGGLM_workflow%>%fit(test_data_GD_b)
+LogReg_fit_Test
+```
+
+```{r}
+LogReg_fit_Test %>% 
+  extract_fit_parsnip() %>% 
+ #Make VIP plot
+ vip()
+
+```
+
+```{r}
+results_LRW <- Whole_data_GD_b %>% select(GDDiag)%>% 
+  bind_cols(LogReg_fit %>% 
+              predict(new_data = Whole_data_GD_b))%>% 
+  bind_cols(LogReg_fit%>% 
+             predict(new_data = Whole_data_GD_b, type = "prob"))
+kable(results_LRW)
+describe(results_LRW)
+```
+
+```{r}
+results_LRW%>% 
+  conf_mat(truth = GDDiag, estimate = .pred_class)
+#Visualise Results
+update_geom_defaults(geom = "rect", new = list(fill = "midnightblue", alpha = 0.7))
+results_LRW%>% 
+  conf_mat(GDDiag,.pred_class) %>% 
+  autoplot()
+```
+
+
+
+```{r}
+ev_met1_LRW<-ev_met1(results_LRW,truth = GDDiag, estimate = .pred_class)
+Rec_LRW<-yardstick::recall(results_LRW, GDDiag, .pred_class)
+ACC_LRW<-yardstick::accuracy(results_LRW, GDDiag, .pred_class)
+#Plot Roc_Curve
+curve_LRW <- results_LRW %>% 
+  roc_curve(GDDiag, .pred_No) %>% 
+  autoplot
+curve_LRW
+```
+
+```{r}
+auc_LRW <- results_LRW %>% 
+  roc_auc(GDDiag, .pred_No)
+LRMETW<-list(auc_LRW,ev_met1_LRW, Rec_LRW, ACC_LRW)
+kable(RFMETW)
+LRMETCurVeW<-list(LRMETW, curve_LRW)
+LRMETCurVeW
+```
+
+
+```{r}
+results_Lasso<-test_data_GD_b %>% select(GDDiag) %>% 
+  bind_cols( Lasso_fit%>% 
+              predict(new_data = test_data_GD_b)) %>% 
+  bind_cols( Lasso_fit%>% 
+             predict(new_data = test_data_GD_b, type = "prob"))
+kable(results_Lasso)
+describe(results_Lasso)
+```
+
+
+```{r}
+results_Lasso %>% 
+  conf_mat(truth = GDDiag, estimate = .pred_class)
+#Visualise Results
+update_geom_defaults(geom = "rect", new = list(fill = "midnightblue", alpha = 0.7))
+results_Lasso%>% 
+  conf_mat(GDDiag,.pred_class) %>% 
+  autoplot()
+```
+```{r}
+ev_met1_Lasso<-ev_met1(results_Lasso,truth = GDDiag, estimate = .pred_class)
+ACC_Lasso<-yardstick::accuracy(results_Lasso, GDDiag,.pred_class)
+Rec_Lasso<-yardstick::recall(results_Lasso, GDDiag, .pred_class)
+#Plot Roc_Curve
+curve_Lasso <- results_Lasso %>% 
+  roc_curve(GDDiag, .pred_No) %>% 
+  autoplot
+curve_Lasso
+```
+```{r}
+auc_Lasso <- results_Lasso %>% 
+  roc_auc(GDDiag, .pred_No)
+LassoMET<-list(auc_Lasso,ev_met1_Lasso, Rec_Lasso, ACC_Lasso)
+kable(LassoMET)
+```
+```{r}
+LassoMETCurVe<-list(LassoMET, curve_Lasso)
+LassoMETCurVe
+```
+```{r}
+Lasso_fit_Test<-lasso_workflow%>%fit(test_data_GD_b)
+Lasso_fit_Test
+```
+```{r}
+Lasso_fit_Test %>% 
+  extract_fit_parsnip() %>% 
+ #Make VIP plot
+ vip()
+```
+
+
+
+```{r}
+results_NB <- test_data_GD_b %>% select(GDDiag) %>% 
+ bind_cols(NB_fit %>% 
+             predict(new_data = test_data_GD_b)) %>% 
+  bind_cols( NB_fit%>% 
+              predict(new_data = test_data_GD_b, type = "prob"))
+kable(results_NB)
+describe(results_NB)
+```
+```{r}
+results_NB%>% 
+  conf_mat(truth = GDDiag, estimate = .pred_class)
+#Visualise Results
+update_geom_defaults(geom = "rect", new = list(fill = "midnightblue", alpha = 0.7))
+results_NB%>% 
+  conf_mat(GDDiag,.pred_class) %>% 
+  autoplot()
+```
+
+```{r}
+ev_met1_NB<-ev_met1(results_NB,truth = GDDiag, estimate = .pred_class)
+Rec_NB<-yardstick::recall(results_NB, GDDiag, .pred_class)
+ACC_NB<-yardstick::accuracy(results_NB, GDDiag, .pred_class)
+#Plot Roc_Curve
+curve_NB <- results_NB %>% 
+  roc_curve(GDDiag, .pred_No) %>% 
+  autoplot
+curve_NB
+```
+```{r}
+auc_NB <- results_NB %>% 
+  roc_auc(GDDiag, .pred_No)
+NBMET<-list(auc_NB,ev_met1_NB, Rec_NB, ACC_NB)
+kable(NBMET)
+```
+```{r}
+NBMETCurVe<-list(NBMET, curve_NB)
+NBMETCurVe
+
+```
+
+
+
+```{r}
+results_Kern<-test_data_GD_b %>% select(GDDiag) %>% 
+  bind_cols (Kernel_fit%>% 
+              predict(new_data = test_data_GD_b)) %>% 
+  bind_cols(Kernel_fit%>% 
+              predict(new_data = test_data_GD_b, type = "prob"))
+kable(results_Kern)
+describe(results_Kern)
+
+```
+```{r}
+results_Kern%>% 
+  conf_mat(truth = GDDiag, estimate = .pred_class)
+#Visualise Results
+update_geom_defaults(geom = "rect", new = list(fill = "midnightblue", alpha = 0.7))
+results_Kern%>% 
+  conf_mat(GDDiag,.pred_class) %>% 
+  autoplot()
+```
+
+```{r}
+ev_met1_Kern<-ev_met1(results_Kern,truth = GDDiag, estimate = .pred_class)
+Rec_Kern<-yardstick::recall(results_Kern, GDDiag, .pred_class)
+ACC_Kern<-yardstick::accuracy(results_Kern, GDDiag, .pred_class)
+#Plot Roc_Curve
+curve_Kern <- results_Kern %>% 
+  roc_curve(GDDiag, .pred_No) %>% 
+  autoplot
+curve_Kern
+```
+```{r}
+auc_Kern <- results_Kern %>% 
+  roc_auc(GDDiag, .pred_No)
+KernMET<-list(auc_Kern,ev_met1_Kern, Rec_Kern, ACC_Kern)
+kable(KernMET)
+KernMETCurVe<-list(KernMET, curve_LR)
+KernMETCurVe
+```
+
+
+```{r}
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+
+set.seed(123)
+#xgb_tree
+
+#first creating a tuning model
+tune_xgb_t <- boost_tree(
+  trees = 1000,
+  tree_depth = tune(), min_n = tune(),
+  loss_reduction = tune(),                     ## first three: model complexity
+  sample_size = tune(), mtry = tune(),         ## randomness
+  learn_rate = tune()                          ## step size
+) %>%
+  set_engine("xgboost") %>%
+  set_mode("classification")
+
+
+#second creating a tuning workflow
+xgb_workflow_T<-workflow()%>% 
+  add_recipe(GD_rec) %>% 
+  add_model(tune_xgb_t)
+#third calling the workflow
+xgb_workflow_T
+
+```
+```{r}
+set.seed(345)
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+
+xgb_grid <- grid_latin_hypercube(
+  tree_depth(),
+  min_n(),
+  loss_reduction(),
+  sample_size = sample_prop(),
+  finalize(mtry(), train_data_GD_b),
+  learn_rate(),
+  size = 30
+)
+
+xgb_res<- tune_grid(
+  xgb_workflow_T,
+  resamples = train_boot,
+  grid = xgb_grid)
+
+xgb_res
+```
+
+
+
+```{r}
+set.seed(345)
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+
+set.seed(123)
+xgb_res%>% 
+  collect_metrics() %>% 
+  slice_head(n = 10)
+
+```
+
+
+```{r}
+set.seed(345)
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+
+best_xgb <- xgb_res%>% 
+  select_best("accuracy")
+best_xgb
+```
+
+```{r}
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+#11th Finalize the workoflow with the best model
+final_wflow_xgb <- xgb_workflow_T %>% 
+  finalize_workflow(best_xgb)
+#12th Check the fit of the final Wflow on the training data
+Tuned_xgb_fit<-final_wflow_xgb%>%fit(train_data_GD_b)
+Tuned_xgb_fit
+```
+
+```{r}
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+#Test the tuned AI on the test data
+results_tuned_xgb<-test_data_GD_b %>% select(GDDiag) %>% 
+  bind_cols (Tuned_xgb_fit%>% 
+              predict(new_data = test_data_GD_b)) %>% 
+  bind_cols(Tuned_xgb_fit%>% 
+              predict(new_data = test_data_GD_b, type = "prob"))
+kable(results_tuned_xgb)
+```
+
+```{r}
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+
+#Tuned xgb_Results
+results_tuned_xgb %>% 
+  conf_mat(truth = GDDiag, estimate = .pred_class)
+#visualise CF
+update_geom_defaults(geom = "rect", new = list(fill = "midnightblue", alpha = 0.7))
+results_tuned_xgb %>% 
+  conf_mat(GDDiag, .pred_class) %>% 
+  autoplot()
+```
+
+
+```{r}
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+#Plot Roc_Curve
+curve_xgb_tuned <- results_tuned_xgb%>% 
+  roc_curve(GDDiag, .pred_No) %>% 
+  autoplot
+curve_xgb_tuned
+```
+
+```{r}
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+# Evaluate ROC_AUC
+auc_xgb_tuned <- results_tuned_xgb %>% 
+  roc_auc(GDDiag, .pred_No)
+auc_xgb_tuned
+
+```
+
+```{r}
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+ev_met1_Tunxgb<-ev_met1(results_tuned_xgb,truth = GDDiag, estimate = .pred_class)
+Rec_Txgb<-yardstick::recall(results_tuned_xgb, GDDiag, .pred_class)
+ACC_Txgb<-yardstick::accuracy(results_tuned_xgb, GDDiag, .pred_class)
+TunxgbMET<-list(auc_xgb_tuned,ev_met1_Tunxgb, Rec_Txgb, ACC_Txgb)
+kable(TunxgbMET)
+
+```
+
+
+```{r}
+
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+
+set.seed(123)
+
+
+#first creating a tuning model
+tune_LR <- logistic_reg(penalty = tune(), mixture = tune())%>% 
+  set_mode("classification")%>%
+  set_engine("glmnet")
+
+
+#second creating a tuning workflow
+LR_workflow_T<-workflow()%>% 
+  add_recipe(GD_rec) %>% 
+  add_model(tune_LR)
+#third calling the workflow
+LR_workflow_T
+
+```
+
+
+```{r}
+
+set.seed(345)
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+
+LR_grid <- grid_regular(parameters(tune_LR), levels = 20)
+
+LR_res<- tune_grid(
+  LR_workflow_T,
+  resamples = train_boot,
+  grid = LR_grid)
+
+LR_res
+
+```
+
+```{r}
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+
+set.seed(123)
+LR_res%>% 
+  collect_metrics() %>% 
+  slice_head(n = 10)
+
+```
+
+```{r}
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+best_LR <- LR_res %>% 
+  select_best("accuracy")
+best_LR
+```
+
+```{r}
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+#11th Finalize the workoflow with the best model
+final_wflow_LR <- LR_workflow_T %>% 
+  finalize_workflow(best_LR)
+#12th Check the fit of the final Wflow on the training data
+Tuned_LR_fit<-final_wflow_LR%>%fit(train_data_GD_b)
+Tuned_LR_fit
+```
+
+```{r}
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+#Test the tuned AI on the test data
+results_tuned_LR<-test_data_GD_b %>% select(GDDiag) %>% 
+  bind_cols (Tuned_LR_fit%>% 
+              predict(new_data = test_data_GD_b)) %>% 
+  bind_cols(Tuned_LR_fit%>% 
+              predict(new_data = test_data_GD_b, type = "prob"))
+kable(results_tuned_LR)
+```
+
+```{r}
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+#Tuned Results
+results_tuned_LR %>% 
+  conf_mat(truth = GDDiag, estimate = .pred_class)
+#visualise CF
+update_geom_defaults(geom = "rect", new = list(fill = "midnightblue", alpha = 0.7))
+results_tuned_LR %>% 
+  conf_mat(GDDiag, .pred_class) %>% 
+  autoplot()
+
+```
+
+```{r}
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+#Plot Roc_Curve
+curve_LR_tuned <- results_tuned_LR%>% 
+  roc_curve(GDDiag, .pred_No) %>% 
+  autoplot
+curve_LR_tuned
+```
+
+```{r}
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+# Evaluate ROC_AUC
+auc_LR_tuned <- results_tuned_LR %>% 
+  roc_auc(GDDiag, .pred_No)
+auc_LR_tuned
+
+```
+
+```{r}
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+ev_met1_TunLR<-ev_met1(results_tuned_LR,truth = GDDiag, estimate = .pred_class)
+Rec_TLR<-yardstick::recall(results_tuned_LR, GDDiag, .pred_class)
+ACC_TLR<-yardstick::accuracy(results_tuned_LR, GDDiag, .pred_class)
+TunLRMET<-list(auc_LR_tuned,ev_met1_TunLR, Rec_TLR, ACC_TLR)
+kable(TunLRMET)
+
+```
+
+
+
+```{r}
+set.seed(123)
+
+
+#first creating a tuning model
+tune_NB <- naive_Bayes(smoothness = tune(), Laplace = tune ())%>% 
+  set_mode("classification")%>%
+  set_engine("naivebayes")
+
+
+#second creating a tuning workflow
+NB_workflow_T<-workflow()%>% 
+  add_recipe(GD_rec) %>% 
+  add_model(tune_NB)
+#third calling the workflow
+NB_workflow_T
+
+
+```
+
+
+```{r}
+# fourth tuning/testing the workflow to the resamples
+set.seed(345)
+NB_grid <- grid_regular(parameters(tune_NB), levels = 20)
+
+NB_res<- tune_grid(
+  NB_workflow_T,
+  resamples = train_boot,
+  grid = NB_grid)
+  
+```
+
+
+
+```{r}
+#Collect metrics
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+
+set.seed(123)
+NB_res%>% 
+  collect_metrics() %>% 
+  slice_head(n = 10)
+  
+```
+
+```{r}
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+best_NB <- NB_res %>% 
+  select_best("accuracy")
+best_NB
+```
+
+```{r}
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+#11th Finalize the workoflow with the best model
+final_wflow_NB <- NB_workflow_T %>% 
+  finalize_workflow(best_NB)
+#12th Check the fit of the final Wflow on the training data
+Tuned_NB_fit<-final_wflow_NB%>%fit(train_data_GD_b)
+Tuned_NB_fit
+```
+
+```{r}
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+#Test the tuned NB on the test data
+results_tuned_NB<-test_data_GD_b %>% select(GDDiag) %>% 
+  bind_cols (Tuned_NB_fit%>% 
+              predict(new_data = test_data_GD_b)) %>% 
+  bind_cols(Tuned_NB_fit%>% 
+              predict(new_data = test_data_GD_b, type = "prob"))
+kable(results_tuned_NB)
+```
+
+
+```{r}
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+#Tuned Results
+results_tuned_NB %>% 
+  conf_mat(truth = GDDiag, estimate = .pred_class)
+#visualise CF
+update_geom_defaults(geom = "rect", new = list(fill = "midnightblue", alpha = 0.7))
+results_tuned_NB %>% 
+  conf_mat(GDDiag, .pred_class) %>% 
+  autoplot()
+```
+
+```{r}
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+#Plot Roc_Curve
+curve_NB_tuned <- results_tuned_NB %>% 
+  roc_curve(GDDiag, .pred_No) %>% 
+  autoplot
+curve_NB_tuned
+```
+
+```{r}
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+# Evaluate ROC_AUC
+auc_NB_tuned <- results_tuned_NB %>% 
+  roc_auc(GDDiag, .pred_No)
+auc_NB_tuned
+```
+
+```{r}
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+ev_met1_TunNB<-ev_met1(results_tuned_NB,truth = GDDiag, estimate = .pred_class)
+Rec_TNB<-yardstick::recall(results_tuned_NB, GDDiag, .pred_class)
+ACC_TNB<-yardstick::accuracy(results_tuned_NB, GDDiag, .pred_class)
+TunNBMET<-list(auc_NB_tuned,ev_met1_TunNB, Rec_TNB, ACC_TNB)
+kable(TunNBMET)
+```
+Tune Random Forests
+```{r}
+set.seed(123)
+
+#first creating a tuning model
+ranger_spec_T <- rand_forest(
+  mtry = tune(),
+  trees = 1000,
+  min_n = tune()
+)%>%
+  set_mode("classification")%>%
+  set_engine("ranger")
+#second creating a tuning workflow
+RF_workflow_T<-workflow() %>% 
+  add_recipe(GD_rec) %>% 
+  add_model(ranger_spec_T)
+#third calling the workflow
+RF_workflow_T
+```
+
+```{r}
+# fourth tuning/testing the workflow to the resamples
+set.seed(345)
+RF_res <- tune_grid(
+  RF_workflow_T,
+  resamples = train_boot,
+  grid = 20
+)
+
+```
+
+```{r}
+#Fifth collect and visualize tuning metrics
+RF_res %>%
+  collect_metrics() %>%
+  filter(.metric == "accuracy") %>%
+  select(mean, min_n, mtry) %>%
+  pivot_longer(min_n:mtry,
+    values_to = "value",
+    names_to = "parameter"
+  )%>%
+  ggplot(aes(value, mean, color = parameter)) +
+  geom_point(show.legend = FALSE) +
+  facet_wrap(~parameter, scales = "free_x") +
+  labs(x = NULL, y = "Accuracy")
+```
+
+```{r}
+#Fifth for collecting tuning metrics
+RF_res %>% 
+  collect_metrics() %>% 
+  slice_head(n = 10)
+
+```
+
+```{r}
+#Nineth show the best model
+RF_res %>% 
+  show_best("accuracy")
+```
+
+```{r}
+# Tenth Select best model hyperparameters
+best_RF <- RF_res %>% 
+  select_best("accuracy")
+best_RF
+```
+
+```{r}
+#11th Finalize the workoflow with the best SVM
+final_wflow_RF <- RF_workflow_T %>% 
+  finalize_workflow(best_RF)
+#12th Check the fit of the final Wflow on the training data
+Tuned_RF_fit<-final_wflow_RF%>%fit(train_data_GD_b)
+Tuned_RF_fit
+
+```
+
+
+
+
+
+
+
+```{r}
+#Test the tuned AI on the test data
+results_tuned_RF<-test_data_GD_b %>% select(GDDiag) %>% 
+  bind_cols (Tuned_RF_fit%>% 
+              predict(new_data = test_data_GD_b)) %>% 
+  bind_cols(Tuned_RF_fit%>% 
+              predict(new_data = test_data_GD_b, type = "prob"))
+kable(results_tuned_RF)
+```
+
+
+`
+
+```{r}
+#Tuned__Results
+results_tuned_RF %>% 
+  conf_mat(truth = GDDiag, estimate = .pred_class)
+#visualise CF
+update_geom_defaults(geom = "rect", new = list(fill = "midnightblue", alpha = 0.7))
+results_tuned_RF %>% 
+  conf_mat(GDDiag, .pred_class) %>% 
+  autoplot()
+```
+
+```{r}
+#Plot Roc_Curve
+curve_RF_tuned <- results_tuned_RF %>% 
+  roc_curve(GDDiag, .pred_No) %>% 
+  autoplot
+curve_RF_tuned
+```
+
+```{r}
+# Evaluate ROC_AOC
+auc_RF_tuned <- results_tuned_RF %>% 
+  roc_auc(GDDiag, .pred_No)
+ev_met1_TunRF<-ev_met1(results_tuned_RF,truth = GDDiag, estimate = .pred_class)
+Rec_TRF<-yardstick::recall(results_tuned_RF, GDDiag, .pred_class)
+ACC_TRF<-yardstick::accuracy(results_tuned_RF, GDDiag, .pred_class)
+TunRFMET<-list(auc_RF_tuned,ev_met1_TunRF, Rec_TRF, ACC_TRF)
+kable(TunRFMET)
+```
+
+
+```{r}
+set.seed(123)
+
+
+#first creating a tuning model
+tune_Lasso <- multinom_reg(penalty =tune(), mixture = 1)%>%
+  set_mode("classification")%>%
+  set_engine("glmnet")
+
+#second creating a tuning workflow
+Lasso_workflow_T<-workflow()%>% 
+  add_recipe(GD_rec) %>% 
+  add_model(tune_Lasso)
+#third calling the workflow
+Lasso_workflow_T
+```
+Define the Lamda grid
+```{r}
+set.seed(123)
+lamda_grid <- grid_regular(penalty(), levels = 50)
+lamda_grid
+```
+
+Tune the grid using our workflow object
+```{r}
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+doParallel::registerDoParallel()
+
+set.seed(123)
+lasso_grid <- tune_grid(
+  Lasso_workflow_T,
+  resamples = train_boot,
+  grid = lamda_grid)
+
+lasso_grid %>%
+  collect_metrics()
+
+```
+Visualizing
+```{r}
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+lasso_grid %>%
+  collect_metrics() %>%
+  ggplot(aes(penalty, mean, color = .metric)) +
+  geom_errorbar(aes(
+    ymin = mean - std_err,
+    ymax = mean + std_err
+  ),
+  alpha = 0.5
+  ) +
+  geom_line(size = 1.5) +
+  facet_wrap(~.metric, scales = "free", nrow = 2) +
+  scale_x_log10() +
+  theme(legend.position = "none")
+```
+
+```{r}
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+Best_Lasso <- lasso_grid%>%
+  select_best("accuracy")
+Best_Lasso
+
+```
+
+
+
+```{r}
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+#Finalize the workoflow with the best model
+final_wflow_Lasso <-Lasso_workflow_T%>%
+  finalize_workflow(Best_Lasso)
+#Check the fit of the final Wflow on the training data
+Tuned_Lasso_fit<-final_wflow_Lasso%>%fit(train_data_GD_b)
+Tuned_Lasso_fit
+
+```
+
+```{r}
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+#Test the tuned AI on the test data
+results_tuned_Lasso<-test_data_GD_b%>% select(GDDiag) %>% 
+  bind_cols(Tuned_Lasso_fit%>% 
+              predict(new_data = test_data_GD_b)) %>% 
+  bind_cols(Tuned_Lasso_fit%>% 
+              predict(new_data = test_data_GD_b, type = "prob"))
+kable(results_tuned_Lasso)
+```
+
+```{r}
+#Tuned__Results
+results_tuned_Lasso %>% 
+  conf_mat(truth = GDDiag, estimate = .pred_class)
+#visualise CF
+update_geom_defaults(geom = "rect", new = list(fill = "midnightblue", alpha = 0.7))
+results_tuned_Lasso %>% 
+  conf_mat(GDDiag, .pred_class) %>% 
+  autoplot()
+     
+```
+
+```{r}
+#Plot Roc_Curve
+curve_Lasso_tuned <- results_tuned_Lasso %>% 
+  roc_curve(GDDiag, .pred_No) %>% 
+  autoplot
+curve_Lasso_tuned
+```
+
+```{r}
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+# Evaluate ROC_AOC
+auc_Lasso_tuned <- results_tuned_Lasso %>% 
+  roc_auc(GDDiag, .pred_No)
+auc_Lasso_tuned
+```
+
+```{r}
+ev_met1_TunLasso<-ev_met1(results_tuned_Lasso,truth = GDDiag, estimate = .pred_class)
+Rec_TLasso<-yardstick::recall(results_tuned_Lasso, GDDiag, .pred_class)
+ACC_TLasso<-yardstick::accuracy(results_tuned_Lasso, GDDiag, .pred_class)
+TunLassoMET<-list(auc_Lasso_tuned,ev_met1_TunLasso, Rec_TLasso, ACC_TLasso)
+kable(TunLassoMET)
+
+```
+
+KNN
+```{r}
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+
+knn_model <- nearest_neighbor(neighbors = tune()) %>% 
+             set_engine('kknn') %>% 
+             set_mode('classification')
+
+knn_wf <- workflow() %>% 
+          add_model(knn_model) %>% 
+          add_recipe(GD_rec)
+
+k_grid <- tibble(neighbors = c(10, 15, 25, 45, 60, 80, 100, 120, 140, 180))
+
+knn_tuning <- knn_wf %>% 
+              tune_grid(resamples = train_boot,
+                        grid = k_grid)
+
+best_k <- knn_tuning %>% 
+          select_best(metric = 'accuracy')
+
+final_knn_wf <- knn_wf %>% 
+                finalize_workflow(best_k)
+
+Tuned_knn_fit<-final_knn_wf%>%fit(train_data_GD_b)
+Tuned_knn_fit
+```
+
+```{r}
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+results_tuned_knn<-test_data_GD_b%>% select(GDDiag) %>% 
+  bind_cols(Tuned_knn_fit%>% 
+              predict(new_data = test_data_GD_b)) %>% 
+  bind_cols(Tuned_knn_fit%>% 
+              predict(new_data = test_data_GD_b, type = "prob"))
+kable(results_tuned_knn)
+
+```
+```{r}
+#Tuned Results
+results_tuned_knn %>% 
+  conf_mat(truth = GDDiag, estimate = .pred_class)
+#visualise CF
+update_geom_defaults(geom = "rect", new = list(fill = "midnightblue", alpha = 0.7))
+results_tuned_knn %>% 
+  conf_mat(GDDiag, .pred_class) %>% 
+  autoplot()
+
+```
+```{r}
+#Plot Roc_Curve
+curve_knn_tuned <- results_tuned_knn %>% 
+  roc_curve(GDDiag, .pred_No) %>% 
+  autoplot
+curve_knn_tuned
+```
+
+```{r}
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+# Evaluate ROC_AOC
+auc_knn_tuned <- results_tuned_knn %>% 
+  roc_auc(GDDiag, .pred_No)
+auc_knn_tuned
+```
+
+```{r}
+ev_met1_Tunknn<-ev_met1(results_tuned_knn,truth = GDDiag, estimate = .pred_class)
+Rec_Tknn<-yardstick::recall(results_tuned_knn, GDDiag, .pred_class)
+ACC_Tknn<-yardstick::accuracy(results_tuned_knn, GDDiag, .pred_class)
+TunknnMET<-list(auc_knn_tuned,ev_met1_Tunknn, Rec_Tknn, ACC_Tknn)
+kable(TunknnMET)
+
+```
+
+```{r}
+
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+
+set.seed(123)
+
+
+#first creating a tuning model
+svm_mod_T <-
+  svm_rbf(cost = tune(), rbf_sigma = tune()) %>%
+  set_mode("classification") %>%
+  set_engine("kernlab")
+
+
+#second creating a tuning workflow
+SVM_workflow_T<-workflow()%>% 
+  add_recipe(GD_rec) %>% 
+  add_model(svm_mod_T)
+#third calling the workflow
+SVM_workflow_T
+
+```
+
+
+```{r}
+
+set.seed(345)
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+
+SVM_grid <- grid_regular(cost(),rbf_sigma(), levels = 10)
+
+SVM_res<- tune_grid(
+  SVM_workflow_T,
+  resamples = train_boot,
+  grid = SVM_grid)
+
+
+SVM_res
+
+```
+
+```{r}
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+
+set.seed(123)
+SVM_res%>% 
+  collect_metrics() %>% 
+  slice_head(n = 10)
+
+```
+
+```{r}
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+best_SVM <- SVM_res %>% 
+  select_best("accuracy")
+best_SVM
+
+```
+
+```{r}
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+#11th Finalize the workoflow with the best model
+final_wflow_SVM <- SVM_workflow_T %>% 
+  finalize_workflow(best_SVM)
+#12th Check the fit of the final Wflow on the training data
+Tuned_SVM_fit<-final_wflow_SVM%>%fit(train_data_GD_b)
+Tuned_SVM_fit
+```
+
+```{r}
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+#Test the tuned AI on the test data
+results_tuned_SVM<-test_data_GD_b %>% select(GDDiag) %>% 
+  bind_cols (Tuned_SVM_fit%>% 
+              predict(new_data = test_data_GD_b)) %>% 
+  bind_cols(Tuned_SVM_fit%>% 
+              predict(new_data = test_data_GD_b, type = "prob"))
+kable(results_tuned_SVM)
+```
+
+```{r}
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+#Tuned Results
+results_tuned_SVM %>% 
+  conf_mat(truth = GDDiag, estimate = .pred_class)
+#visualise CF
+update_geom_defaults(geom = "rect", new = list(fill = "midnightblue", alpha = 0.7))
+results_tuned_SVM %>% 
+  conf_mat(GDDiag, .pred_class) %>% 
+  autoplot()
+
+```
+
+```{r}
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+#Plot Roc_Curve
+curve_SVM_tuned <- results_tuned_SVM%>% 
+  roc_curve(GDDiag, .pred_No) %>% 
+  autoplot
+curve_SVM_tuned
+```
+
+```{r}
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+# Evaluate ROC_AUC
+auc_SVM_tuned <- results_tuned_SVM %>% 
+  roc_auc(GDDiag, .pred_No)
+auc_SVM_tuned
+
+
+```
+
+```{r}
+echo=FALSE
+error=FALSE
+warning=FALSE
+options(scipen = 999, digits=3, max.print=999999, show.signif.stars=TRUE)
+ev_met1_TunSVM<-ev_met1(results_tuned_SVM,truth = GDDiag, estimate = .pred_class)
+Rec_TSVM<-yardstick::recall(results_tuned_SVM, GDDiag, .pred_class)
+ACC_TSVM<-yardstick::accuracy(results_tuned_SVM, GDDiag, .pred_class)
+TunSVMMET<-list(auc_SVM_tuned,ev_met1_TunSVM, Rec_TSVM, ACC_TSVM)
+kable(TunSVMMET)
+
+```
+
+
+
+
