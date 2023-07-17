@@ -2,8 +2,16 @@
 title: "ml - classification"
 author: "Maria"
 format: html
-editor: visual
+toc: true
+toc-depth: 3
+code-fold: false
+execute:
+  echo: false
+  warning: false
+  message: false
 ---
+
+### Multiclass
 
 Protocol:
 
@@ -17,16 +25,15 @@ Training Protocol
 
 Model Configuration
 The analysis was conducted using 6 ML models, including
-#K-nearest neighbor algorithm (KNN)
+- K-nearest neighbor algorithm (KNN)
 
-#Multinomial Logistic Regression (MLR)
+- Multinomial Logistic Regression (MLR)
 
-#NaïveBayes (NB)
+- NaïveBayes (NB)
 
-#Ensemble Learning (Random Forest (RF))
+- Ensemble Learning (Random Forest (RF))
 
-#Support Vector Machine (SVM).
-
+- Support Vector Machine (SVM).
 
 Machine learning or statistical method and reasoning
 • Hyperparameters and estimate reasoning
@@ -109,6 +116,7 @@ library(reactable)
 library(psych)
 library(finetune)
 library(discrim)
+library(vip)
 
 doParallel::registerDoParallel()
 
@@ -209,7 +217,7 @@ data_train<-training(data_split)
 data_test<-testing(data_split)
 
 data_folds <- vfold_cv(data_train, v = 5, strata = phase1_3, repeats = 5)
-data_boot<-volcano_boot <- bootstraps(data_model_phase)
+data_boot <- bootstraps(data_model_phase)
 
 data_model_phase%>%count(phase1_3)
 levels(data_train$phase1_3)
@@ -226,7 +234,6 @@ data_phase_rec <- recipe(phase1_3 ~ ., data = data_train) %>%
 #%>%
 #step_other(phase1_3)
  # themis::step_smote(phase1_3)
-
 
 
 ```
@@ -306,6 +313,25 @@ svm_model <-svm_rbf(
   set_engine("kernlab")
 
 ```
+#### get a sense of variable importance
+
+```{r}
+
+
+
+rand_forest(trees = 1000) %>%
+  set_mode("classification") %>%
+  set_engine("ranger", importance = "permutation")%>%
+  fit(
+    phase1_3 ~ .,
+    data = juice(prep(data_phase_rec)) %>%
+      select(-client_id) %>%
+      janitor::clean_names()
+  ) %>%
+  vip(geom = "point")
+
+
+```
 
 
 #### XGBoost
@@ -325,6 +351,7 @@ plot_race(xgb_rs)
 #show_best(xgb_rs, data_metrics)
 show_best(xgb_rs)
 
+
 xgb_last <- xgb_wf %>%
   finalize_workflow(select_best(xgb_rs, "mn_log_loss")) %>%
   last_fit(data_split)
@@ -333,6 +360,14 @@ xgb_last
 
 collect_predictions(xgb_last) %>%
   mn_log_loss(phase1_3, .pred_1:.pred_3)
+
+
+phase_pred<-collect_predictions(xgb_last) %>%
+  mutate(correct = phase1_3 == .pred_class) %>%
+  left_join(data_train %>%
+    mutate(.row = row_number()))
+
+phase_pred
 ```
 
 #### RandomForest
@@ -360,6 +395,17 @@ rf_last
 
 collect_predictions(rf_last) %>%
   mn_log_loss(phase1_3, .pred_1:.pred_3)
+
+collect_predictions(rf_last) %>%
+  mn_log_loss(phase1_3, .pred_1:.pred_3)
+
+
+phase_pred<-collect_predictions(rf_last) %>%
+  mutate(correct = phase1_3 == .pred_class) %>%
+  left_join(data_train %>%
+    mutate(.row = row_number()))
+
+phase_pred
 ```
 
 #### KNN
@@ -387,6 +433,13 @@ knn_last
 
 collect_predictions(knn_last) %>%
   mn_log_loss(phase1_3, .pred_1:.pred_3)
+
+phase_pred<-collect_predictions(knn_last) %>%
+  mutate(correct = phase1_3 == .pred_class) %>%
+  left_join(data_train %>%
+    mutate(.row = row_number()))
+
+phase_pred
 ```
 #### TREE
 
@@ -413,6 +466,13 @@ tree_last
 
 collect_predictions(tree_last) %>%
   mn_log_loss(phase1_3, .pred_1:.pred_3)
+
+phase_pred<-collect_predictions(tree_last) %>%
+  mutate(correct = phase1_3 == .pred_class) %>%
+  left_join(data_train %>%
+    mutate(.row = row_number()))
+
+phase_pred
 ```
 #### Naive bayes
 
@@ -439,6 +499,13 @@ nb_last
 
 collect_predictions(nb_last) %>%
   mn_log_loss(phase1_3, .pred_1:.pred_3)
+
+phase_pred<-collect_predictions(nb_last) %>%
+  mutate(correct = phase1_3 == .pred_class) %>%
+  left_join(data_train %>%
+    mutate(.row = row_number()))
+
+phase_pred
 ```
 #### SVM 
 
@@ -466,6 +533,13 @@ svm_last
 collect_predictions(svm_last) %>%
   mn_log_loss(phase1_3, .pred_1:.pred_3)
 
+
+phase_pred<-collect_predictions(svm_last) %>%
+  mutate(correct = phase1_3 == .pred_class) %>%
+  left_join(data_train %>%
+    mutate(.row = row_number()))
+
+phase_pred
 ```
 
 
@@ -496,6 +570,12 @@ resampling_result <- workflows_combo %>%
   workflow_map("tune_race_anova", seed = 1101, verbose = TRUE, resamples = data_folds)
 
 resampling_result
+
+#with boostrap
+
+resampling_boot_result <- workflows_combo %>%
+  workflow_map("tune_race_anova", seed = 1101, verbose = TRUE, resamples = data_boot)
+
 
 ```
 
