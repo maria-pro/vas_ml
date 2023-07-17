@@ -1,0 +1,656 @@
+---
+title: "stay180"
+format: html
+toc: true
+toc-depth: 3
+code-fold: true
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+
+### Binominal- stay180
+
+
+```{r}
+
+library(tidyverse)
+library(tidymodels)
+library(haven)
+library(gt)
+library(reactable)
+library(psych)
+library(finetune)
+library(discrim)
+library(vip)
+
+doParallel::registerDoParallel()
+
+theme_set(theme_minimal())
+
+
+#https://www.restartlife.com/program/outpatient-services/
+data_stephanie<-read_sav("/Users/e5028514/Library/CloudStorage/OneDrive-VictoriaUniversity/vas_ml/stephanie/ReSTART.Dataset_final_May2022.sav")%>%
+  janitor::clean_names()
+
+factor_cols<-c(
+  "team_member",
+  "client_id",
+  "sex",
+  "marital_status",
+  "grade",
+  "race",
+  "ethnicity",
+  "religion",
+  "phase1_intensive",
+  "phase2_open_world",
+  "phase3_sustainability",
+  "phase1_3",
+  "dsm_primary",
+  "dsm_secondary",
+  "dsm_overall",
+  "re_start_house",
+  "primary_behavior",
+  "secondary_behavior",
+  "bigs_sum",
+  "dass_anxiety_sum",
+  "dass_dep_sum",
+  "dass_stress_sum",
+  "sog_sum"
+)
+data_stephanie<-data_stephanie%>%
+  mutate(
+    across(all_of(factor_cols), 
+    factor)
+    )%>%filter(
+      !is.na(phase1_3)
+    )%>%
+  filter(phase1_3!=0)%>%
+  droplevels()
+
+levels(data_stephanie$phase1_3)
+
+psych::describe(data_stephanie)
+
+
+```
+
+
+
+```{r}
+data_stephanie%>%ggplot(
+  aes(lo_s, fill=as_factor(phase1_3))
+)+
+  geom_histogram()
+
+
+#90 days
+data_stephanie<-data_stephanie%>%mutate(
+  LoS_cat=case_when(lo_s>90~"1",
+                    TRUE~"0")
+)
+
+data_stephanie%>%ggplot(
+  aes(lo_s, fill=as_factor(LoS_cat))
+)+
+  geom_histogram()
+
+data_stephanie%>%
+  count(LoS_cat)%>%
+  mutate(prop= round(n / sum(n), 3))
+
+#120 days
+
+data_stephanie<-data_stephanie%>%mutate(
+  LoS_cat_120=case_when(lo_s>120~"1",
+                    TRUE~"0")
+)
+
+data_stephanie%>%ggplot(
+  aes(lo_s, fill=as_factor(LoS_cat_120))
+)+
+  geom_histogram()
+
+data_stephanie%>%
+  count(LoS_cat_120)%>%
+  mutate(prop= round(n / sum(n), 3))
+
+
+data_stephanie%>%ggplot(
+  aes(LoS_cat_120, lo_s)
+)+
+  geom_boxplot()
+
+
+#------180
+
+data_stephanie<-data_stephanie%>%mutate(
+  LoS_cat_180=as_factor(
+    case_when(lo_s>180~"1",
+                        TRUE~"0")
+)
+)
+
+data_stephanie%>%ggplot(
+  aes(lo_s, fill=as_factor(LoS_cat_180))
+)+
+  geom_histogram()
+
+data_stephanie%>%
+  count(LoS_cat_180)%>%
+  mutate(prop= round(n / sum(n), 3))
+         
+         
+data_stephanie%>%ggplot(
+  aes(LoS_cat_180, lo_s)
+)+
+  geom_boxplot()
+```
+
+
+```{r}
+
+data_model_stay180<-data_stephanie%>%
+  select(
+    "client_id",
+     "sex",
+  "marital_status",
+  "grade",
+  "race",
+  "ethnicity",
+  "religion",
+#  "phase1_intensive",
+#  "phase2_open_world",
+#  "phase3_sustainability",
+#"lo_s", 
+# "phase1_3",
+"LoS_cat_180",
+  "dsm_primary",
+  "dsm_secondary",
+  "dsm_overall",
+  "re_start_house",
+  "primary_behavior",
+  "secondary_behavior",
+  "bigs_sum",
+  "dass_anxiety_sum",
+  "dass_dep_sum",
+  "dass_stress_sum",
+  "sog_sum"
+  )
+
+
+#skimr::skim(data_stephanie)
+describe(data_model_stay180)%>%gt()
+
+skimr::skim(data_model_stay180)
+DataExplorer::plot_bar(data_model_stay180)
+
+
+```
+
+#----------------
+### Setup
+
+
+```{r}
+
+set.seed(123)
+
+data_split<-initial_split(data_model_stay180, strata=LoS_cat_180) #prop = 3/4
+data_train<-training(data_split)
+data_test<-testing(data_split)
+
+data_folds <- vfold_cv(data_train, v = 5, strata = LoS_cat_180, repeats = 5)
+data_boot <- bootstraps(data_model_stay180)
+
+data_model_stay180%>%count(LoS_cat_180)
+levels(data_train$LoS_cat_180)
+
+data_stay180_rec <- recipe(LoS_cat_180 ~ ., data = data_train) %>%
+  update_role(client_id, new_role = "Id") %>%
+  step_zv(all_numeric_predictors()) %>%
+  step_normalize(all_numeric_predictors()) %>%
+  step_impute_mode(all_nominal_predictors())%>%
+  step_unknown(all_nominal_predictors(), new_level = "NA")%>%
+  step_dummy(all_nominal_predictors()) 
+  
+#  step_impute_knn(all_predictors(), neighbors = 3)
+#%>%
+#step_other(phase1_3)
+ # themis::step_smote(phase1_3)
+
+```
+
+### Vas code
+```{r eval=FALSE}
+mice::md.pattern(data_model_stay180, rotate.names = TRUE)
+```
+
+```{r}
+
+naniar::mcar_test(data_model_stay180)
+
+summary(data_train)
+
+
+summary(data_test)
+```
+
+#### models setup
+
+```{r}
+## token model
+twt_null <- null_model()%>%
+  set_engine("parsnip")%>%
+  set_mode("classification")
+## model specification LASSO
+lasso_spec <- multinom_reg(penalty = 0.1, mixture = 1)%>%
+  set_mode("classification")%>%
+  set_engine("glmnet")
+# model specification Naive Bayes
+nb_spec <- naive_Bayes()%>%
+  set_mode("classification")%>%
+  set_engine("naivebayes")
+# model spec random forest
+ranger_spec<-rand_forest()%>% 
+  set_engine("ranger", importance = "impurity")%>% 
+  set_mode("classification")
+##model spec log_regression
+logreg_spec <- logistic_reg()%>% 
+  set_engine("glm")%>% 
+  set_mode("classification")
+##model spec Kernel
+svm_spec <- svm_rbf(mode = "classification", 
+                    engine = "kernlab",
+            cost = 1, rbf_sigma = 0.01)
+
+```
+
+#### workflow setup
+
+```{r}
+
+Null_workflow <- workflow() %>% 
+  add_recipe(data_stay180_rec) %>% 
+  add_model(twt_null)
+#Lasso 
+lasso_workflow <- workflow()%>% 
+  add_recipe(data_stay180_rec)%>% 
+  add_model(lasso_spec)
+#Naive Bayes 
+NB_workflow <- workflow()%>% 
+  add_recipe(data_stay180_rec) %>% 
+  add_model(nb_spec)
+#Random Forests 
+RF_workflow <- workflow()%>% 
+  add_recipe(data_stay180_rec) %>% 
+  add_model(ranger_spec)
+#Log_GLM_Workflow
+LOGGLM_workflow <- workflow()%>% 
+  add_recipe(data_stay180_rec) %>% 
+  add_model(logreg_spec)
+#Kernel
+Kernel_workflow<-workflow()%>% 
+  add_recipe(data_stay180_rec)%>% 
+  add_model(svm_spec)
+```
+
+
+```{r}
+
+Null_fit<-Null_workflow%>%fit(data_train)
+Null_fit  
+
+Lasso_fit<-lasso_workflow%>%fit(data_train)
+Lasso_fit
+
+RF_fit<-RF_workflow%>%fit(data_train)
+RF_fit
+
+
+LogReg_fit<-LOGGLM_workflow%>%fit(data_train)
+LogReg_fit
+
+Kernel_fit<-Kernel_workflow%>%fit(data_train)
+Kernel_fit
+
+NB_fit<-NB_workflow%>%fit(data_train)
+NB_fit
+```
+
+#### results
+
+```{r}
+results_NF <- data_test%>%select(LoS_cat_180)%>% 
+  bind_cols(Null_fit%>% 
+              predict(new_data = data_test))%>% 
+  bind_cols(Null_fit%>% 
+              predict(new_data = data_test, type = "prob"))
+knitr::kable(results_NF)
+```
+
+```{r}
+describe(results_NF)
+```
+
+```{r}
+ev_met1<-metric_set(ppv, f_meas)
+
+results_NF %>% 
+  conf_mat(truth = LoS_cat_180, estimate = .pred_class)
+```
+
+```{r}
+update_geom_defaults(geom = "rect", new = list(fill = "midnightblue", alpha = 0.7))
+results_NF%>% 
+  conf_mat(LoS_cat_180,.pred_class) %>% 
+  autoplot()
+```
+
+```{r}
+ev_met1_NF<-ev_met1(results_NF,truth = LoS_cat_180, estimate = .pred_class)
+Acc_NF<-yardstick::accuracy(results_NF, LoS_cat_180,.pred_class)
+Rec_NF<-yardstick::recall(results_NF, LoS_cat_180, .pred_class)
+#Plot Roc_Curve
+curve_NF <- results_NF %>% 
+  roc_curve(LoS_cat_180, .pred_0) %>% 
+  autoplot
+```
+
+```{r}
+
+curve_NF
+```
+
+```{r}
+auc_NF <- results_NF %>% 
+  roc_auc(LoS_cat_180, .pred_1)
+NFMET<-list(auc_NF,ev_met1_NF, Rec_NF, Acc_NF)
+knitr::kable(NFMET)
+```
+
+```{r}
+library(knitr)
+results_RF <- data_test %>% select(LoS_cat_180)%>% 
+  bind_cols(RF_fit %>% 
+              predict(new_data = data_test))%>% 
+  bind_cols(RF_fit%>% 
+             predict(new_data = data_test, type = "prob"))
+kable(results_RF)
+```
+
+```{r}
+results_RF%>% 
+  conf_mat(truth = LoS_cat_180, estimate = .pred_class)
+```
+
+```{r}
+update_geom_defaults(geom = "rect", new = list(fill = "midnightblue", alpha = 0.7))
+results_RF%>% 
+  conf_mat(LoS_cat_180,.pred_class) %>% 
+  autoplot()
+```
+
+```{r}
+ev_met1_RF<-ev_met1(results_RF,truth = LoS_cat_180, estimate = .pred_class)
+Rec_RF<-yardstick::recall(results_RF, LoS_cat_180, .pred_class)
+ACC_RF<-yardstick::accuracy(results_RF, LoS_cat_180, .pred_class)
+#Plot Roc_Curve
+curve_RF <- results_RF %>% 
+  roc_curve(LoS_cat_180, .pred_0) %>% 
+  autoplot
+curve_RF
+```
+```{r}
+
+auc_RF <- results_RF %>% 
+  roc_auc(LoS_cat_180, .pred_0)
+RFMET<-list(auc_RF,ev_met1_RF, Rec_RF, ACC_RF)
+kable(RFMET)
+```
+
+```{r}
+RFMETCurVe<-list(RFMET, curve_RF)
+RFMETCurVe
+```
+
+```{r}
+
+RF_fit_Test<-RF_workflow%>%fit(data_test)
+RF_fit_Test
+```
+```{r}
+
+RF_fit_Test %>% 
+  extract_fit_parsnip() %>% 
+ #Make VIP plot
+ vip()
+```
+
+```{r}
+results_RFW <- data_model_stay180 %>% select(LoS_cat_180)%>% 
+  bind_cols(RF_fit %>% 
+              predict(new_data = data_model_stay180))%>% 
+  bind_cols(RF_fit%>% 
+             predict(new_data = data_model_stay180, type = "prob"))
+kable(results_RFW)
+```
+
+```{r}
+describe(results_RFW)
+```
+
+```{r}
+results_RFW%>% 
+  conf_mat(truth = LoS_cat_180, estimate = .pred_class)
+```
+
+```{r}
+update_geom_defaults(geom = "rect", new = list(fill = "midnightblue", alpha = 0.7))
+results_RF%>% 
+  conf_mat(LoS_cat_180,.pred_class) %>% 
+  autoplot()
+```
+
+```{r}
+ev_met1_RFW<-ev_met1(results_RFW,truth = LoS_cat_180, estimate = .pred_class)
+Rec_RFW<-yardstick::recall(results_RFW, LoS_cat_180, .pred_class)
+ACC_RFW<-yardstick::accuracy(results_RFW, LoS_cat_180, .pred_class)
+
+curve_RFW <- results_RFW %>% 
+  roc_curve(LoS_cat_180, .pred_0) %>% 
+  autoplot
+curve_RFW
+```
+```{r}
+
+auc_RFW <- results_RFW %>% 
+  roc_auc(LoS_cat_180, .pred_0)
+RFMETW<-list(auc_RFW,ev_met1_RFW, Rec_RFW, ACC_RFW)
+kable(RFMETW)
+```
+
+```{r}
+RFMETCurVeW<-list(RFMETW, curve_RFW)
+RFMETCurVeW
+```
+
+```{r}
+
+results_LR <- data_test %>% select(LoS_cat_180) %>% 
+  bind_cols (LogReg_fit%>% 
+              predict(new_data = data_test)) %>% 
+  bind_cols( LogReg_fit%>% 
+              predict(new_data = data_test, type = "prob"))
+kable(results_LR)
+```
+
+
+```{r}
+describe(results_LR)
+
+```
+
+```{r}
+results_LR%>% 
+  conf_mat(truth = LoS_cat_180, estimate = .pred_class)
+```
+```{r}
+update_geom_defaults(geom = "rect", new = list(fill = "midnightblue", alpha = 0.7))
+results_LR%>% 
+  conf_mat(LoS_cat_180,.pred_class) %>% 
+  autoplot()
+```
+
+```{r}
+ev_met1_LR<-ev_met1(results_LR,truth = LoS_cat_180, estimate = .pred_class)
+Rec_LR<-yardstick::recall(results_LR, LoS_cat_180, .pred_class)
+ACC_LR<-yardstick::accuracy(results_LR, LoS_cat_180, .pred_class)
+#Plot Roc_Curve
+curve_LR <- results_LR %>% 
+  roc_curve(LoS_cat_180, .pred_0) %>% 
+  autoplot
+curve_LR
+```
+```{r}
+auc_LR <- results_LR %>% 
+  roc_auc(LoS_cat_180, .pred_0)
+LRMET<-list(auc_LR,ev_met1_LR, Rec_LR, ACC_LR)
+kable(LRMET)
+```
+
+```{r}
+LRMETCurVe<-list(LRMET, curve_LR)
+LRMETCurVe
+```
+```{r}
+LogReg_fit_Test<-LOGGLM_workflow%>%fit(data_test)
+LogReg_fit_Test
+```
+```{r}
+LogReg_fit_Test %>% 
+  extract_fit_parsnip() %>% 
+ #Make VIP plot
+ vip()
+```
+
+```{r}
+results_LRW <- data_model_stay180 %>% select(LoS_cat_180)%>% 
+  bind_cols(LogReg_fit %>% 
+              predict(new_data = data_model_stay180))%>% 
+  bind_cols(LogReg_fit%>% 
+             predict(new_data = data_model_stay180, type = "prob"))
+kable(results_LRW)
+```
+
+```{r}
+describe(results_LRW)
+```
+
+```{r}
+results_LRW%>% 
+  conf_mat(truth = LoS_cat_180, estimate = .pred_class)
+```
+
+```{r}
+#Visualise Results
+update_geom_defaults(geom = "rect", new = list(fill = "midnightblue", alpha = 0.7))
+results_LRW%>% 
+  conf_mat(LoS_cat_180,.pred_class) %>% 
+  autoplot()
+```
+
+```{r}
+ev_met1_LRW<-ev_met1(results_LRW,truth = LoS_cat_180, estimate = .pred_class)
+Rec_LRW<-yardstick::recall(results_LRW, LoS_cat_180, .pred_class)
+ACC_LRW<-yardstick::accuracy(results_LRW, LoS_cat_180, .pred_class)
+#Plot Roc_Curve
+curve_LRW <- results_LRW %>% 
+  roc_curve(LoS_cat_180, .pred_0) %>% 
+  autoplot
+curve_LRW
+```
+
+```{r}
+
+auc_LRW <- results_LRW %>% 
+  roc_auc(LoS_cat_180, .pred_0)
+LRMETW<-list(auc_LRW,ev_met1_LRW, Rec_LRW, ACC_LRW)
+kable(RFMETW)
+```
+```{r}
+LRMETCurVeW<-list(LRMETW, curve_LRW)
+LRMETCurVeW
+```
+
+```{r}
+results_Lasso<-data_test %>% select(LoS_cat_180) %>% 
+  bind_cols( Lasso_fit%>% 
+              predict(new_data = data_test)) %>% 
+  bind_cols( Lasso_fit%>% 
+             predict(new_data = data_test, type = "prob"))
+kable(results_Lasso)
+```
+
+```{r}
+describe(results_Lasso)
+```
+
+```{r}
+results_Lasso %>% 
+  conf_mat(truth = LoS_cat_180, estimate = .pred_class)
+```
+```{r}
+#Visualise Results
+update_geom_defaults(geom = "rect", new = list(fill = "midnightblue", alpha = 0.7))
+results_Lasso%>% 
+  conf_mat(LoS_cat_180,.pred_class) %>% 
+  autoplot()
+```
+
+```{r}
+ev_met1_Lasso<-ev_met1(results_Lasso,truth = LoS_cat_180, estimate = .pred_class)
+ACC_Lasso<-yardstick::accuracy(results_Lasso, LoS_cat_180,.pred_class)
+Rec_Lasso<-yardstick::recall(results_Lasso, LoS_cat_180, .pred_class)
+#Plot Roc_Curve
+curve_Lasso <- results_Lasso %>% 
+  roc_curve(LoS_cat_180, .pred_0) %>% 
+  autoplot
+curve_Lasso
+```
+```{r}
+auc_Lasso <- results_Lasso %>% 
+  roc_auc(LoS_cat_180, .pred_0)
+LassoMET<-list(auc_Lasso,ev_met1_Lasso, Rec_Lasso, ACC_Lasso)
+kable(LassoMET)
+```
+
+```{r}
+LassoMETCurVe<-list(LassoMET, curve_Lasso)
+LassoMETCurVe
+```
+
+```{r}
+Lasso_fit_Test<-lasso_workflow%>%fit(data_test)
+Lasso_fit_Test
+```
+
+```{r}
+
+
+Lasso_fit_Test %>% 
+  extract_fit_parsnip() %>% 
+ #Make VIP plot
+ vip()
+```
+```{r}
+results_NB <- data_test %>% select(LoS_cat_180) %>% 
+ bind_cols(NB_fit %>% 
+             predict(new_data = data_test)) %>% 
+  bind_cols( NB_fit%>% 
+              predict(new_data = data_test, type = "prob"))
+kable(results_NB)
+```
+

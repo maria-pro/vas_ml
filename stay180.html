@@ -1,0 +1,4970 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.121">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>stay180</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="stay180_files/libs/clipboard/clipboard.min.js"></script>
+<script src="stay180_files/libs/quarto-html/quarto.js"></script>
+<script src="stay180_files/libs/quarto-html/popper.min.js"></script>
+<script src="stay180_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="stay180_files/libs/quarto-html/anchor.min.js"></script>
+<link href="stay180_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="stay180_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="stay180_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="stay180_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="stay180_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#binominal--stay180" id="toc-binominal--stay180" class="nav-link active" data-scroll-target="#binominal--stay180">Binominal- stay180</a></li>
+  <li><a href="#vas-code" id="toc-vas-code" class="nav-link" data-scroll-target="#vas-code">Vas code</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">stay180</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="binominal--stay180" class="level3">
+<h3 class="anchored" data-anchor-id="binominal--stay180">Binominal- stay180</h3>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "1" "2" "3"</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                       vars   n   mean     sd median trimmed   mad min max
+team_member*              1 117   1.50   0.50      2    1.51  0.00   1   2
+client_id*                2 117  59.00  33.92     59   59.00 43.00   1 117
+sex*                      3 117   1.05   0.26      1    1.00  0.00   1   3
+marital_status*           4 117   1.09   0.39      1    1.00  0.00   1   3
+dob*                      5 117  58.15  33.14     58   58.19 41.51   1 115
+age_at_admit              6 117  20.31   3.90     20   20.13  2.97  13  33
+age                       7 117  22.21   4.30     23   22.12  2.97  13  35
+grade*                    8 117  11.14   6.92     12   10.91 10.38   1  24
+race*                     9 117   1.24   0.70      1    1.03  0.00   1   4
+ethnicity*               10 117   1.94   0.33      2    2.00  0.00   1   3
+religion*                11 116   6.09   3.81      7    5.96  2.97   1  15
+phase1_intensive*        12 117   1.73   0.45      2    1.78  0.00   1   2
+phase2_open_world*       13 117   1.29   0.46      1    1.24  0.00   1   2
+phase3_sustainability*   14 117   1.14   0.35      1    1.05  0.00   1   2
+phase1_3*                15 117   1.54   0.73      1    1.43  0.00   1   3
+program_doa*             16 117  57.75  32.93     58   57.94 43.00   1 112
+program_dod*             17 117  48.81  30.08     48   48.87 38.55   1  95
+lo_s                     18 107 169.50 157.37    102  140.82 71.16  10 851
+dsm_primary*             19 110   1.36   1.13      1    1.01  0.00   1   6
+dsm_secondary*           20 111   3.34   2.12      3    3.13  2.97   1   9
+dsm_overall*             21 111   2.77   1.55      3    2.65  1.48   1   8
+re_start_house*          22 117   1.09   0.29      1    1.00  0.00   1   2
+primary_behavior*        23 111   1.21   0.69      1    1.00  0.00   1   4
+secondary_behavior*      24  37   2.68   1.06      2    2.71  1.48   1   4
+bigs_item1               25 117   2.29   1.39      3    2.25  1.48   0   5
+bigs_item2               26 117   0.47   0.50      0    0.46  0.00   0   1
+bigs_item3               27 117   0.57   0.50      1    0.59  0.00   0   1
+bigs_item4               28 117   3.78   1.68      4    3.84  1.48   1   6
+bigs_item5               29 117   0.78   0.89      0    0.73  0.00   0   2
+bigs_item5_1             30 117   0.47   0.50      0    0.46  0.00   0   1
+bigs_item6               31 117   0.47   0.50      0    0.46  0.00   0   1
+bigs_item7               32 117   0.63   0.48      1    0.66  0.00   0   1
+bigs_item8               33 117   0.51   0.50      1    0.52  0.00   0   1
+bigs_item9               34 117   0.76   0.43      1    0.82  0.00   0   1
+bigs_item10              35 117   0.46   0.50      0    0.45  0.00   0   1
+bigs_item11              36 117   2.30   1.57      2    2.25  1.48   0   5
+dass_2_a                 37  74   0.53   0.78      0    0.38  0.00   0   3
+dass_3_d                 38  74   0.84   0.94      1    0.72  1.48   0   3
+dass_4_a                 39  74   0.30   0.64      0    0.15  0.00   0   3
+dass_6_s                 40  74   0.66   0.82      0    0.53  0.00   0   3
+dass_8_s                 41  74   0.97   1.02      1    0.87  1.48   0   3
+dass_10_d                42  74   1.12   1.16      1    1.03  1.48   0   3
+dass_12_s                43  74   0.78   0.86      1    0.70  1.48   0   3
+dass_17_d                44  74   1.14   1.13      1    1.05  1.48   0   3
+dass_18_s                45  74   0.58   0.79      0    0.43  0.00   0   3
+dass_20_a                46  74   0.26   0.53      0    0.15  0.00   0   2
+dass_22_s                47  74   0.72   0.90      0    0.58  0.00   0   3
+dass_25_a                48  74   0.36   0.73      0    0.18  0.00   0   3
+dass_26_d                49  74   1.12   1.10      1    1.03  1.48   0   3
+dass_28_a                50  74   0.55   0.85      0    0.42  0.00   0   3
+dass_31_d                51  74   0.89   1.00      1    0.75  1.48   0   3
+dass_35_s                52  74   0.72   0.90      0    0.57  0.00   0   3
+dass_38_d                53  74   0.73   1.01      0    0.55  0.00   0   3
+dass_39_s                54  74   0.65   0.88      0    0.50  0.00   0   3
+dass_40_a                55  74   0.58   0.92      0    0.40  0.00   0   3
+dass_41_a                56  74   0.38   0.73      0    0.20  0.00   0   3
+dass_42_d                57  74   1.30   1.12      1    1.25  1.48   0   3
+sogs_1a                  58  98   0.30   0.52      0    0.21  0.00   0   2
+sogs_1b                  59  98   0.01   0.10      0    0.00  0.00   0   1
+sogs_1c                  60  98   0.06   0.24      0    0.00  0.00   0   1
+sogs_1d                  61  98   0.07   0.30      0    0.00  0.00   0   2
+sogs_1e                  62  97   0.16   0.37      0    0.09  0.00   0   1
+sogs_1f                  63  98   0.11   0.32      0    0.03  0.00   0   1
+sogs_1g                  64  97   0.25   0.46      0    0.18  0.00   0   2
+sogs_1h                  65  98   0.21   0.46      0    0.12  0.00   0   2
+sogs_1i                  66  98   0.09   0.32      0    0.00  0.00   0   2
+sogs_1j                  67  97   0.14   0.41      0    0.04  0.00   0   2
+sogs_2                   68  97   0.92   1.29      0    0.70  0.00   0   5
+sogs_3                   69  98   0.03   0.17      0    0.00  0.00   0   1
+sogs_4                   70  96   0.06   0.28      0    0.00  0.00   0   2
+sogs_5                   71  96   0.01   0.10      0    0.00  0.00   0   1
+sogs_6                   72  96   0.04   0.25      0    0.00  0.00   0   2
+sogs_7                   73  96   0.04   0.20      0    0.00  0.00   0   1
+sogs_8                   74  96   0.03   0.17      0    0.00  0.00   0   1
+sogs_9                   75  96   0.04   0.20      0    0.00  0.00   0   1
+sogs_10                  76  96   0.02   0.14      0    0.00  0.00   0   1
+sogs_11                  77  96   0.01   0.10      0    0.00  0.00   0   1
+sogs_12                  78  96   0.08   0.28      0    0.00  0.00   0   1
+sogs_13                  79  94   0.02   0.15      0    0.00  0.00   0   1
+sogs_14                  80  96   0.00   0.00      0    0.00  0.00   0   0
+sogs_15                  81  97   0.01   0.10      0    0.00  0.00   0   1
+sogs_16                  82  93   0.02   0.15      0    0.00  0.00   0   1
+sogs_16a                 83  94   0.01   0.10      0    0.00  0.00   0   1
+sogs_16b                 84  94   0.00   0.00      0    0.00  0.00   0   0
+sogs_16c                 85  94   0.01   0.10      0    0.00  0.00   0   1
+sogs_16d                 86  94   0.00   0.00      0    0.00  0.00   0   0
+sogs_16e                 87  94   0.01   0.10      0    0.00  0.00   0   1
+sogs_16f                 88  94   0.01   0.10      0    0.00  0.00   0   1
+sogs_16g                 89  94   0.00   0.00      0    0.00  0.00   0   0
+sogs_16h                 90  94   0.01   0.10      0    0.00  0.00   0   1
+sogs_16i                 91  94   0.00   0.00      0    0.00  0.00   0   0
+sogs_16j                 92  94   0.00   0.00      0    0.00  0.00   0   0
+sogs_16k                 93  94   0.00   0.00      0    0.00  0.00   0   0
+bigs_sum*                94 117  10.05   4.78     10   10.08  4.45   1  19
+dass_anxiety_sum*        95  74   3.86   3.02      3    3.40  2.97   1  13
+dass_dep_sum*            96  74   7.95   5.60      7    7.60  7.41   1  20
+dass_stress_sum*         97  74   5.93   3.83      6    5.58  4.45   1  16
+sog_sum*                 98  89   1.20   0.79      1    1.00  0.00   1   6
+big_sum_8                99 117   4.35   2.51      4    4.39  2.97   0   8
+                       range  skew kurtosis    se
+team_member*               1 -0.02    -2.02  0.05
+client_id*               116  0.00    -1.23  3.14
+sex*                       2  5.41    31.33  0.02
+marital_status*            2  4.18    16.53  0.04
+dob*                     114 -0.01    -1.22  3.06
+age_at_admit              20  0.46     0.32  0.36
+age                       22  0.19     0.11  0.40
+grade*                    23  0.16    -1.43  0.64
+race*                      3  2.74     6.16  0.06
+ethnicity*                 2 -1.13     5.43  0.03
+religion*                 14  0.04    -1.08  0.35
+phase1_intensive*          1 -1.00    -1.00  0.04
+phase2_open_world*         1  0.91    -1.18  0.04
+phase3_sustainability*     1  2.09     2.38  0.03
+phase1_3*                  2  0.94    -0.52  0.07
+program_doa*             111 -0.03    -1.27  3.04
+program_dod*              94  0.02    -1.29  2.78
+lo_s                     841  1.82     3.54 15.21
+dsm_primary*               5  3.07     8.28  0.11
+dsm_secondary*             8  0.51    -0.58  0.20
+dsm_overall*               7  0.56    -0.09  0.15
+re_start_house*            1  2.75     5.59  0.03
+primary_behavior*          3  3.35    10.05  0.07
+secondary_behavior*        3  0.10    -1.44  0.17
+bigs_item1                 5  0.15    -0.84  0.13
+bigs_item2                 1  0.12    -2.00  0.05
+bigs_item3                 1 -0.29    -1.93  0.05
+bigs_item4                 5 -0.21    -1.14  0.16
+bigs_item5                 2  0.44    -1.61  0.08
+bigs_item5_1               1  0.12    -2.00  0.05
+bigs_item6                 1  0.12    -2.00  0.05
+bigs_item7                 1 -0.54    -1.72  0.04
+bigs_item8                 1 -0.05    -2.01  0.05
+bigs_item9                 1 -1.21    -0.55  0.04
+bigs_item10                1  0.15    -1.99  0.05
+bigs_item11                5  0.20    -1.16  0.15
+dass_2_a                   3  1.36     1.09  0.09
+dass_3_d                   3  0.81    -0.40  0.11
+dass_4_a                   3  2.20     4.48  0.07
+dass_6_s                   3  1.12     0.66  0.09
+dass_8_s                   3  0.51    -1.10  0.12
+dass_10_d                  3  0.50    -1.27  0.13
+dass_12_s                  3  0.67    -0.72  0.10
+dass_17_d                  3  0.36    -1.36  0.13
+dass_18_s                  3  1.36     1.37  0.09
+dass_20_a                  2  1.89     2.68  0.06
+dass_22_s                  3  1.02     0.02  0.10
+dass_25_a                  3  2.01     3.34  0.09
+dass_26_d                  3  0.50    -1.12  0.13
+dass_28_a                  3  1.24     0.29  0.10
+dass_31_d                  3  0.86    -0.41  0.12
+dass_35_s                  3  1.13     0.41  0.10
+dass_38_d                  3  1.18     0.11  0.12
+dass_39_s                  3  1.20     0.49  0.10
+dass_40_a                  3  1.42     0.85  0.11
+dass_41_a                  3  1.95     3.12  0.09
+dass_42_d                  3  0.22    -1.36  0.13
+sogs_1a                    2  1.51     1.33  0.05
+sogs_1b                    1  9.60    91.06  0.01
+sogs_1c                    1  3.60    11.11  0.02
+sogs_1d                    2  4.38    20.33  0.03
+sogs_1e                    1  1.78     1.17  0.04
+sogs_1f                    1  2.42     3.89  0.03
+sogs_1g                    2  1.47     0.96  0.05
+sogs_1h                    2  1.98     3.16  0.05
+sogs_1i                    2  3.64    13.72  0.03
+sogs_1j                    2  2.85     7.83  0.04
+sogs_2                     5  1.31     0.87  0.13
+sogs_3                     1  5.37    27.07  0.02
+sogs_4                     2  4.83    24.78  0.03
+sogs_5                     1  9.49    89.06  0.01
+sogs_6                     2  6.34    42.30  0.03
+sogs_7                     1  4.52    18.59  0.02
+sogs_8                     1  5.30    26.41  0.02
+sogs_9                     1  4.52    18.59  0.02
+sogs_10                    1  6.61    42.07  0.01
+sogs_11                    1  9.49    89.06  0.01
+sogs_12                    1  2.97     6.88  0.03
+sogs_13                    1  6.53    41.07  0.01
+sogs_14                    0   NaN      NaN  0.00
+sogs_15                    1  9.55    90.06  0.01
+sogs_16                    1  6.49    40.57  0.02
+sogs_16a                   1  9.39    87.06  0.01
+sogs_16b                   0   NaN      NaN  0.00
+sogs_16c                   1  9.39    87.06  0.01
+sogs_16d                   0   NaN      NaN  0.00
+sogs_16e                   1  9.39    87.06  0.01
+sogs_16f                   1  9.39    87.06  0.01
+sogs_16g                   0   NaN      NaN  0.00
+sogs_16h                   1  9.39    87.06  0.01
+sogs_16i                   0   NaN      NaN  0.00
+sogs_16j                   0   NaN      NaN  0.00
+sogs_16k                   0   NaN      NaN  0.00
+bigs_sum*                 18 -0.06    -0.86  0.44
+dass_anxiety_sum*         12  1.17     0.63  0.35
+dass_dep_sum*             19  0.38    -1.17  0.65
+dass_stress_sum*          15  0.63    -0.32  0.45
+sog_sum*                   5  4.50    20.89  0.08
+big_sum_8                  8 -0.12    -1.24  0.23</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="stay180_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="stay180_files/figure-html/unnamed-chunk-2-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 3
+  LoS_cat     n  prop
+  &lt;chr&gt;   &lt;int&gt; &lt;dbl&gt;
+1 0          61 0.521
+2 1          56 0.479</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="stay180_files/figure-html/unnamed-chunk-2-3.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 3
+  LoS_cat_120     n  prop
+  &lt;chr&gt;       &lt;int&gt; &lt;dbl&gt;
+1 0              68 0.581
+2 1              49 0.419</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="stay180_files/figure-html/unnamed-chunk-2-4.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="stay180_files/figure-html/unnamed-chunk-2-5.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 3
+  LoS_cat_180     n  prop
+  &lt;fct&gt;       &lt;int&gt; &lt;dbl&gt;
+1 0              79 0.675
+2 1              38 0.325</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="stay180_files/figure-html/unnamed-chunk-2-6.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table class="gt_table table table-sm table-striped">
+<thead class="gt_col_headings">
+<tr class="header">
+<th id="vars" class="gt_col_heading gt_columns_bottom_border gt_right" scope="col">vars</th>
+<th id="n" class="gt_col_heading gt_columns_bottom_border gt_right" scope="col">n</th>
+<th id="mean" class="gt_col_heading gt_columns_bottom_border gt_right" scope="col">mean</th>
+<th id="sd" class="gt_col_heading gt_columns_bottom_border gt_right" scope="col">sd</th>
+<th id="median" class="gt_col_heading gt_columns_bottom_border gt_right" scope="col">median</th>
+<th id="trimmed" class="gt_col_heading gt_columns_bottom_border gt_right" scope="col">trimmed</th>
+<th id="mad" class="gt_col_heading gt_columns_bottom_border gt_right" scope="col">mad</th>
+<th id="min" class="gt_col_heading gt_columns_bottom_border gt_right" scope="col">min</th>
+<th id="max" class="gt_col_heading gt_columns_bottom_border gt_right" scope="col">max</th>
+<th id="range" class="gt_col_heading gt_columns_bottom_border gt_right" scope="col">range</th>
+<th id="skew" class="gt_col_heading gt_columns_bottom_border gt_right" scope="col">skew</th>
+<th id="kurtosis" class="gt_col_heading gt_columns_bottom_border gt_right" scope="col">kurtosis</th>
+<th id="se" class="gt_col_heading gt_columns_bottom_border gt_right" scope="col">se</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_right" headers="vars">1</td>
+<td class="gt_row gt_right" headers="n">117</td>
+<td class="gt_row gt_right" headers="mean">59.000000</td>
+<td class="gt_row gt_right" headers="sd">33.9190212</td>
+<td class="gt_row gt_right" headers="median">59</td>
+<td class="gt_row gt_right" headers="trimmed">59.000000</td>
+<td class="gt_row gt_right" headers="mad">42.9954</td>
+<td class="gt_row gt_right" headers="min">1</td>
+<td class="gt_row gt_right" headers="max">117</td>
+<td class="gt_row gt_right" headers="range">116</td>
+<td class="gt_row gt_right" headers="skew">0.00000000</td>
+<td class="gt_row gt_right" headers="kurtosis">-1.23081009</td>
+<td class="gt_row gt_right" headers="se">3.13581462</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="vars">2</td>
+<td class="gt_row gt_right" headers="n">117</td>
+<td class="gt_row gt_right" headers="mean">1.051282</td>
+<td class="gt_row gt_right" headers="sd">0.2575131</td>
+<td class="gt_row gt_right" headers="median">1</td>
+<td class="gt_row gt_right" headers="trimmed">1.000000</td>
+<td class="gt_row gt_right" headers="mad">0.0000</td>
+<td class="gt_row gt_right" headers="min">1</td>
+<td class="gt_row gt_right" headers="max">3</td>
+<td class="gt_row gt_right" headers="range">2</td>
+<td class="gt_row gt_right" headers="skew">5.40594510</td>
+<td class="gt_row gt_right" headers="kurtosis">31.32916660</td>
+<td class="gt_row gt_right" headers="se">0.02380709</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="vars">3</td>
+<td class="gt_row gt_right" headers="n">117</td>
+<td class="gt_row gt_right" headers="mean">1.094017</td>
+<td class="gt_row gt_right" headers="sd">0.3935450</td>
+<td class="gt_row gt_right" headers="median">1</td>
+<td class="gt_row gt_right" headers="trimmed">1.000000</td>
+<td class="gt_row gt_right" headers="mad">0.0000</td>
+<td class="gt_row gt_right" headers="min">1</td>
+<td class="gt_row gt_right" headers="max">3</td>
+<td class="gt_row gt_right" headers="range">2</td>
+<td class="gt_row gt_right" headers="skew">4.18373336</td>
+<td class="gt_row gt_right" headers="kurtosis">16.53252724</td>
+<td class="gt_row gt_right" headers="se">0.03638325</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="vars">4</td>
+<td class="gt_row gt_right" headers="n">117</td>
+<td class="gt_row gt_right" headers="mean">11.136752</td>
+<td class="gt_row gt_right" headers="sd">6.9193706</td>
+<td class="gt_row gt_right" headers="median">12</td>
+<td class="gt_row gt_right" headers="trimmed">10.905263</td>
+<td class="gt_row gt_right" headers="mad">10.3782</td>
+<td class="gt_row gt_right" headers="min">1</td>
+<td class="gt_row gt_right" headers="max">24</td>
+<td class="gt_row gt_right" headers="range">23</td>
+<td class="gt_row gt_right" headers="skew">0.15895736</td>
+<td class="gt_row gt_right" headers="kurtosis">-1.42547013</td>
+<td class="gt_row gt_right" headers="se">0.63969604</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="vars">5</td>
+<td class="gt_row gt_right" headers="n">117</td>
+<td class="gt_row gt_right" headers="mean">1.239316</td>
+<td class="gt_row gt_right" headers="sd">0.7028216</td>
+<td class="gt_row gt_right" headers="median">1</td>
+<td class="gt_row gt_right" headers="trimmed">1.031579</td>
+<td class="gt_row gt_right" headers="mad">0.0000</td>
+<td class="gt_row gt_right" headers="min">1</td>
+<td class="gt_row gt_right" headers="max">4</td>
+<td class="gt_row gt_right" headers="range">3</td>
+<td class="gt_row gt_right" headers="skew">2.73912732</td>
+<td class="gt_row gt_right" headers="kurtosis">6.15749456</td>
+<td class="gt_row gt_right" headers="se">0.06497588</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="vars">6</td>
+<td class="gt_row gt_right" headers="n">117</td>
+<td class="gt_row gt_right" headers="mean">1.940171</td>
+<td class="gt_row gt_right" headers="sd">0.3293305</td>
+<td class="gt_row gt_right" headers="median">2</td>
+<td class="gt_row gt_right" headers="trimmed">2.000000</td>
+<td class="gt_row gt_right" headers="mad">0.0000</td>
+<td class="gt_row gt_right" headers="min">1</td>
+<td class="gt_row gt_right" headers="max">3</td>
+<td class="gt_row gt_right" headers="range">2</td>
+<td class="gt_row gt_right" headers="skew">-1.12866176</td>
+<td class="gt_row gt_right" headers="kurtosis">5.42801233</td>
+<td class="gt_row gt_right" headers="se">0.03044662</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="vars">7</td>
+<td class="gt_row gt_right" headers="n">116</td>
+<td class="gt_row gt_right" headers="mean">6.086207</td>
+<td class="gt_row gt_right" headers="sd">3.8143185</td>
+<td class="gt_row gt_right" headers="median">7</td>
+<td class="gt_row gt_right" headers="trimmed">5.957447</td>
+<td class="gt_row gt_right" headers="mad">2.9652</td>
+<td class="gt_row gt_right" headers="min">1</td>
+<td class="gt_row gt_right" headers="max">15</td>
+<td class="gt_row gt_right" headers="range">14</td>
+<td class="gt_row gt_right" headers="skew">0.04151033</td>
+<td class="gt_row gt_right" headers="kurtosis">-1.08198827</td>
+<td class="gt_row gt_right" headers="se">0.35415058</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="vars">8</td>
+<td class="gt_row gt_right" headers="n">117</td>
+<td class="gt_row gt_right" headers="mean">1.324786</td>
+<td class="gt_row gt_right" headers="sd">0.4703091</td>
+<td class="gt_row gt_right" headers="median">1</td>
+<td class="gt_row gt_right" headers="trimmed">1.284211</td>
+<td class="gt_row gt_right" headers="mad">0.0000</td>
+<td class="gt_row gt_right" headers="min">1</td>
+<td class="gt_row gt_right" headers="max">2</td>
+<td class="gt_row gt_right" headers="range">1</td>
+<td class="gt_row gt_right" headers="skew">0.73873165</td>
+<td class="gt_row gt_right" headers="kurtosis">-1.46659200</td>
+<td class="gt_row gt_right" headers="se">0.04348010</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="vars">9</td>
+<td class="gt_row gt_right" headers="n">110</td>
+<td class="gt_row gt_right" headers="mean">1.363636</td>
+<td class="gt_row gt_right" headers="sd">1.1311054</td>
+<td class="gt_row gt_right" headers="median">1</td>
+<td class="gt_row gt_right" headers="trimmed">1.011364</td>
+<td class="gt_row gt_right" headers="mad">0.0000</td>
+<td class="gt_row gt_right" headers="min">1</td>
+<td class="gt_row gt_right" headers="max">6</td>
+<td class="gt_row gt_right" headers="range">5</td>
+<td class="gt_row gt_right" headers="skew">3.06925105</td>
+<td class="gt_row gt_right" headers="kurtosis">8.27864290</td>
+<td class="gt_row gt_right" headers="se">0.10784667</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="vars">10</td>
+<td class="gt_row gt_right" headers="n">111</td>
+<td class="gt_row gt_right" headers="mean">3.342342</td>
+<td class="gt_row gt_right" headers="sd">2.1213010</td>
+<td class="gt_row gt_right" headers="median">3</td>
+<td class="gt_row gt_right" headers="trimmed">3.134831</td>
+<td class="gt_row gt_right" headers="mad">2.9652</td>
+<td class="gt_row gt_right" headers="min">1</td>
+<td class="gt_row gt_right" headers="max">9</td>
+<td class="gt_row gt_right" headers="range">8</td>
+<td class="gt_row gt_right" headers="skew">0.50886401</td>
+<td class="gt_row gt_right" headers="kurtosis">-0.58324208</td>
+<td class="gt_row gt_right" headers="se">0.20134498</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="vars">11</td>
+<td class="gt_row gt_right" headers="n">111</td>
+<td class="gt_row gt_right" headers="mean">2.774775</td>
+<td class="gt_row gt_right" headers="sd">1.5473419</td>
+<td class="gt_row gt_right" headers="median">3</td>
+<td class="gt_row gt_right" headers="trimmed">2.651685</td>
+<td class="gt_row gt_right" headers="mad">1.4826</td>
+<td class="gt_row gt_right" headers="min">1</td>
+<td class="gt_row gt_right" headers="max">8</td>
+<td class="gt_row gt_right" headers="range">7</td>
+<td class="gt_row gt_right" headers="skew">0.56470104</td>
+<td class="gt_row gt_right" headers="kurtosis">-0.09297999</td>
+<td class="gt_row gt_right" headers="se">0.14686719</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="vars">12</td>
+<td class="gt_row gt_right" headers="n">117</td>
+<td class="gt_row gt_right" headers="mean">1.094017</td>
+<td class="gt_row gt_right" headers="sd">0.2931078</td>
+<td class="gt_row gt_right" headers="median">1</td>
+<td class="gt_row gt_right" headers="trimmed">1.000000</td>
+<td class="gt_row gt_right" headers="mad">0.0000</td>
+<td class="gt_row gt_right" headers="min">1</td>
+<td class="gt_row gt_right" headers="max">2</td>
+<td class="gt_row gt_right" headers="range">1</td>
+<td class="gt_row gt_right" headers="skew">2.74651845</td>
+<td class="gt_row gt_right" headers="kurtosis">5.59137165</td>
+<td class="gt_row gt_right" headers="se">0.02709782</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="vars">13</td>
+<td class="gt_row gt_right" headers="n">111</td>
+<td class="gt_row gt_right" headers="mean">1.207207</td>
+<td class="gt_row gt_right" headers="sd">0.6890985</td>
+<td class="gt_row gt_right" headers="median">1</td>
+<td class="gt_row gt_right" headers="trimmed">1.000000</td>
+<td class="gt_row gt_right" headers="mad">0.0000</td>
+<td class="gt_row gt_right" headers="min">1</td>
+<td class="gt_row gt_right" headers="max">4</td>
+<td class="gt_row gt_right" headers="range">3</td>
+<td class="gt_row gt_right" headers="skew">3.34627489</td>
+<td class="gt_row gt_right" headers="kurtosis">10.04878142</td>
+<td class="gt_row gt_right" headers="se">0.06540633</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="vars">14</td>
+<td class="gt_row gt_right" headers="n">37</td>
+<td class="gt_row gt_right" headers="mean">2.675676</td>
+<td class="gt_row gt_right" headers="sd">1.0555160</td>
+<td class="gt_row gt_right" headers="median">2</td>
+<td class="gt_row gt_right" headers="trimmed">2.709677</td>
+<td class="gt_row gt_right" headers="mad">1.4826</td>
+<td class="gt_row gt_right" headers="min">1</td>
+<td class="gt_row gt_right" headers="max">4</td>
+<td class="gt_row gt_right" headers="range">3</td>
+<td class="gt_row gt_right" headers="skew">0.09851229</td>
+<td class="gt_row gt_right" headers="kurtosis">-1.43578920</td>
+<td class="gt_row gt_right" headers="se">0.17352577</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="vars">15</td>
+<td class="gt_row gt_right" headers="n">117</td>
+<td class="gt_row gt_right" headers="mean">10.051282</td>
+<td class="gt_row gt_right" headers="sd">4.7829549</td>
+<td class="gt_row gt_right" headers="median">10</td>
+<td class="gt_row gt_right" headers="trimmed">10.084211</td>
+<td class="gt_row gt_right" headers="mad">4.4478</td>
+<td class="gt_row gt_right" headers="min">1</td>
+<td class="gt_row gt_right" headers="max">19</td>
+<td class="gt_row gt_right" headers="range">18</td>
+<td class="gt_row gt_right" headers="skew">-0.06141866</td>
+<td class="gt_row gt_right" headers="kurtosis">-0.86478229</td>
+<td class="gt_row gt_right" headers="se">0.44218434</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="vars">16</td>
+<td class="gt_row gt_right" headers="n">74</td>
+<td class="gt_row gt_right" headers="mean">3.864865</td>
+<td class="gt_row gt_right" headers="sd">3.0174121</td>
+<td class="gt_row gt_right" headers="median">3</td>
+<td class="gt_row gt_right" headers="trimmed">3.400000</td>
+<td class="gt_row gt_right" headers="mad">2.9652</td>
+<td class="gt_row gt_right" headers="min">1</td>
+<td class="gt_row gt_right" headers="max">13</td>
+<td class="gt_row gt_right" headers="range">12</td>
+<td class="gt_row gt_right" headers="skew">1.16952504</td>
+<td class="gt_row gt_right" headers="kurtosis">0.62976863</td>
+<td class="gt_row gt_right" headers="se">0.35076704</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="vars">17</td>
+<td class="gt_row gt_right" headers="n">74</td>
+<td class="gt_row gt_right" headers="mean">7.945946</td>
+<td class="gt_row gt_right" headers="sd">5.5981697</td>
+<td class="gt_row gt_right" headers="median">7</td>
+<td class="gt_row gt_right" headers="trimmed">7.600000</td>
+<td class="gt_row gt_right" headers="mad">7.4130</td>
+<td class="gt_row gt_right" headers="min">1</td>
+<td class="gt_row gt_right" headers="max">20</td>
+<td class="gt_row gt_right" headers="range">19</td>
+<td class="gt_row gt_right" headers="skew">0.37857676</td>
+<td class="gt_row gt_right" headers="kurtosis">-1.16568137</td>
+<td class="gt_row gt_right" headers="se">0.65077401</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="vars">18</td>
+<td class="gt_row gt_right" headers="n">74</td>
+<td class="gt_row gt_right" headers="mean">5.932432</td>
+<td class="gt_row gt_right" headers="sd">3.8332757</td>
+<td class="gt_row gt_right" headers="median">6</td>
+<td class="gt_row gt_right" headers="trimmed">5.583333</td>
+<td class="gt_row gt_right" headers="mad">4.4478</td>
+<td class="gt_row gt_right" headers="min">1</td>
+<td class="gt_row gt_right" headers="max">16</td>
+<td class="gt_row gt_right" headers="range">15</td>
+<td class="gt_row gt_right" headers="skew">0.63108651</td>
+<td class="gt_row gt_right" headers="kurtosis">-0.31633586</td>
+<td class="gt_row gt_right" headers="se">0.44560924</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="vars">19</td>
+<td class="gt_row gt_right" headers="n">89</td>
+<td class="gt_row gt_right" headers="mean">1.202247</td>
+<td class="gt_row gt_right" headers="sd">0.7859530</td>
+<td class="gt_row gt_right" headers="median">1</td>
+<td class="gt_row gt_right" headers="trimmed">1.000000</td>
+<td class="gt_row gt_right" headers="mad">0.0000</td>
+<td class="gt_row gt_right" headers="min">1</td>
+<td class="gt_row gt_right" headers="max">6</td>
+<td class="gt_row gt_right" headers="range">5</td>
+<td class="gt_row gt_right" headers="skew">4.49626325</td>
+<td class="gt_row gt_right" headers="kurtosis">20.89052289</td>
+<td class="gt_row gt_right" headers="se">0.08331085</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<caption>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Name</td>
+<td style="text-align: left;">data_model_stay180</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Number of rows</td>
+<td style="text-align: left;">117</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Number of columns</td>
+<td style="text-align: left;">19</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">_______________________</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Column type frequency:</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">factor</td>
+<td style="text-align: left;">19</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">________________________</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Group variables</td>
+<td style="text-align: left;">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: factor</strong></p>
+<table class="table table-sm table-striped">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 10%">
+<col style="width: 15%">
+<col style="width: 8%">
+<col style="width: 9%">
+<col style="width: 34%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">skim_variable</th>
+<th style="text-align: right;">n_missing</th>
+<th style="text-align: right;">complete_rate</th>
+<th style="text-align: left;">ordered</th>
+<th style="text-align: right;">n_unique</th>
+<th style="text-align: left;">top_counts</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">client_id</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">117</td>
+<td style="text-align: left;">759: 1, 759: 1, 760: 1, 762: 1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sex</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">1: 112, 2: 4, 3: 1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">marital_status</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">1: 110, 3: 4, 2: 3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">grade</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">24</td>
+<td style="text-align: left;">Col: 20, 12: 13, HS: 12, 11: 11</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">race</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">1: 104, 3: 9, 5: 3, 2: 1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ethnicity</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">1: 104, 0: 10, 2: 3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">religion</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.99</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: left;">11: 39, 1: 23, 2: 13, 4: 10</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">LoS_cat_180</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">0: 79, 1: 38</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">dsm_primary</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">0.94</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">1: 98, 4: 3, 6: 3, 10: 3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">dsm_secondary</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">0.95</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: left;">0: 37, 4: 21, 3: 16, 5: 15</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">dsm_overall</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">0.95</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">1: 33, 3: 24, 4: 22, 2: 17</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">re_start_house</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">0: 106, 1: 11</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">primary_behavior</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">0.95</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">1: 100, 5: 5, 2: 4, 3: 2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">secondary_behavior</td>
+<td style="text-align: right;">80</td>
+<td style="text-align: right;">0.32</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">2: 16, 5: 12, 3: 5, 1: 4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">bigs_sum</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: left;">12: 10, 16: 10, 13: 9, 14: 9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">dass_anxiety_sum</td>
+<td style="text-align: right;">43</td>
+<td style="text-align: right;">0.63</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: left;">0: 19, 1: 13, 2: 11, 3: 7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">dass_dep_sum</td>
+<td style="text-align: right;">43</td>
+<td style="text-align: right;">0.63</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: left;">0: 12, 3: 9, 4: 5, 9: 5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">dass_stress_sum</td>
+<td style="text-align: right;">43</td>
+<td style="text-align: right;">0.63</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: left;">0: 10, 7: 10, 2: 8, 5: 8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sog_sum</td>
+<td style="text-align: right;">28</td>
+<td style="text-align: right;">0.76</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">0: 81, 1: 4, 2: 1, 5: 1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell-output-display">
+<p><img src="stay180_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="stay180_files/figure-html/unnamed-chunk-3-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>#—————- ### Setup</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  LoS_cat_180     n
+  &lt;fct&gt;       &lt;int&gt;
+1 0              79
+2 1              38</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "0" "1"</code></pre>
+</div>
+</div>
+</section>
+<section id="vas-code" class="level3">
+<h3 class="anchored" data-anchor-id="vas-code">Vas code</h3>
+<div class="cell">
+
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 4
+  statistic    df p.value missing.patterns
+      &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;            &lt;int&gt;
+1      248.   237   0.302               17</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   client_id  sex    marital_status     grade    race   ethnicity    religion 
+ 7595   : 1   1:84   1:80           College:14   1:75   0: 8      11     :35  
+ 7597   : 1   2: 2   2: 3           HS     :10   2: 1   1:77      1      :13  
+ 7609   : 1   3: 1   3: 4           11     : 9   3: 9   2: 2      2      :10  
+ 7645   : 1                         12     : 9   5: 2             7      : 9  
+ 7697   : 1                         15     : 6                    4      : 4  
+ 7701   : 1                         9      : 5                    (Other):15  
+ (Other):81                         (Other):34                    NA's   : 1  
+ LoS_cat_180 dsm_primary dsm_secondary  dsm_overall re_start_house
+ 0:59        1   :74     0      :27    1      :26   0:79          
+ 1:28        3   : 1     4      :20    3      :21   1: 8          
+             4   : 3     3      :12    4      :16                 
+             5   : 2     5      :10    2      :12                 
+             6   : 2     6      : 8    5      : 9                 
+             10  : 3     (Other): 8    (Other): 1                 
+             NA's: 2     NA's   : 2    NA's   : 2                 
+ primary_behavior secondary_behavior    bigs_sum  dass_anxiety_sum
+ 1   :79          1   : 1            16     : 9   0      :15      
+ 2   : 1          2   :12            13     : 8   1      :12      
+ 3   : 1          3   : 4            12     : 7   2      : 9      
+ 5   : 2          5   : 8            5      : 5   4      : 5      
+ NA's: 4          NA's:62            9      : 5   3      : 4      
+                                     11     : 5   (Other): 9      
+                                     (Other):48   NA's   :33      
+  dass_dep_sum dass_stress_sum sog_sum  
+ 0      : 9    0      : 7      0   :60  
+ 3      : 8    7      : 7      1   : 3  
+ 4      : 4    1      : 6      2   : 1  
+ 6      : 4    2      : 6      5   : 1  
+ 12     : 4    3      : 5      9   : 0  
+ (Other):25    (Other):23      14  : 1  
+ NA's   :33    NA's   :33      NA's:21  </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   client_id  sex    marital_status     grade   race   ethnicity    religion 
+ 7627   : 1   1:28   1:30           College:6   1:29   0: 2      1      :10  
+ 7651   : 1   2: 2   2: 0           10     :5   2: 0   1:27      4      : 6  
+ 7661   : 1   3: 0   3: 0           12     :4   3: 0   2: 1      11     : 4  
+ 7667   : 1                         SC     :3   5: 1             2      : 3  
+ 7673   : 1                         11     :2                    10     : 3  
+ 7749   : 1                         13     :2                    6      : 1  
+ (Other):24                         (Other):8                    (Other): 3  
+ LoS_cat_180 dsm_primary dsm_secondary  dsm_overall re_start_house
+ 0:20        1   :24     0      :10    1      :7    0:27          
+ 1:10        3   : 0     5      : 5    4      :6    1: 3          
+             4   : 0     3      : 4    2      :5                  
+             5   : 0     8      : 3    3      :3                  
+             6   : 1     7      : 2    5      :3                  
+             10  : 0     (Other): 2    (Other):2                  
+             NA's: 5     NA's   : 4    NA's   :4                  
+ primary_behavior secondary_behavior    bigs_sum  dass_anxiety_sum
+ 1   :21          1   : 3            14     : 4   0      : 4      
+ 2   : 3          2   : 4            10     : 3   3      : 3      
+ 3   : 1          3   : 1            12     : 3   6      : 3      
+ 5   : 3          5   : 4            5      : 2   2      : 2      
+ NA's: 2          NA's:18            9      : 2   5      : 2      
+                                     11     : 2   (Other): 6      
+                                     (Other):14   NA's   :10      
+  dass_dep_sum dass_stress_sum sog_sum  
+ 0      : 3    0      : 3      0   :21  
+ 15     : 3    5      : 3      1   : 1  
+ 7      : 2    7      : 3      2   : 0  
+ 9      : 2    2      : 2      5   : 0  
+ 1      : 1    3      : 2      9   : 1  
+ (Other): 9    (Other): 7      14  : 0  
+ NA's   :10    NA's   :10      NA's: 7  </code></pre>
+</div>
+</div>
+<section id="models-setup" class="level4">
+<h4 class="anchored" data-anchor-id="models-setup">models setup</h4>
+<div class="cell">
+
+</div>
+</section>
+<section id="workflow-setup" class="level4">
+<h4 class="anchored" data-anchor-id="workflow-setup">workflow setup</h4>
+<div class="cell">
+
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>══ Workflow [trained] ══════════════════════════════════════════════════════════
+Preprocessor: Recipe
+Model: null_model()
+
+── Preprocessor ────────────────────────────────────────────────────────────────
+5 Recipe Steps
+
+• step_zv()
+• step_normalize()
+• step_impute_mode()
+• step_unknown()
+• step_dummy()
+
+── Model ───────────────────────────────────────────────────────────────────────
+Null Regression Model
+Predicted Value: 0 </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>══ Workflow [trained] ══════════════════════════════════════════════════════════
+Preprocessor: Recipe
+Model: multinom_reg()
+
+── Preprocessor ────────────────────────────────────────────────────────────────
+5 Recipe Steps
+
+• step_zv()
+• step_normalize()
+• step_impute_mode()
+• step_unknown()
+• step_dummy()
+
+── Model ───────────────────────────────────────────────────────────────────────
+
+Call:  glmnet::glmnet(x = maybe_matrix(x), y = y, family = "multinomial",      alpha = ~1) 
+
+    Df  %Dev   Lambda
+1    0  0.00 0.176000
+2    1  0.99 0.168000
+3    1  1.86 0.160400
+4    1  2.64 0.153100
+5    2  3.89 0.146100
+6    2  5.29 0.139500
+7    2  6.54 0.133200
+8    3  8.22 0.127100
+9    4 10.06 0.121300
+10   4 11.89 0.115800
+11   4 13.54 0.110600
+12   4 15.04 0.105500
+13   6 16.58 0.100700
+14   8 18.54 0.096150
+15   8 20.63 0.091780
+16   8 22.57 0.087610
+17   9 24.52 0.083630
+18  13 26.61 0.079830
+19  14 28.84 0.076200
+20  15 31.03 0.072740
+21  15 33.11 0.069430
+22  15 35.05 0.066270
+23  15 36.86 0.063260
+24  17 38.58 0.060390
+25  17 40.37 0.057640
+26  19 42.10 0.055020
+27  20 43.86 0.052520
+28  21 45.69 0.050130
+29  21 47.44 0.047850
+30  21 49.09 0.045680
+31  25 50.76 0.043600
+32  26 52.44 0.041620
+33  26 54.05 0.039730
+34  27 55.82 0.037920
+35  27 57.54 0.036200
+36  27 59.16 0.034560
+37  28 60.77 0.032980
+38  28 62.32 0.031490
+39  28 63.79 0.030050
+40  29 65.24 0.028690
+41  30 66.63 0.027380
+42  30 67.98 0.026140
+43  33 69.30 0.024950
+44  33 70.58 0.023820
+45  35 71.83 0.022730
+46  35 73.03 0.021700
+
+...
+and 54 more lines.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>══ Workflow [trained] ══════════════════════════════════════════════════════════
+Preprocessor: Recipe
+Model: rand_forest()
+
+── Preprocessor ────────────────────────────────────────────────────────────────
+5 Recipe Steps
+
+• step_zv()
+• step_normalize()
+• step_impute_mode()
+• step_unknown()
+• step_dummy()
+
+── Model ───────────────────────────────────────────────────────────────────────
+Ranger result
+
+Call:
+ ranger::ranger(x = maybe_data_frame(x), y = y, importance = ~"impurity",      num.threads = 1, verbose = FALSE, seed = sample.int(10^5,          1), probability = TRUE) 
+
+Type:                             Probability estimation 
+Number of trees:                  500 
+Sample size:                      87 
+Number of independent variables:  159 
+Mtry:                             12 
+Target node size:                 10 
+Variable importance mode:         impurity 
+Splitrule:                        gini 
+OOB prediction error (Brier s.):  0.182802 </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>══ Workflow [trained] ══════════════════════════════════════════════════════════
+Preprocessor: Recipe
+Model: logistic_reg()
+
+── Preprocessor ────────────────────────────────────────────────────────────────
+5 Recipe Steps
+
+• step_zv()
+• step_normalize()
+• step_impute_mode()
+• step_unknown()
+• step_dummy()
+
+── Model ───────────────────────────────────────────────────────────────────────
+
+Call:  stats::glm(formula = ..y ~ ., family = stats::binomial, data = data)
+
+Coefficients:
+           (Intercept)                  sex_X2                  sex_X3  
+            -5.466e+01              -1.058e+01              -7.394e+01  
+               sex_NA.       marital_status_X2       marital_status_X3  
+                    NA              -1.653e+02               1.074e+02  
+    marital_status_NA.               grade_X10               grade_X11  
+                    NA               2.594e+02               2.594e+02  
+             grade_X12               grade_X13               grade_X14  
+             2.236e+02               3.385e+02               2.920e+02  
+             grade_X15               grade_X16                grade_X3  
+             2.799e+02               2.557e+02               4.951e+02  
+              grade_X7                grade_X8                grade_X9  
+             3.314e+02               2.537e+02               1.204e+02  
+              grade_AS                grade_Co           grade_college  
+             1.204e+02               2.762e+02              -4.385e+01  
+         grade_College                grade_Fi               grade_GED  
+             1.948e+02               3.150e+02               2.892e+01  
+              grade_Gr                grade_HS                grade_Po  
+             2.530e+02               1.374e+02                      NA  
+              grade_SC                grade_so                grade_So  
+             1.655e+02               1.494e+02               2.827e+02  
+             grade_NA.                 race_X2                 race_X3  
+                    NA               5.960e+01               2.880e+01  
+               race_X5                race_NA.            ethnicity_X1  
+                    NA                      NA              -3.385e+01  
+          ethnicity_X2           ethnicity_NA.             religion_X2  
+             1.968e+02                      NA               1.220e+02  
+           religion_X3             religion_X4             religion_X5  
+            -1.191e+02              -1.295e+02              -9.439e+01  
+           religion_X6             religion_X7            religion_X10  
+            -1.998e+00               1.014e+02              -1.881e+01  
+          religion_X11            religion_X13            religion_X14  
+            -1.414e-13              -3.143e+02               2.153e+02  
+          religion_X15            religion_X16            religion_X17  
+                    NA               1.942e+02               2.128e+01  
+          religion_X19            religion_NA.          dsm_primary_X3  
+            -1.213e+02                      NA               1.012e+02  
+        dsm_primary_X4          dsm_primary_X5          dsm_primary_X6  
+             4.961e+01                      NA              -1.150e+02  
+       dsm_primary_X10         dsm_primary_NA.        dsm_secondary_X1  
+             3.454e+02                      NA              -8.992e+01  
+      dsm_secondary_X3        dsm_secondary_X4        dsm_secondary_X5  
+             7.053e+00              -4.161e+01              -5.960e+01  
+      dsm_secondary_X6        dsm_secondary_X7        dsm_secondary_X8  
+             3.985e+01                      NA              -9.169e+01  
+      dsm_secondary_X9       dsm_secondary_NA.          dsm_overall_X2  
+             1.220e+02                      NA               7.417e+01  
+
+...
+and 66 more lines.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>══ Workflow [trained] ══════════════════════════════════════════════════════════
+Preprocessor: Recipe
+Model: svm_rbf()
+
+── Preprocessor ────────────────────────────────────────────────────────────────
+5 Recipe Steps
+
+• step_zv()
+• step_normalize()
+• step_impute_mode()
+• step_unknown()
+• step_dummy()
+
+── Model ───────────────────────────────────────────────────────────────────────
+Support Vector Machine object of class "ksvm" 
+
+SV type: C-svc  (classification) 
+ parameter : cost C = 1 
+
+Gaussian Radial Basis kernel function. 
+ Hyperparameter : sigma =  0.01 
+
+Number of Support Vectors : 66 
+
+Objective Function Value : -53.4292 
+Training error : 0.321839 
+Probability model included. </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>══ Workflow [trained] ══════════════════════════════════════════════════════════
+Preprocessor: Recipe
+Model: naive_Bayes()
+
+── Preprocessor ────────────────────────────────────────────────────────────────
+5 Recipe Steps
+
+• step_zv()
+• step_normalize()
+• step_impute_mode()
+• step_unknown()
+• step_dummy()
+
+── Model ───────────────────────────────────────────────────────────────────────
+
+================================== Naive Bayes ================================== 
+ 
+ Call: 
+naive_bayes.default(x = maybe_data_frame(x), y = y, usekernel = TRUE)
+
+--------------------------------------------------------------------------------- 
+ 
+Laplace smoothing: 0
+
+--------------------------------------------------------------------------------- 
+ 
+ A priori probabilities: 
+
+        0         1 
+0.6781609 0.3218391 
+
+--------------------------------------------------------------------------------- 
+ 
+ Tables: 
+
+--------------------------------------------------------------------------------- 
+ ::: sex_X2::0 (KDE)
+--------------------------------------------------------------------------------- 
+
+Call:
+    density.default(x = x, na.rm = TRUE)
+
+Data: x (59 obs.);  Bandwidth 'bw' = 0.07267
+
+       x                y          
+ Min.   :-0.218   Min.   :0.00000  
+ 1st Qu.: 0.141   1st Qu.:0.00006  
+ Median : 0.500   Median :0.03395  
+ Mean   : 0.500   Mean   :0.69478  
+ 3rd Qu.: 0.859   3rd Qu.:0.24537  
+ Max.   : 1.218   Max.   :5.30066  
+
+--------------------------------------------------------------------------------- 
+ ::: sex_X2::1 (KDE)
+--------------------------------------------------------------------------------- 
+
+Call:
+    density.default(x = x, na.rm = TRUE)
+
+Data: x (28 obs.);  Bandwidth 'bw' = 0.4622
+
+       x                 y           
+ Min.   :-1.3865   Min.   :0.009681  
+ 1st Qu.:-0.6933   1st Qu.:0.068836  
+
+...
+and 147 more lines.</code></pre>
+</div>
+</div>
+</section>
+<section id="results" class="level4">
+<h4 class="anchored" data-anchor-id="results">results</h4>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">LoS_cat_180</th>
+<th style="text-align: left;">.pred_class</th>
+<th style="text-align: right;">.pred_0</th>
+<th style="text-align: right;">.pred_1</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6781609</td>
+<td style="text-align: right;">0.3218391</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6781609</td>
+<td style="text-align: right;">0.3218391</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6781609</td>
+<td style="text-align: right;">0.3218391</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6781609</td>
+<td style="text-align: right;">0.3218391</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6781609</td>
+<td style="text-align: right;">0.3218391</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6781609</td>
+<td style="text-align: right;">0.3218391</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6781609</td>
+<td style="text-align: right;">0.3218391</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6781609</td>
+<td style="text-align: right;">0.3218391</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6781609</td>
+<td style="text-align: right;">0.3218391</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6781609</td>
+<td style="text-align: right;">0.3218391</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6781609</td>
+<td style="text-align: right;">0.3218391</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6781609</td>
+<td style="text-align: right;">0.3218391</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6781609</td>
+<td style="text-align: right;">0.3218391</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6781609</td>
+<td style="text-align: right;">0.3218391</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6781609</td>
+<td style="text-align: right;">0.3218391</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6781609</td>
+<td style="text-align: right;">0.3218391</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6781609</td>
+<td style="text-align: right;">0.3218391</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6781609</td>
+<td style="text-align: right;">0.3218391</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6781609</td>
+<td style="text-align: right;">0.3218391</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6781609</td>
+<td style="text-align: right;">0.3218391</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6781609</td>
+<td style="text-align: right;">0.3218391</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6781609</td>
+<td style="text-align: right;">0.3218391</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6781609</td>
+<td style="text-align: right;">0.3218391</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6781609</td>
+<td style="text-align: right;">0.3218391</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6781609</td>
+<td style="text-align: right;">0.3218391</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6781609</td>
+<td style="text-align: right;">0.3218391</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6781609</td>
+<td style="text-align: right;">0.3218391</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6781609</td>
+<td style="text-align: right;">0.3218391</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6781609</td>
+<td style="text-align: right;">0.3218391</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6781609</td>
+<td style="text-align: right;">0.3218391</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>             vars  n mean   sd median trimmed mad  min  max range skew kurtosis
+LoS_cat_180*    1 30 1.33 0.48   1.00    1.29   0 1.00 2.00     1 0.67     -1.6
+.pred_class*    2 30 1.00 0.00   1.00    1.00   0 1.00 1.00     0  NaN      NaN
+.pred_0         3 30 0.68 0.00   0.68    0.68   0 0.68 0.68     0  Inf      NaN
+.pred_1         4 30 0.32 0.00   0.32    0.32   0 0.32 0.32     0  Inf      NaN
+               se
+LoS_cat_180* 0.09
+.pred_class* 0.00
+.pred_0      0.00
+.pred_1      0.00</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>          Truth
+Prediction  0  1
+         0 20 10
+         1  0  0</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="stay180_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="stay180_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class="kable_wrapper">
+<tbody>
+<tr>
+<td>
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">.metric</th>
+<th style="text-align: left;">.estimator</th>
+<th style="text-align: right;">.estimate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">roc_auc</td>
+<td style="text-align: left;">binary</td>
+<td style="text-align: right;">0.5</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">.metric</th>
+<th style="text-align: left;">.estimator</th>
+<th style="text-align: right;">.estimate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">ppv</td>
+<td style="text-align: left;">binary</td>
+<td style="text-align: right;">0.6666667</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">f_meas</td>
+<td style="text-align: left;">binary</td>
+<td style="text-align: right;">0.8000000</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">.metric</th>
+<th style="text-align: left;">.estimator</th>
+<th style="text-align: right;">.estimate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">recall</td>
+<td style="text-align: left;">binary</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">.metric</th>
+<th style="text-align: left;">.estimator</th>
+<th style="text-align: right;">.estimate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">accuracy</td>
+<td style="text-align: left;">binary</td>
+<td style="text-align: right;">0.6666667</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">LoS_cat_180</th>
+<th style="text-align: left;">.pred_class</th>
+<th style="text-align: right;">.pred_0</th>
+<th style="text-align: right;">.pred_1</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7138171</td>
+<td style="text-align: right;">0.2861829</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7817354</td>
+<td style="text-align: right;">0.2182646</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.8125714</td>
+<td style="text-align: right;">0.1874286</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.5449440</td>
+<td style="text-align: right;">0.4550560</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0.4822453</td>
+<td style="text-align: right;">0.5177547</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6120440</td>
+<td style="text-align: right;">0.3879560</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0.2920200</td>
+<td style="text-align: right;">0.7079800</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.5100519</td>
+<td style="text-align: right;">0.4899481</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.5390413</td>
+<td style="text-align: right;">0.4609587</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7415328</td>
+<td style="text-align: right;">0.2584672</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0.2909076</td>
+<td style="text-align: right;">0.7090924</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6809226</td>
+<td style="text-align: right;">0.3190774</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.5631886</td>
+<td style="text-align: right;">0.4368114</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.5282894</td>
+<td style="text-align: right;">0.4717106</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7470307</td>
+<td style="text-align: right;">0.2529693</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6442118</td>
+<td style="text-align: right;">0.3557882</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.8527616</td>
+<td style="text-align: right;">0.1472384</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6535158</td>
+<td style="text-align: right;">0.3464842</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6842770</td>
+<td style="text-align: right;">0.3157230</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6963185</td>
+<td style="text-align: right;">0.3036815</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7074094</td>
+<td style="text-align: right;">0.2925906</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0.4737728</td>
+<td style="text-align: right;">0.5262272</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6781152</td>
+<td style="text-align: right;">0.3218848</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.8772116</td>
+<td style="text-align: right;">0.1227884</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.9663066</td>
+<td style="text-align: right;">0.0336934</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.9063460</td>
+<td style="text-align: right;">0.0936540</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6308392</td>
+<td style="text-align: right;">0.3691608</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.8233859</td>
+<td style="text-align: right;">0.1766141</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6476994</td>
+<td style="text-align: right;">0.3523006</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7559406</td>
+<td style="text-align: right;">0.2440594</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>          Truth
+Prediction  0  1
+         0 19  7
+         1  1  3</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="stay180_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="stay180_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class="kable_wrapper">
+<tbody>
+<tr>
+<td>
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">.metric</th>
+<th style="text-align: left;">.estimator</th>
+<th style="text-align: right;">.estimate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">roc_auc</td>
+<td style="text-align: left;">binary</td>
+<td style="text-align: right;">0.755</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">.metric</th>
+<th style="text-align: left;">.estimator</th>
+<th style="text-align: right;">.estimate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">ppv</td>
+<td style="text-align: left;">binary</td>
+<td style="text-align: right;">0.7307692</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">f_meas</td>
+<td style="text-align: left;">binary</td>
+<td style="text-align: right;">0.8260870</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">.metric</th>
+<th style="text-align: left;">.estimator</th>
+<th style="text-align: right;">.estimate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">recall</td>
+<td style="text-align: left;">binary</td>
+<td style="text-align: right;">0.95</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">.metric</th>
+<th style="text-align: left;">.estimator</th>
+<th style="text-align: right;">.estimate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">accuracy</td>
+<td style="text-align: left;">binary</td>
+<td style="text-align: right;">0.7333333</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[[1]][[1]]
+# A tibble: 1 × 3
+  .metric .estimator .estimate
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+1 roc_auc binary         0.755
+
+[[1]][[2]]
+# A tibble: 2 × 3
+  .metric .estimator .estimate
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+1 ppv     binary         0.731
+2 f_meas  binary         0.826
+
+[[1]][[3]]
+# A tibble: 1 × 3
+  .metric .estimator .estimate
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+1 recall  binary          0.95
+
+[[1]][[4]]
+# A tibble: 1 × 3
+  .metric  .estimator .estimate
+  &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
+1 accuracy binary         0.733
+
+
+[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="stay180_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>══ Workflow [trained] ══════════════════════════════════════════════════════════
+Preprocessor: Recipe
+Model: rand_forest()
+
+── Preprocessor ────────────────────────────────────────────────────────────────
+5 Recipe Steps
+
+• step_zv()
+• step_normalize()
+• step_impute_mode()
+• step_unknown()
+• step_dummy()
+
+── Model ───────────────────────────────────────────────────────────────────────
+Ranger result
+
+Call:
+ ranger::ranger(x = maybe_data_frame(x), y = y, importance = ~"impurity",      num.threads = 1, verbose = FALSE, seed = sample.int(10^5,          1), probability = TRUE) 
+
+Type:                             Probability estimation 
+Number of trees:                  500 
+Sample size:                      30 
+Number of independent variables:  159 
+Mtry:                             12 
+Target node size:                 10 
+Variable importance mode:         impurity 
+Splitrule:                        gini 
+OOB prediction error (Brier s.):  0.2214472 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="stay180_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">LoS_cat_180</th>
+<th style="text-align: left;">.pred_class</th>
+<th style="text-align: right;">.pred_0</th>
+<th style="text-align: right;">.pred_1</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.8763038</td>
+<td style="text-align: right;">0.1236962</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7138171</td>
+<td style="text-align: right;">0.2861829</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7817354</td>
+<td style="text-align: right;">0.2182646</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.8125714</td>
+<td style="text-align: right;">0.1874286</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.5449440</td>
+<td style="text-align: right;">0.4550560</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7179694</td>
+<td style="text-align: right;">0.2820306</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0.4822453</td>
+<td style="text-align: right;">0.5177547</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0.2772194</td>
+<td style="text-align: right;">0.7227806</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0.2315800</td>
+<td style="text-align: right;">0.7684200</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7766425</td>
+<td style="text-align: right;">0.2233575</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7706314</td>
+<td style="text-align: right;">0.2293686</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6966224</td>
+<td style="text-align: right;">0.3033776</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0.2677178</td>
+<td style="text-align: right;">0.7322822</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7622960</td>
+<td style="text-align: right;">0.2377040</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0.2680293</td>
+<td style="text-align: right;">0.7319707</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7524764</td>
+<td style="text-align: right;">0.2475236</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6120440</td>
+<td style="text-align: right;">0.3879560</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.5376096</td>
+<td style="text-align: right;">0.4623904</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7850714</td>
+<td style="text-align: right;">0.2149286</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0.1627244</td>
+<td style="text-align: right;">0.8372756</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.8540502</td>
+<td style="text-align: right;">0.1459498</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7690782</td>
+<td style="text-align: right;">0.2309218</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7373776</td>
+<td style="text-align: right;">0.2626224</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.9590098</td>
+<td style="text-align: right;">0.0409902</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0.3507729</td>
+<td style="text-align: right;">0.6492271</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0.2920200</td>
+<td style="text-align: right;">0.7079800</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7280916</td>
+<td style="text-align: right;">0.2719084</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.5100519</td>
+<td style="text-align: right;">0.4899481</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.5390413</td>
+<td style="text-align: right;">0.4609587</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0.2218323</td>
+<td style="text-align: right;">0.7781677</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7550693</td>
+<td style="text-align: right;">0.2449307</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0.4572599</td>
+<td style="text-align: right;">0.5427401</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7911846</td>
+<td style="text-align: right;">0.2088154</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6429217</td>
+<td style="text-align: right;">0.3570783</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7415328</td>
+<td style="text-align: right;">0.2584672</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0.4886079</td>
+<td style="text-align: right;">0.5113921</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.8540445</td>
+<td style="text-align: right;">0.1459555</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0.2909076</td>
+<td style="text-align: right;">0.7090924</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0.4916025</td>
+<td style="text-align: right;">0.5083975</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6809226</td>
+<td style="text-align: right;">0.3190774</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0.4846990</td>
+<td style="text-align: right;">0.5153010</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0.3813637</td>
+<td style="text-align: right;">0.6186363</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7708445</td>
+<td style="text-align: right;">0.2291555</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0.2955896</td>
+<td style="text-align: right;">0.7044104</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0.3616252</td>
+<td style="text-align: right;">0.6383748</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.8953403</td>
+<td style="text-align: right;">0.1046597</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.5631886</td>
+<td style="text-align: right;">0.4368114</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0.2332897</td>
+<td style="text-align: right;">0.7667103</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0.3491200</td>
+<td style="text-align: right;">0.6508800</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.8469039</td>
+<td style="text-align: right;">0.1530961</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.8638753</td>
+<td style="text-align: right;">0.1361247</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.9345503</td>
+<td style="text-align: right;">0.0654497</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0.4989783</td>
+<td style="text-align: right;">0.5010217</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.5282894</td>
+<td style="text-align: right;">0.4717106</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7007554</td>
+<td style="text-align: right;">0.2992446</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.8087494</td>
+<td style="text-align: right;">0.1912506</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0.4290027</td>
+<td style="text-align: right;">0.5709973</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0.3171117</td>
+<td style="text-align: right;">0.6828883</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7470307</td>
+<td style="text-align: right;">0.2529693</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.9788470</td>
+<td style="text-align: right;">0.0211530</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6442118</td>
+<td style="text-align: right;">0.3557882</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.9000717</td>
+<td style="text-align: right;">0.0999283</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.8527616</td>
+<td style="text-align: right;">0.1472384</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.8944024</td>
+<td style="text-align: right;">0.1055976</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.8992870</td>
+<td style="text-align: right;">0.1007130</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.9669843</td>
+<td style="text-align: right;">0.0330157</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.9071212</td>
+<td style="text-align: right;">0.0928788</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.8017200</td>
+<td style="text-align: right;">0.1982800</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.9170625</td>
+<td style="text-align: right;">0.0829375</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6535158</td>
+<td style="text-align: right;">0.3464842</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7629877</td>
+<td style="text-align: right;">0.2370123</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0.2844992</td>
+<td style="text-align: right;">0.7155008</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6842770</td>
+<td style="text-align: right;">0.3157230</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6963185</td>
+<td style="text-align: right;">0.3036815</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0.3710184</td>
+<td style="text-align: right;">0.6289816</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7074094</td>
+<td style="text-align: right;">0.2925906</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0.4737728</td>
+<td style="text-align: right;">0.5262272</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7723121</td>
+<td style="text-align: right;">0.2276879</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7611850</td>
+<td style="text-align: right;">0.2388150</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7554180</td>
+<td style="text-align: right;">0.2445820</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6781152</td>
+<td style="text-align: right;">0.3218848</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.8923816</td>
+<td style="text-align: right;">0.1076184</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.9317191</td>
+<td style="text-align: right;">0.0682809</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7436005</td>
+<td style="text-align: right;">0.2563995</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.9840409</td>
+<td style="text-align: right;">0.0159591</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.9583326</td>
+<td style="text-align: right;">0.0416674</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7655994</td>
+<td style="text-align: right;">0.2344006</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.8772116</td>
+<td style="text-align: right;">0.1227884</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.9663066</td>
+<td style="text-align: right;">0.0336934</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.9063460</td>
+<td style="text-align: right;">0.0936540</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.5152505</td>
+<td style="text-align: right;">0.4847495</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.9710410</td>
+<td style="text-align: right;">0.0289590</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6308392</td>
+<td style="text-align: right;">0.3691608</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0.4653675</td>
+<td style="text-align: right;">0.5346325</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.8663468</td>
+<td style="text-align: right;">0.1336532</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.9298871</td>
+<td style="text-align: right;">0.0701129</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0.3113379</td>
+<td style="text-align: right;">0.6886621</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7606600</td>
+<td style="text-align: right;">0.2393400</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.8968021</td>
+<td style="text-align: right;">0.1031979</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.8233859</td>
+<td style="text-align: right;">0.1766141</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.9380504</td>
+<td style="text-align: right;">0.0619496</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.8562630</td>
+<td style="text-align: right;">0.1437370</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6476994</td>
+<td style="text-align: right;">0.3523006</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.8388600</td>
+<td style="text-align: right;">0.1611400</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6482004</td>
+<td style="text-align: right;">0.3517996</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0.4340270</td>
+<td style="text-align: right;">0.5659730</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.9204023</td>
+<td style="text-align: right;">0.0795977</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7559406</td>
+<td style="text-align: right;">0.2440594</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.9753017</td>
+<td style="text-align: right;">0.0246983</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0.3590453</td>
+<td style="text-align: right;">0.6409547</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0.4396851</td>
+<td style="text-align: right;">0.5603149</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7755993</td>
+<td style="text-align: right;">0.2244007</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.9051190</td>
+<td style="text-align: right;">0.0948810</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.8964936</td>
+<td style="text-align: right;">0.1035064</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.8622429</td>
+<td style="text-align: right;">0.1377571</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.5382861</td>
+<td style="text-align: right;">0.4617139</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.9593032</td>
+<td style="text-align: right;">0.0406968</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>             vars   n mean   sd median trimmed  mad  min  max range  skew
+LoS_cat_180*    1 117 1.32 0.47   1.00    1.28 0.00 1.00 2.00  1.00  0.74
+.pred_class*    2 117 1.26 0.44   1.00    1.20 0.00 1.00 2.00  1.00  1.10
+.pred_0         3 117 0.68 0.22   0.75    0.69 0.22 0.16 0.98  0.82 -0.58
+.pred_1         4 117 0.32 0.22   0.25    0.31 0.22 0.02 0.84  0.82  0.58
+             kurtosis   se
+LoS_cat_180*    -1.47 0.04
+.pred_class*    -0.79 0.04
+.pred_0         -0.85 0.02
+.pred_1         -0.85 0.02</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>          Truth
+Prediction  0  1
+         0 78  9
+         1  1 29</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="stay180_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="stay180_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class="kable_wrapper">
+<tbody>
+<tr>
+<td>
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">.metric</th>
+<th style="text-align: left;">.estimator</th>
+<th style="text-align: right;">.estimate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">roc_auc</td>
+<td style="text-align: left;">binary</td>
+<td style="text-align: right;">0.9653564</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">.metric</th>
+<th style="text-align: left;">.estimator</th>
+<th style="text-align: right;">.estimate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">ppv</td>
+<td style="text-align: left;">binary</td>
+<td style="text-align: right;">0.8965517</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">f_meas</td>
+<td style="text-align: left;">binary</td>
+<td style="text-align: right;">0.9397590</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">.metric</th>
+<th style="text-align: left;">.estimator</th>
+<th style="text-align: right;">.estimate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">recall</td>
+<td style="text-align: left;">binary</td>
+<td style="text-align: right;">0.9873418</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">.metric</th>
+<th style="text-align: left;">.estimator</th>
+<th style="text-align: right;">.estimate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">accuracy</td>
+<td style="text-align: left;">binary</td>
+<td style="text-align: right;">0.9145299</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[[1]][[1]]
+# A tibble: 1 × 3
+  .metric .estimator .estimate
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+1 roc_auc binary         0.965
+
+[[1]][[2]]
+# A tibble: 2 × 3
+  .metric .estimator .estimate
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+1 ppv     binary         0.897
+2 f_meas  binary         0.940
+
+[[1]][[3]]
+# A tibble: 1 × 3
+  .metric .estimator .estimate
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+1 recall  binary         0.987
+
+[[1]][[4]]
+# A tibble: 1 × 3
+  .metric  .estimator .estimate
+  &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
+1 accuracy binary         0.915
+
+
+[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="stay180_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">LoS_cat_180</th>
+<th style="text-align: left;">.pred_class</th>
+<th style="text-align: right;">.pred_0</th>
+<th style="text-align: right;">.pred_1</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>             vars  n mean   sd median trimmed mad min max range  skew kurtosis
+LoS_cat_180*    1 30 1.33 0.48      1    1.29   0   1   2     1  0.67     -1.6
+.pred_class*    2 30 1.33 0.48      1    1.29   0   1   2     1  0.67     -1.6
+.pred_0         3 30 0.67 0.48      1    0.71   0   0   1     1 -0.67     -1.6
+.pred_1         4 30 0.33 0.48      0    0.29   0   0   1     1  0.67     -1.6
+               se
+LoS_cat_180* 0.09
+.pred_class* 0.09
+.pred_0      0.09
+.pred_1      0.09</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>          Truth
+Prediction  0  1
+         0 15  5
+         1  5  5</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="stay180_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="stay180_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class="kable_wrapper">
+<tbody>
+<tr>
+<td>
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">.metric</th>
+<th style="text-align: left;">.estimator</th>
+<th style="text-align: right;">.estimate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">roc_auc</td>
+<td style="text-align: left;">binary</td>
+<td style="text-align: right;">0.6</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">.metric</th>
+<th style="text-align: left;">.estimator</th>
+<th style="text-align: right;">.estimate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">ppv</td>
+<td style="text-align: left;">binary</td>
+<td style="text-align: right;">0.75</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">f_meas</td>
+<td style="text-align: left;">binary</td>
+<td style="text-align: right;">0.75</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">.metric</th>
+<th style="text-align: left;">.estimator</th>
+<th style="text-align: right;">.estimate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">recall</td>
+<td style="text-align: left;">binary</td>
+<td style="text-align: right;">0.75</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">.metric</th>
+<th style="text-align: left;">.estimator</th>
+<th style="text-align: right;">.estimate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">accuracy</td>
+<td style="text-align: left;">binary</td>
+<td style="text-align: right;">0.6666667</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[[1]][[1]]
+# A tibble: 1 × 3
+  .metric .estimator .estimate
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+1 roc_auc binary           0.6
+
+[[1]][[2]]
+# A tibble: 2 × 3
+  .metric .estimator .estimate
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+1 ppv     binary          0.75
+2 f_meas  binary          0.75
+
+[[1]][[3]]
+# A tibble: 1 × 3
+  .metric .estimator .estimate
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+1 recall  binary          0.75
+
+[[1]][[4]]
+# A tibble: 1 × 3
+  .metric  .estimator .estimate
+  &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
+1 accuracy binary         0.667
+
+
+[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="stay180_files/figure-html/unnamed-chunk-38-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>══ Workflow [trained] ══════════════════════════════════════════════════════════
+Preprocessor: Recipe
+Model: logistic_reg()
+
+── Preprocessor ────────────────────────────────────────────────────────────────
+5 Recipe Steps
+
+• step_zv()
+• step_normalize()
+• step_impute_mode()
+• step_unknown()
+• step_dummy()
+
+── Model ───────────────────────────────────────────────────────────────────────
+
+Call:  stats::glm(formula = ..y ~ ., family = stats::binomial, data = data)
+
+Coefficients:
+           (Intercept)                  sex_X2                  sex_X3  
+            -2.557e+01               2.311e-06                      NA  
+               sex_NA.       marital_status_X2       marital_status_X3  
+                    NA                      NA                      NA  
+    marital_status_NA.               grade_X10               grade_X11  
+                    NA              -5.113e+01              -5.113e+01  
+             grade_X12               grade_X13               grade_X14  
+            -5.113e+01              -1.023e+02              -1.023e+02  
+             grade_X15               grade_X16                grade_X3  
+                    NA                      NA                      NA  
+              grade_X7                grade_X8                grade_X9  
+                    NA                      NA              -1.023e+02  
+              grade_AS                grade_Co           grade_college  
+                    NA               9.977e-08                      NA  
+         grade_College                grade_Fi               grade_GED  
+            -5.113e+01                      NA                      NA  
+              grade_Gr                grade_HS                grade_Po  
+                    NA              -5.113e+01              -1.023e+02  
+              grade_SC                grade_so                grade_So  
+            -5.113e+01                      NA                      NA  
+             grade_NA.                 race_X2                 race_X3  
+                    NA                      NA                      NA  
+               race_X5                race_NA.            ethnicity_X1  
+             5.113e+01                      NA               5.113e+01  
+          ethnicity_X2           ethnicity_NA.             religion_X2  
+             1.023e+02                      NA               5.113e+01  
+           religion_X3             religion_X4             religion_X5  
+                    NA               5.547e-14                      NA  
+           religion_X6             religion_X7            religion_X10  
+                    NA               1.710e-13              -5.113e+01  
+          religion_X11            religion_X13            religion_X14  
+            -2.311e-06                      NA                      NA  
+          religion_X15            religion_X16            religion_X17  
+                    NA              -6.927e-06               2.217e-06  
+          religion_X19            religion_NA.          dsm_primary_X3  
+                    NA                      NA                      NA  
+        dsm_primary_X4          dsm_primary_X5          dsm_primary_X6  
+                    NA                      NA              -1.023e+02  
+       dsm_primary_X10         dsm_primary_NA.        dsm_secondary_X1  
+                    NA                      NA                      NA  
+      dsm_secondary_X3        dsm_secondary_X4        dsm_secondary_X5  
+             5.113e+01                      NA               5.113e+01  
+      dsm_secondary_X6        dsm_secondary_X7        dsm_secondary_X8  
+                    NA               8.015e-14               5.113e+01  
+      dsm_secondary_X9       dsm_secondary_NA.          dsm_overall_X2  
+                    NA                      NA                      NA  
+
+...
+and 66 more lines.</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="stay180_files/figure-html/unnamed-chunk-40-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">LoS_cat_180</th>
+<th style="text-align: left;">.pred_class</th>
+<th style="text-align: right;">.pred_0</th>
+<th style="text-align: right;">.pred_1</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>             vars   n mean   sd median trimmed mad min max range  skew kurtosis
+LoS_cat_180*    1 117 1.32 0.47      1    1.28   0   1   2     1  0.74    -1.47
+.pred_class*    2 117 1.32 0.47      1    1.28   0   1   2     1  0.74    -1.47
+.pred_0         3 117 0.68 0.47      1    0.72   0   0   1     1 -0.74    -1.47
+.pred_1         4 117 0.32 0.47      0    0.28   0   0   1     1  0.74    -1.47
+               se
+LoS_cat_180* 0.04
+.pred_class* 0.04
+.pred_0      0.04
+.pred_1      0.04</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>          Truth
+Prediction  0  1
+         0 74  5
+         1  5 33</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="stay180_files/figure-html/unnamed-chunk-44-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="stay180_files/figure-html/unnamed-chunk-45-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class="kable_wrapper">
+<tbody>
+<tr>
+<td>
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">.metric</th>
+<th style="text-align: left;">.estimator</th>
+<th style="text-align: right;">.estimate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">roc_auc</td>
+<td style="text-align: left;">binary</td>
+<td style="text-align: right;">0.9653564</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">.metric</th>
+<th style="text-align: left;">.estimator</th>
+<th style="text-align: right;">.estimate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">ppv</td>
+<td style="text-align: left;">binary</td>
+<td style="text-align: right;">0.8965517</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">f_meas</td>
+<td style="text-align: left;">binary</td>
+<td style="text-align: right;">0.9397590</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">.metric</th>
+<th style="text-align: left;">.estimator</th>
+<th style="text-align: right;">.estimate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">recall</td>
+<td style="text-align: left;">binary</td>
+<td style="text-align: right;">0.9873418</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">.metric</th>
+<th style="text-align: left;">.estimator</th>
+<th style="text-align: right;">.estimate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">accuracy</td>
+<td style="text-align: left;">binary</td>
+<td style="text-align: right;">0.9145299</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[[1]][[1]]
+# A tibble: 1 × 3
+  .metric .estimator .estimate
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+1 roc_auc binary         0.828
+
+[[1]][[2]]
+# A tibble: 2 × 3
+  .metric .estimator .estimate
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+1 ppv     binary         0.937
+2 f_meas  binary         0.937
+
+[[1]][[3]]
+# A tibble: 1 × 3
+  .metric .estimator .estimate
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+1 recall  binary         0.937
+
+[[1]][[4]]
+# A tibble: 1 × 3
+  .metric  .estimator .estimate
+  &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
+1 accuracy binary         0.915
+
+
+[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="stay180_files/figure-html/unnamed-chunk-47-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">LoS_cat_180</th>
+<th style="text-align: left;">.pred_class</th>
+<th style="text-align: right;">.pred_0</th>
+<th style="text-align: right;">.pred_1</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7233961</td>
+<td style="text-align: right;">0.2766039</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7269251</td>
+<td style="text-align: right;">0.2730749</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7269251</td>
+<td style="text-align: right;">0.2730749</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0.4408415</td>
+<td style="text-align: right;">0.5591585</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0.4408415</td>
+<td style="text-align: right;">0.5591585</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7269251</td>
+<td style="text-align: right;">0.2730749</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6150202</td>
+<td style="text-align: right;">0.3849798</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0.4403382</td>
+<td style="text-align: right;">0.5596618</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7255924</td>
+<td style="text-align: right;">0.2744076</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7269251</td>
+<td style="text-align: right;">0.2730749</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0.4853601</td>
+<td style="text-align: right;">0.5146399</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7080792</td>
+<td style="text-align: right;">0.2919208</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7269251</td>
+<td style="text-align: right;">0.2730749</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7233961</td>
+<td style="text-align: right;">0.2766039</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7269251</td>
+<td style="text-align: right;">0.2730749</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7269251</td>
+<td style="text-align: right;">0.2730749</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7273303</td>
+<td style="text-align: right;">0.2726697</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7269251</td>
+<td style="text-align: right;">0.2730749</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7273303</td>
+<td style="text-align: right;">0.2726697</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7269251</td>
+<td style="text-align: right;">0.2730749</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7269251</td>
+<td style="text-align: right;">0.2730749</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.6207834</td>
+<td style="text-align: right;">0.3792166</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7269251</td>
+<td style="text-align: right;">0.2730749</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7269251</td>
+<td style="text-align: right;">0.2730749</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7269251</td>
+<td style="text-align: right;">0.2730749</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7269251</td>
+<td style="text-align: right;">0.2730749</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7269251</td>
+<td style="text-align: right;">0.2730749</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7269251</td>
+<td style="text-align: right;">0.2730749</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7255924</td>
+<td style="text-align: right;">0.2744076</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">0.7269251</td>
+<td style="text-align: right;">0.2730749</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>             vars  n mean   sd median trimmed mad  min  max range  skew
+LoS_cat_180*    1 30 1.33 0.48   1.00    1.29   0 1.00 2.00  1.00  0.67
+.pred_class*    2 30 1.13 0.35   1.00    1.04   0 1.00 2.00  1.00  2.05
+.pred_0         3 30 0.68 0.10   0.73    0.71   0 0.44 0.73  0.29 -1.81
+.pred_1         4 30 0.32 0.10   0.27    0.29   0 0.27 0.56  0.29  1.81
+             kurtosis   se
+LoS_cat_180*    -1.60 0.09
+.pred_class*     2.28 0.06
+.pred_0          1.61 0.02
+.pred_1          1.61 0.02</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>          Truth
+Prediction  0  1
+         0 20  6
+         1  0  4</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="stay180_files/figure-html/unnamed-chunk-51-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="stay180_files/figure-html/unnamed-chunk-52-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class="kable_wrapper">
+<tbody>
+<tr>
+<td>
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">.metric</th>
+<th style="text-align: left;">.estimator</th>
+<th style="text-align: right;">.estimate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">roc_auc</td>
+<td style="text-align: left;">binary</td>
+<td style="text-align: right;">0.7475</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">.metric</th>
+<th style="text-align: left;">.estimator</th>
+<th style="text-align: right;">.estimate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">ppv</td>
+<td style="text-align: left;">binary</td>
+<td style="text-align: right;">0.7692308</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">f_meas</td>
+<td style="text-align: left;">binary</td>
+<td style="text-align: right;">0.8695652</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">.metric</th>
+<th style="text-align: left;">.estimator</th>
+<th style="text-align: right;">.estimate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">recall</td>
+<td style="text-align: left;">binary</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">.metric</th>
+<th style="text-align: left;">.estimator</th>
+<th style="text-align: right;">.estimate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">accuracy</td>
+<td style="text-align: left;">binary</td>
+<td style="text-align: right;">0.8</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[[1]][[1]]
+# A tibble: 1 × 3
+  .metric .estimator .estimate
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+1 roc_auc binary         0.748
+
+[[1]][[2]]
+# A tibble: 2 × 3
+  .metric .estimator .estimate
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+1 ppv     binary         0.769
+2 f_meas  binary         0.870
+
+[[1]][[3]]
+# A tibble: 1 × 3
+  .metric .estimator .estimate
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+1 recall  binary             1
+
+[[1]][[4]]
+# A tibble: 1 × 3
+  .metric  .estimator .estimate
+  &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
+1 accuracy binary           0.8
+
+
+[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="stay180_files/figure-html/unnamed-chunk-54-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>══ Workflow [trained] ══════════════════════════════════════════════════════════
+Preprocessor: Recipe
+Model: multinom_reg()
+
+── Preprocessor ────────────────────────────────────────────────────────────────
+5 Recipe Steps
+
+• step_zv()
+• step_normalize()
+• step_impute_mode()
+• step_unknown()
+• step_dummy()
+
+── Model ───────────────────────────────────────────────────────────────────────
+
+Call:  glmnet::glmnet(x = maybe_matrix(x), y = y, family = "multinomial",      alpha = ~1) 
+
+    Df  %Dev   Lambda
+1    0  0.00 0.250000
+2    1  1.94 0.238600
+3    1  3.67 0.227800
+4    2  5.38 0.217400
+5    2  7.94 0.207600
+6    3 11.12 0.198100
+7    4 14.11 0.189100
+8    4 16.86 0.180500
+9    4 19.37 0.172300
+10   4 21.67 0.164500
+11   4 23.80 0.157000
+12   4 25.77 0.149900
+13   5 27.78 0.143100
+14   8 30.27 0.136600
+15   8 33.02 0.130400
+16   9 35.53 0.124400
+17   9 37.83 0.118800
+18   9 39.95 0.113400
+19   9 41.91 0.108200
+20  12 44.15 0.103300
+21  13 46.23 0.098610
+22  13 48.17 0.094120
+23  13 49.96 0.089850
+24  14 51.93 0.085760
+25  14 54.21 0.081860
+26  14 56.32 0.078140
+27  14 58.28 0.074590
+28  14 60.12 0.071200
+29  14 61.84 0.067960
+30  14 63.44 0.064880
+31  14 64.95 0.061930
+32  14 66.37 0.059110
+33  14 67.71 0.056430
+34  15 69.17 0.053860
+35  16 70.88 0.051410
+36  17 72.47 0.049080
+37  17 73.95 0.046850
+38  17 75.34 0.044720
+39  17 76.63 0.042680
+40  17 77.85 0.040740
+41  17 78.98 0.038890
+42  17 80.05 0.037120
+43  17 81.06 0.035440
+44  17 82.01 0.033830
+45  17 82.91 0.032290
+46  17 83.75 0.030820
+
+...
+and 54 more lines.</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="stay180_files/figure-html/unnamed-chunk-56-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">LoS_cat_180</th>
+<th style="text-align: left;">.pred_class</th>
+<th style="text-align: right;">.pred_0</th>
+<th style="text-align: right;">.pred_1</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
